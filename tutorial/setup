@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+VENV_DIR="vblogenv"
+if [ -d "${VENV_DIR}" ]; then
+	rm -rfv ${VENV_DIR}
+fi
+
+pip install virtualenv
+virtualenv vblogenv
+source vblogenv/bin/activate
+pip install -r requirements.txt
+mkdocs build --clean 
+mkdocs serve -a 0.0.0.0:8000
