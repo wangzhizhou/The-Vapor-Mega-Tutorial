@@ -83,3 +83,4 @@ DerivedData/
 # End of https://www.gitignore.io/api/vapor
 site/
 vblogenv/
+.vscode/

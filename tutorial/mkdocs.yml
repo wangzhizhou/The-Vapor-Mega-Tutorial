@@ -1,1 +1,7 @@
-site_name: My Docs
+site_name: The Vapor Mega Tutorial
+theme: readthedocs
+
+pages:
+  - The Vapor Mega Tutorial : index.md
+  - Development Environment: dev-env.md
+  - Hello World: hello-world.md
