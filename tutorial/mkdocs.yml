@@ -20,7 +20,7 @@ theme:
     tabs: false
 
 repo_name: 'GitHub Repo'
-repo_url: 'https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial.git'
+repo_url: 'https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial'
 
 copyright: 'Copyright &copy; 2018-20XX wangzhizhou'
 
