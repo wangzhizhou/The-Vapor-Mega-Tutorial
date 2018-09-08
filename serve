@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+
+SERVE_IP=$(ifconfig en0 | grep "inet " | awk '{print $2}')
+echo "SERVE IP: ${SERVE_IP}"
+
+VENV="vblogenv"
+if [ -d "$VENV" ]; then
+    source "$VENV/bin/activate"
+    mkdocs serve -a 0.0.0.0:8000
+else
+    ./setup
+fi
+

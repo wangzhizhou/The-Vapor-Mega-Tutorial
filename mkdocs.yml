@@ -13,11 +13,11 @@ theme:
     code: 'Ubuntu Mono'
   #logo: # 'images/logo.svg'
     # icon: 'cloud'
-  language: 'zh'
+  language: 'en'
   direction: 'ltr'
   # favicon: 'assets/images/favicon.ico'
   feature:
-    tabs: false
+    tabs: true
 
 repo_name: 'GitHub Repo'
 repo_url: 'https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial'
@@ -60,5 +60,10 @@ markdown_extensions:
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 
+
+# extra:
+    # disqus: 'joker-vapor'
+
 pages:
-  - Home: index.md
+  - Home: 
+      Introduction: 'index.md'
