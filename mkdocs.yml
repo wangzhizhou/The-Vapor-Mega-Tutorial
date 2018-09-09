@@ -1,4 +1,4 @@
-site_name: 'The Vapor Mega Tutorial'
+site_name: 'Vapor 大型教程'
 site_description: 'Learn Vapor and Practice'
 site_url: 'https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial'
 site_author: 'wangzhizhou'
@@ -13,20 +13,20 @@ theme:
     code: 'Ubuntu Mono'
   #logo: # 'images/logo.svg'
     # icon: 'cloud'
-  language: 'en'
+  language: 'zh'
   direction: 'ltr'
   # favicon: 'assets/images/favicon.ico'
   feature:
     tabs: true
 
-repo_name: 'GitHub Repo'
+repo_name: 'GitHub 仓库'
 repo_url: 'https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial'
 
 copyright: 'Copyright &copy; 2018-20XX wangzhizhou'
 
 extra:
   search:
-    language: 'en'
+    language: 'zh'
   social:
     - type: 'github'
       link: 'https://github.com/wangzhizhou'
@@ -64,6 +64,9 @@ extra_javascript:
 # extra:
     # disqus: 'joker-vapor'
 
-pages:
-  - Home: 
-      Introduction: 'index.md'
+nav:
+  - 主页: 
+      - 介绍: 'index.md'
+      - 开发环境: 'dev-env.md'
+      - Vapor的能力: 'vapor-can-do.md'
+      
