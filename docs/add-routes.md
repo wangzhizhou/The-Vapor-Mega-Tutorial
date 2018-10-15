@@ -5,7 +5,7 @@
 ``` bash
 $ vapor xcode -y
 ```
-然后添加两个路由，如图，在文件routes.swift中添加红框的内容，选择`My Mac`设备，并点击运行按钮
+然后添加两个GET类型的服务，如图，在文件routes.swift中添加红框的内容，选择`My Mac`设备, `Run`运行方案，并点击运行按钮
 
 ![add routes](/assets/add-routes.png)
 
