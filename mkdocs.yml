@@ -70,5 +70,6 @@ nav:
       - 开发环境: 'dev-env.md'
       - Vapor的能力: 'vapor-can-do.md'
       - 项目结构: 'project-structure.md'
-      - 添加路由: 'add-routes.md'
+      - 添加GET路由: 'add-routes.md'
+      - 接收POST数据: 'accept-data.md'
       
