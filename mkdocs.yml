@@ -69,4 +69,5 @@ nav:
       - 介绍: 'index.md'
       - 开发环境: 'dev-env.md'
       - Vapor的能力: 'vapor-can-do.md'
+      - 项目结构: 'project-structure.md'
       
