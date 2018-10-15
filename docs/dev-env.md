@@ -1,11 +1,5 @@
 `Vapor`的开发环境目前主要是针对`Mac OS`和`Ubuntu`两个平台部署。
 
-在布置开发环境前可以使用Vapor提供的脚本检查系统是否支持
-
-```bash
-$ eval "(curl -sL check.vapor.sh)"
-```
-
 !!! info
     在`Mac OS`你要先安装好`Xcode`，这个是为了安装好`Swift`语言环境，Shell里使用`$ swift --version`查看Swift版本
 
@@ -33,3 +27,9 @@ $ vapor --help
 ```
 
 执行完上面的命令，`Vapor`的开发环境就完成了。因为目前来说，Ubuntu上还没有对Swift支持比较好的IDE，所以建议使用Mac上的XCode作为开发工具。
+
+在布置开发环境后可以使用Vapor提供的脚本检查是否安装成功
+
+```bash
+$ eval "(curl -sL check.vapor.sh)"
+```
