@@ -484,6 +484,10 @@
 <li>响应头。例如: <code class="codehilite">Set-cookie</code>、<code class="codehilite">WWW-Authenticate</code>、<code class="codehilite">Cache-Control</code>、<code class="codehilite">Content-Length</code>等。也是键值对。</li>
 <li>可选响应体。带着响应返回的数据，可以是HTML页面内容、图片或者JSON数据</li>
 </ul>
+<p>Web浏览器只能使用GET和POST两种方式的请求，并且请求头是不能更改的。其它客户端像iOS应用可以使用所有的HTTP请求方式，更加灵活。</p>
+<h1 id="http-20">HTTP 2.0<a class="headerlink" href="#http-20" title="Permanent link">&para;</a></h1>
+<p>HTTP 2.0在效率和延迟上对HTTP 1.1进行了扩展，单个的请求和HTTP 1.1没有什么区别，但是HTTP 2.0的请求可以并行执行。服务器可以预测客户端的请求，从而在请求还没有发出的情况下把客户端可能需要的资源提前推送给客户端。 </p>
+<p><strong>Vapor在客户端和服务端同时支持HTTP 1.1和HTTP 2.0</strong></p>
                 
                   
                 
