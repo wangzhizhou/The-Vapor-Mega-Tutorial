@@ -326,6 +326,66 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../project-structure/" title="项目结构" class="md-nav__link">
+      项目结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-routes/" title="添加GET路由" class="md-nav__link">
+      添加GET路由
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../accept-data/" title="接收POST数据" class="md-nav__link">
+      接收POST数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../return-json/" title="返回JSON数据" class="md-nav__link">
+      返回JSON数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../error-fix/" title="排错" class="md-nav__link">
+      排错
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -408,6 +468,127 @@ Use <span class="sb">`</span>vapor <span class="nb">command</span> --help<span c
 </td></tr></table>
 
 <p><code class="codehilite">Vapor</code>可以通过<code class="codehilite">new</code>命令，从模板创建工程，这种工程模板可以是自己定义的，也可以是Vapor默认提供的。自定义的工程模板可以放在本地，也可以放在github上。默认提供的模板有：<code class="codehilite">Web模板</code>、<code class="codehilite">身份认证模板</code>、<code class="codehilite">后端API开发模板</code>。其它的一些命令会在之后的实践中慢慢用到，我们可以先不用理会。</p>
+<div class="admonition example">
+<p class="admonition-title">使用API模板创建项目</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ mkdir ~/vapor
+$ <span class="nb">cd</span> ~/vapor
+$ vapor new HelloVapor
+Cloning Template <span class="o">[</span>Done<span class="o">]</span>
+Updating Package Name <span class="o">[</span>Done<span class="o">]</span>
+Initializing git repository <span class="o">[</span>Done<span class="o">]</span>     
+
+                                       **
+                                     **~~**
+                                   **~~~~~~**
+                                 **~~~~~~~~~~**
+                               **~~~~~~~~~~~~~~**
+                             **~~~~~~~~~~~~~~~~~~**
+                           **~~~~~~~~~~~~~~~~~~~~~~**
+                          **~~~~~~~~~~~~~~~~~~~~~~~~**
+                         **~~~~~~~~~~~~~~~~~~~~~~~~~~**
+                        **~~~~~~~~~~~~~~~~~~~~~~~~~~~~**
+                        **~~~~~~~~~~~~~~~~~~~~~~~~~~~~**
+                        **~~~~~~~~~~~~~~~~~~~~~++++~~~**
+                         **~~~~~~~~~~~~~~~~~~~++++~~~**
+                          ***~~~~~~~~~~~~~~~++++~~~***
+                            ****~~~~~~~~~~++++~~****
+                               *****~~~~~~~~~*****
+                                  *************
+
+                         _       __    ___   ___   ___
+                        <span class="se">\ \ </span> /  / /<span class="se">\ </span> <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> / / <span class="se">\ </span><span class="p">|</span> <span class="p">|</span>_<span class="o">)</span>
+                         <span class="se">\_\/</span>  /_/--<span class="se">\ </span><span class="p">|</span>_<span class="p">|</span>   <span class="se">\_\_</span>/ <span class="p">|</span>_<span class="p">|</span> <span class="se">\</span>
+                           a web framework <span class="k">for</span> Swift     
+
+                     Project <span class="s2">&quot;HelloVapor&quot;</span> has been created.
+              Type <span class="sb">`</span><span class="nb">cd</span> HelloVapor<span class="sb">`</span> to enter the project directory.
+            Use <span class="sb">`</span>vapor cloud deploy<span class="sb">`</span> to host your project <span class="k">for</span> free!
+                                     Enjoy!    
+
+
+$ <span class="nb">cd</span> HelloVapor
+$ vapor build
+Building Project <span class="o">[</span>Done<span class="o">]</span>
+$ vapor run
+Running HelloVapor ...
+<span class="o">[</span> INFO <span class="o">]</span> Migrating <span class="s1">&#39;sqlite&#39;</span> database    <span class="o">(</span>/Users/joker/Desktop/vapor/HelloVapor/.build/checkouts/fluent.   git-8483266616959926579/Sources/Fluent/Migration/MigrationConfig.  swift:69<span class="o">)</span>
+<span class="o">[</span> INFO <span class="o">]</span> Preparing migration <span class="s1">&#39;Todo&#39;</span>     <span class="o">(</span>/Users/joker/Desktop/vapor/HelloVapor/.build/checkouts/fluent.   git-8483266616959926579/Sources/Fluent/Migration/Migrations.swift:111<span class="o">)</span>
+<span class="o">[</span> INFO <span class="o">]</span> Migrations <span class="nb">complete</span>    <span class="o">(</span>/Users/joker/Desktop/vapor/HelloVapor/.build/checkouts/fluent.   git-8483266616959926579/Sources/Fluent/Migration/MigrationConfig.  swift:73<span class="o">)</span>
+Running default command: .build/debug/Run serve
+Server starting on http://localhost:8080
+</pre></div>
+</td></tr></table>
+
+</div>
+<p>第一次<code class="codehilite">vapor build</code>这一步可能会有点慢，因为它要从网络上拉取一些依赖的仓库代码，来构建项目。</p>
+<p>项目运行起来默认是在<code class="codehilite">8080</code>端口上服务的，而且只能从本机访问，如果要指定端口和允许任意IP地址访问API，可以使用下面的命令运行:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ vapor run --hostname<span class="o">=</span><span class="m">0</span>.0.0.0 --port<span class="o">=</span><span class="m">80</span>
+Running HelloVapor ...
+<span class="o">[</span> INFO <span class="o">]</span> Migrating <span class="s1">&#39;sqlite&#39;</span> database <span class="o">(</span>/Users/joker/Desktop/vapor/HelloVapor/.build/checkouts/fluent.git-8483266616959926579/Sources/Fluent/Migration/MigrationConfig.swift:69<span class="o">)</span>
+<span class="o">[</span> INFO <span class="o">]</span> Preparing migration <span class="s1">&#39;Todo&#39;</span> <span class="o">(</span>/Users/joker/Desktop/vapor/HelloVapor/.build/checkouts/fluent.git-8483266616959926579/Sources/Fluent/Migration/Migrations.swift:111<span class="o">)</span>
+<span class="o">[</span> INFO <span class="o">]</span> Migrations <span class="nb">complete</span> <span class="o">(</span>/Users/joker/Desktop/vapor/HelloVapor/.build/checkouts/fluent.git-8483266616959926579/Sources/Fluent/Migration/MigrationConfig.swift:73<span class="o">)</span>
+Running default command: .build/debug/Run serve
+<span class="o">[</span>Deprecated<span class="o">]</span> --option<span class="o">=</span>value syntax is deprecated. Please use --option value <span class="o">(</span>with <span class="nv">no</span> <span class="o">=)</span> instead.
+<span class="o">[</span>Deprecated<span class="o">]</span> --option<span class="o">=</span>value syntax is deprecated. Please use --option value <span class="o">(</span>with <span class="nv">no</span> <span class="o">=)</span> instead.
+Server starting on http://0.0.0.0:80
+</pre></div>
+</td></tr></table></p>
+<p>运行起来后，我们访问API服务就可以验证了。模板默认提供一个API服务：<code class="codehilite">/hello</code>, 用Chrome访问一下试试：</p>
+<p><img alt="chrome it works" src="/assets/it_works.png" /></p>
+<p><img alt="chrome hello world" src="/assets/hello_world.png" /></p>
                 
                   
                 
@@ -442,6 +623,20 @@ Use <span class="sb">`</span>vapor <span class="nb">command</span> --help<span c
             </div>
           </a>
         
+        
+          <a href="../project-structure/" title="项目结构" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                项目结构
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

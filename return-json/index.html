@@ -13,6 +13,8 @@
         <meta name="description" content="Learn Vapor and Practice">
       
       
+        <link rel="canonical" href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/return-json/">
+      
       
         <meta name="author" content="wangzhizhou">
       
@@ -35,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
-      <link rel="shortcut icon" href="/wangzhizhou/The-Vapor-Mega-Tutorial/assets/images/favicon.png">
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
     
     
       
-        <title>Vapor 大型教程</title>
+        <title>返回JSON数据 - Vapor 大型教程</title>
       
     
     
-      <link rel="stylesheet" href="/wangzhizhou/The-Vapor-Mega-Tutorial/assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
       
-        <link rel="stylesheet" href="/wangzhizhou/The-Vapor-Mega-Tutorial/assets/stylesheets/application-palette.22915126.css">
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
       
       
         
@@ -55,7 +57,7 @@
       
     
     
-      <script src="/wangzhizhou/The-Vapor-Mega-Tutorial/assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       
@@ -64,7 +66,7 @@
         <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="/wangzhizhou/The-Vapor-Mega-Tutorial/assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
   </head>
@@ -124,7 +126,7 @@
                 Vapor 大型教程
               </span>
               <span class="md-header-nav__topic">
-                
+                返回JSON数据
               </span>
             
           
@@ -196,7 +198,9 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -205,7 +209,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/." title="主页" class="md-tabs__link">
+        <a href=".." title="主页" class="md-tabs__link md-tabs__link--active">
           主页
         </a>
       
@@ -262,10 +266,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
       主页
@@ -283,7 +289,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/." title="介绍" class="md-nav__link">
+    <a href=".." title="介绍" class="md-nav__link">
       介绍
     </a>
   </li>
@@ -295,7 +301,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/dev-env/" title="开发环境" class="md-nav__link">
+    <a href="../dev-env/" title="开发环境" class="md-nav__link">
       开发环境
     </a>
   </li>
@@ -307,7 +313,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/vapor-can-do/" title="Vapor的能力" class="md-nav__link">
+    <a href="../vapor-can-do/" title="Vapor的能力" class="md-nav__link">
       Vapor的能力
     </a>
   </li>
@@ -319,7 +325,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/project-structure/" title="项目结构" class="md-nav__link">
+    <a href="../project-structure/" title="项目结构" class="md-nav__link">
       项目结构
     </a>
   </li>
@@ -331,7 +337,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/add-routes/" title="添加GET路由" class="md-nav__link">
+    <a href="../add-routes/" title="添加GET路由" class="md-nav__link">
       添加GET路由
     </a>
   </li>
@@ -343,7 +349,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/accept-data/" title="接收POST数据" class="md-nav__link">
+    <a href="../accept-data/" title="接收POST数据" class="md-nav__link">
       接收POST数据
     </a>
   </li>
@@ -353,11 +359,18 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/return-json/" title="返回JSON数据" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="返回JSON数据" class="md-nav__link md-nav__link--active">
       返回JSON数据
     </a>
+    
   </li>
 
         
@@ -367,7 +380,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/wangzhizhou/The-Vapor-Mega-Tutorial/error-fix/" title="排错" class="md-nav__link">
+    <a href="../error-fix/" title="排错" class="md-nav__link">
       排错
     </a>
   </li>
@@ -389,8 +402,20 @@
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
+                
+                  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/edit/master/docs/return-json.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>返回JSON数据</h1>
+                
+                <p>Content协议也可以编码结构体成为JSON数据，在代码中定义一个遵循Content协议的结构体InfoResponse，使用请求数据初始化一个响应结构体对象，直接返回，JSON编码会自动完成，并返回JSON数据给用户。</p>
+<p><img alt="return json code" src="/assets/return-json-code.png" /></p>
+<p>使用<code class="codehilite">resetd</code>应用测试如下：</p>
+<p><img alt="return json" src="/assets/return-json.png" /></p>
+                
+                  
+                
+              
               
                 
 
@@ -403,6 +428,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../accept-data/" title="接收POST数据" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                接收POST数据
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../error-fix/" title="排错" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                排错
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -421,7 +481,7 @@
       
         
   <div class="md-footer-social">
-    <link rel="stylesheet" href="/wangzhizhou/The-Vapor-Mega-Tutorial/assets/fonts/font-awesome.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
     
       <a href="https://github.com/wangzhizhou" class="md-footer-social__link fa fa-github"></a>
     
@@ -434,12 +494,12 @@
       
     </div>
     
-      <script src="/wangzhizhou/The-Vapor-Mega-Tutorial/assets/javascripts/application.583bbe55.js"></script>
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
       
         
         
           
-          <script src="/wangzhizhou/The-Vapor-Mega-Tutorial/assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
           
             
               
@@ -449,7 +509,7 @@
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"/wangzhizhou/The-Vapor-Mega-Tutorial"}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
