@@ -48,5 +48,3 @@ router.get("api","acronyms","sorted") { (req) -> Future<[Acronym]> in
     return Acronym.query(on: req).sort(\.short, .ascending).all()
 }
 ```
-
-# 
