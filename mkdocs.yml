@@ -76,4 +76,8 @@ nav:
       - 排错: 'error-fix.md'
       - HTTP基础: 'http-basic.md'
       - REST API: 'rest-api.md'
-      
+      - 异步: 'async.md'
+      - 数据库: 'Fluent-Persisting-models.md'
+      - 配置数据库: 'configure-database.md'
+      - 数据库CRUD操作: 'CRUD.md'
+      - Fluent查询操作: 'fluent-query.md'
