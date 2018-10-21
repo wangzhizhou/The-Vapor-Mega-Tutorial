@@ -2,82 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/dev-env/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/vapor-can-do/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/project-structure/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/add-routes/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/accept-data/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/return-json/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/error-fix/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/http-basic/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/rest-api/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/async/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/Fluent-Persisting-models/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/configure-database/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/CRUD/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/fluent-query/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/controller/</loc>
-     <lastmod>2018-10-21</lastmod>
+     <lastmod>2018-10-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/parent-children-relation/</loc>
+     <lastmod>2018-10-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
