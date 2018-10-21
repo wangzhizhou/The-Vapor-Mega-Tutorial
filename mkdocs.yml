@@ -81,3 +81,4 @@ nav:
       - 配置数据库: 'configure-database.md'
       - 数据库CRUD操作: 'CRUD.md'
       - Fluent查询操作: 'fluent-query.md'
+      - 控制器: 'controller.md'
