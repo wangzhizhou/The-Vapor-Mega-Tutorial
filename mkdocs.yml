@@ -82,3 +82,4 @@ nav:
       - 数据库CRUD操作: 'CRUD.md'
       - Fluent查询操作: 'fluent-query.md'
       - 控制器: 'controller.md'
+      - 父子关系: 'parent-children-relation.md'

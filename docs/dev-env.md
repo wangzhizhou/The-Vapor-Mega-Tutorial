@@ -33,3 +33,7 @@ $ vapor --help
 ```bash
 $ eval "(curl -sL check.vapor.sh)"
 ```
+
+
+!!! warning "端口占用查询"
+    在MacOS上，终端键入命令`lsof -i tcp:8080`可以查看指定端口当前被哪些应用使用

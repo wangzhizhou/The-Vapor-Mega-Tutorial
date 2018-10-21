@@ -103,3 +103,7 @@ Server starting on http://0.0.0.0:80
 ![chrome it works](/assets/it_works.png)
 
 ![chrome hello world](/assets/hello_world.png)
+
+
+!!! warning "端口占用查询"
+    在MacOS上，终端键入命令`lsof -i tcp:8080`可以查看指定端口当前被哪些应用使用。然后使用`pkill APP_NAME`来关闭这些占用端口的应用。
