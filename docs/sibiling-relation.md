@@ -65,7 +65,7 @@ routeGroup.get(Acronym.parameter, "categories", use: getCagtegoriesHandler)
 func addCategoriesHandler(_ req: Request) throws -> Future<HTTPStatus> {
     return try flatMap(to: HTTPStatus.self,
                        req.parameters.next(Acronym.self),
-                       req.content.decode(Category.self)) { (acronym, category) in
+                       req.parameters.next(Category.self)) { (acronym, category) in
                         return acronym
                             .categories
                             .attach(category, on: req)
