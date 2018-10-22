@@ -107,3 +107,31 @@ func getAcronymsHandler(_ req: Request) throws -> Future<[Acronym]> {
     }
 }
 ```
+
+# AcronymCategoryPivot侧外键约束添加
+
+*AcronymCategoryPivot.swift*
+```swift
+...
+extension AcronymCategoryPivot: Migration {
+    static func prepare(on connection: PostgreSQLDatabase.Connection) -> Future<Void> {
+        return Database.create(self, on: connection) { (builder) in
+            try addProperties(to: builder)
+            
+            builder.reference(from: \.acronymID, to: \Acronym.id, onDelete: .cascade)
+            builder.reference(from: \.categoryID, to: \Category.id, onDelete: .cascade)
+        }
+    }
+}
+...
+```
+
+# 重置数据库
+
+```bash
+$ docker stop postgresql
+$ docker rm postgresql
+$ docker run --name postgres -e POSTGRES_DB=vapor \
+  -e POSTGRES_USER=vapor -e POSTGRES_PASSWORD=password \
+  -p 5432:5432 -d postgres
+```
