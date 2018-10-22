@@ -102,3 +102,7 @@ extension User: PostgreSQLUUIDModel {}
 运行程序，并验证外键约束是否生效。从错误中可以看出，PostgreSQL支持外键约束。
 
 ![foreign-key](/assets/foregin-key.png)
+
+
+!!! info "什么是外键约束"
+    外键必须为另一个表中的主键。外键的用途是确保数据的完整性。因为我们在Acronym中定义了外键UserID为User表中的主键id，所以要创建一个Acronym时它对应的User必须是已经存在的才能创建成功，当要删除一个User时，需要先把User下的所有Acronym都删除后，才能删除该User。
