@@ -83,3 +83,5 @@ nav:
       - Fluent查询操作: 'fluent-query.md'
       - 控制器: 'controller.md'
       - 父子关系: 'parent-children-relation.md'
+      - 切换数据库: 'switch-database-postgreSQL.md'
+      - 兄弟关系: 'sibiling-relation.md'
