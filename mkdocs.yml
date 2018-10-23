@@ -85,3 +85,5 @@ nav:
       - 父子关系: 'parent-children-relation.md'
       - 切换数据库: 'switch-database-postgreSQL.md'
       - 兄弟关系: 'sibiling-relation.md'
+      - 测试: 'testing.md'
+      - 测试优化: 'testing-refine.md'
