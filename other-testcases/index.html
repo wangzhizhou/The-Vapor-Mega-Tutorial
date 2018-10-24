@@ -13,7 +13,7 @@
         <meta name="description" content="Learn Vapor and Practice">
       
       
-        <link rel="canonical" href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/switch-database-postgreSQL/">
+        <link rel="canonical" href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/other-testcases/">
       
       
         <meta name="author" content="wangzhizhou">
@@ -42,7 +42,7 @@
     
     
       
-        <title>切换数据库 - Vapor 大型教程</title>
+        <title>其它测试用例 - Vapor 大型教程</title>
       
     
     
@@ -104,7 +104,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#fluentpostgresql" tabindex="1" class="md-skip">
+      <a href="../#useracronym" tabindex="1" class="md-skip">
         跳转至
       </a>
     
@@ -130,7 +130,7 @@
                 Vapor 大型教程
               </span>
               <span class="md-header-nav__topic">
-                切换数据库
+                其它测试用例
               </span>
             
           
@@ -495,20 +495,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="切换数据库" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../switch-database-postgreSQL/" title="切换数据库" class="md-nav__link">
       切换数据库
     </a>
-    
   </li>
 
         
@@ -552,11 +543,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../other-testcases/" title="其它测试用例" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="其它测试用例" class="md-nav__link md-nav__link--active">
       其它测试用例
     </a>
+    
   </li>
 
         
@@ -604,73 +604,11 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/edit/master/docs/switch-database-postgreSQL.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/edit/master/docs/other-testcases.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <p>因为之前图方便，就一直使用的SQLite数据库，它是一个基于文件的数据库系统，当然也有一些功能上的后缺失。</p>
-<p>上一篇父子关系试验时发现SQLite不支持外键约束，加了和没加一样。所以决定切换数据到PostgreSQL来验证一下。</p>
-<p>我们使用Docker来布置PostgreSQL数据库，首先要安装Docker，这个自己搜官网按照最新安装文档可以完成，这里就不写了, 下面在Shell中运行一段命令，布置一下PostgreSQL的Docker环境：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run --name postgres -e <span class="nv">POSTGRES_DB</span><span class="o">=</span>vapor <span class="se">\</span>
-  -e <span class="nv">POSTGRES_USER</span><span class="o">=</span>vapor -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>password <span class="se">\</span>
-  -p <span class="m">5432</span>:5432 -d postgres
-</pre></div>
-</td></tr></table>
-
-<div class="admonition note">
-<p class="admonition-title">国内Docker加速器设置，使用DaoCloud加速</p>
-<div class="superfences-tabs">
-<input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
-<label for="__tab_1_0">Linux</label>
-<div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -sSL https://get.daocloud.io/daotools/set_mirror.sh <span class="p">|</span> sh -s    http://f1361db2.m.daocloud.io
-
-// 该脚本可以将 --registry-mirror 加入到你的 Docker 配置文件 /etc/docker/daemon.json 中。适用于 Ubuntu14.04、Debian、CentOS6 、CentOS7、Fedora、Arch Linux、openSUSE Leap <span class="m">42</span>.1，其他版本可能有细微不同。更多详情请访问文档。
-</pre></div>
-</td></tr></table></div>
-<input name="__tabs_1" type="radio" id="__tab_1_1" />
-<label for="__tab_1_1">MacOS</label>
-<div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 右键点击桌面顶栏的 docker 图标，选择 Preferences ，在 Daemon 标签（Docker <span class="m">17</span>.03 之前版本为 Advanced 标签）下的 Registry mirrors 列表中加入下面的镜像地址:
-
-http://f1361db2.m.daocloud.io
-
-// 点击 Apply <span class="p">&amp;</span> Restart 按钮使设置生效。
-</pre></div>
-</td></tr></table></div>
-<input name="__tabs_1" type="radio" id="__tab_1_2" />
-<label for="__tab_1_2">Windows</label>
-<div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 在桌面右下角状态栏中右键 docker 图标，修改在 Docker Daemon 标签页中的 json ，把下面的地址:
-
-http://f1361db2.m.daocloud.io
-
-加到<span class="s2">&quot; registry-mirrors&quot;</span>的数组里。点击 Apply 。
-</pre></div>
-</td></tr></table></div>
-</div>
-<p><img alt="docker-config" src="/assets/docker-config.png" /></p>
-</div>
-<h1 id="fluentpostgresql">工程中切换FluentPostgreSQL<a class="headerlink" href="#fluentpostgresql" title="Permanent link">&para;</a></h1>
-<p><em>Package.swift</em>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">// PostgreSQL</span>
-<span class="p">.</span><span class="n">package</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&quot;https://github.com/vapor/fluent-postgresql&quot;</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;1.0.0&quot;</span><span class="p">)</span>
-<span class="p">...</span>
-<span class="p">.</span><span class="n">target</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;App&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;FluentPostgreSQL&quot;</span><span class="p">,</span> <span class="s">&quot;Vapor&quot;</span><span class="p">]),</span>
-</pre></div>
-</td></tr></table>
-<em>configure.swift</em>
+                <p>前面我们只写了一个测试用例，下面再多写几个练练手</p>
+<p><em>UserTests.swift</em>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -691,30 +629,59 @@ http://f1361db2.m.daocloud.io
 18
 19
 20
-21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">FluentPostgreSQL</span>
-<span class="p">...</span>
-<span class="k">try</span> <span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">FluentPostgreSQLProvider</span><span class="p">())</span>
-<span class="p">...</span>
-<span class="c1">/// Register the configured SQLite database to the database config.</span>
-<span class="kd">let</span> <span class="nv">databaseConfig</span> <span class="p">=</span> <span class="n">PostgreSQLDatabaseConfig</span><span class="p">(</span><span class="n">hostname</span><span class="p">:</span> <span class="s">&quot;localhost&quot;</span><span class="p">,</span>
-                                              <span class="n">port</span><span class="p">:</span> <span class="mi">5432</span><span class="p">,</span>
-                                              <span class="n">username</span><span class="p">:</span> <span class="s">&quot;vapor&quot;</span><span class="p">,</span>
-                                              <span class="n">database</span><span class="p">:</span> <span class="s">&quot;vapor&quot;</span><span class="p">,</span>
-                                              <span class="n">password</span><span class="p">:</span> <span class="s">&quot;password&quot;</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">database</span> <span class="p">=</span> <span class="n">PostgreSQLDatabase</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">databaseConfig</span><span class="p">)</span>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">testUserCanBeSavedWithAPI</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">{</span>
 
-<span class="kd">var</span> <span class="nv">databases</span> <span class="p">=</span> <span class="n">DatabasesConfig</span><span class="p">()</span>
-<span class="n">databases</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">database</span><span class="p">:</span> <span class="n">database</span><span class="p">,</span> <span class="k">as</span><span class="p">:</span> <span class="p">.</span><span class="n">psql</span><span class="p">)</span>
-<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">databases</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">usersName</span><span class="p">,</span> <span class="n">username</span><span class="p">:</span> <span class="n">usersUsername</span><span class="p">)</span>
 
-<span class="c1">/// Configure migrations</span>
-<span class="kd">var</span> <span class="nv">migrations</span> <span class="p">=</span> <span class="n">MigrationConfig</span><span class="p">()</span>
-<span class="n">migrations</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="p">.</span><span class="n">psql</span><span class="p">)</span>
-<span class="n">migrations</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Acronym</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="p">.</span><span class="n">psql</span><span class="p">)</span>
-<span class="n">services</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">migrations</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">receivedUser</span> <span class="p">=</span> <span class="k">try</span> <span class="n">app</span><span class="p">.</span><span class="n">getResponse</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">usersURI</span><span class="p">,</span>
+                                               <span class="n">method</span><span class="p">:</span> <span class="p">.</span><span class="n">POST</span><span class="p">,</span>
+                                               <span class="n">headers</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Content-Type&quot;</span><span class="p">:</span><span class="s">&quot;application/json&quot;</span><span class="p">],</span>
+                                               <span class="n">data</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                                               <span class="n">decodeTo</span><span class="p">:</span> <span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">receivedUser</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">usersName</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">receivedUser</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">usersUsername</span><span class="p">)</span>
+        <span class="n">XCTAssertNotNil</span><span class="p">(</span><span class="n">receivedUser</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="kd">let</span> <span class="nv">users</span> <span class="p">=</span> <span class="k">try</span> <span class="n">app</span><span class="p">.</span><span class="n">getResponse</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">usersURI</span><span class="p">,</span>
+                                        <span class="n">decodeTo</span><span class="p">:</span> <span class="p">[</span><span class="n">User</span><span class="p">].</span><span class="kc">self</span><span class="p">)</span>
+
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="bp">count</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span><span class="p">,</span> <span class="n">usersName</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">username</span><span class="p">,</span> <span class="n">usersUsername</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">id</span><span class="p">,</span> <span class="n">receivedUser</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">testGettingASingleUserFromTheAPI</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">{</span>
+
+        <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">User</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">usersName</span><span class="p">,</span> <span class="n">username</span><span class="p">:</span> <span class="n">usersUsername</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">conn</span><span class="p">)</span>
+
+        <span class="kd">let</span> <span class="nv">receivedUser</span> <span class="p">=</span> <span class="k">try</span> <span class="n">app</span><span class="p">.</span><span class="n">getResponse</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">\(</span><span class="n">usersURI</span><span class="si">)\(</span><span class="n">user</span><span class="p">.</span><span class="n">id</span><span class="p">!</span><span class="si">)</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">decodeTo</span><span class="p">:</span> <span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">receivedUser</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">usersName</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">receivedUser</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">usersUsername</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">receivedUser</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">...</span>
 </pre></div>
 </td></tr></table></p>
-<p><em>Acronym.swift</em>
+<h1 id="useracronym">测试User和Acronym<a class="headerlink" href="#useracronym" title="Permanent link">&para;</a></h1>
+<p><em>Models+testable.swift</em>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -731,43 +698,82 @@ http://f1361db2.m.daocloud.io
 14
 15
 16
-17
-18
-19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">FluentPostgreSQL</span>
-<span class="p">...</span>
-<span class="kd">extension</span> <span class="nc">Acronym</span><span class="p">:</span> <span class="n">PostgreSQLModel</span> <span class="p">{}</span>
-<span class="p">...</span>
-<span class="kd">extension</span> <span class="nc">Acronym</span><span class="p">:</span> <span class="n">Migration</span> <span class="p">{</span>
-    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">prepare</span><span class="p">(</span><span class="n">on</span> <span class="n">connection</span><span class="p">:</span> <span class="n">PostgreSQLConnection</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;</span> <span class="p">{</span>
-
-        <span class="c1">// 创建Acronym在数据库中的表</span>
-        <span class="k">return</span> <span class="n">Database</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">builder</span><span class="p">)</span> <span class="k">in</span>
-
-            <span class="c1">// 添加Acronym所有属性到表中</span>
-            <span class="k">try</span> <span class="n">addProperties</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">builder</span><span class="p">)</span>
-
-            <span class="c1">// 这一句添加了Acronym.userID到User.id的外键约束</span>
-            <span class="n">builder</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="err">\</span><span class="p">.</span><span class="n">userID</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="err">\</span><span class="n">User</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">...</span>
+<span class="kd">extension</span> <span class="nc">Acronym</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span>
+        <span class="n">short</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;TIL&quot;</span><span class="p">,</span>
+        <span class="n">long</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;Today I Learned&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+        <span class="n">on</span> <span class="n">connection</span><span class="p">:</span> <span class="n">PostgreSQLConnection</span>
+        <span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Acronym</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">acronymUser</span> <span class="p">=</span> <span class="n">user</span>
+        <span class="k">if</span> <span class="n">acronymUser</span> <span class="p">==</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="n">acronymUser</span> <span class="p">=</span> <span class="k">try</span> <span class="n">User</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">)</span>
         <span class="p">}</span>
+
+        <span class="kd">let</span> <span class="nv">acronym</span> <span class="p">=</span> <span class="n">Acronym</span><span class="p">(</span><span class="n">short</span><span class="p">:</span> <span class="n">short</span><span class="p">,</span> <span class="n">long</span><span class="p">:</span> <span class="n">long</span><span class="p">,</span> <span class="n">userID</span><span class="p">:</span> <span class="n">acronymUser</span><span class="p">!.</span><span class="n">id</span><span class="p">!)</span>
+        <span class="k">return</span> <span class="k">try</span> <span class="n">acronym</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">).</span><span class="n">wait</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-<span class="p">...</span>
 </pre></div>
 </td></tr></table></p>
-<p><em>User.swift</em>
+<p><em>UserTests.swift</em>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="kd">func</span> <span class="nf">testGettingAUsersAcronymsFromTheAPI</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">User</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">conn</span><span class="p">)</span>
+
+        <span class="kd">let</span> <span class="nv">acronymShort</span> <span class="p">=</span> <span class="s">&quot;OMG&quot;</span>
+        <span class="kd">let</span> <span class="nv">acronymLong</span> <span class="p">=</span> <span class="s">&quot;Oh My God&quot;</span>
+
+        <span class="kd">let</span> <span class="nv">acronym1</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">short</span><span class="p">:</span> <span class="n">acronymShort</span><span class="p">,</span> <span class="n">long</span><span class="p">:</span> <span class="n">acronymLong</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="kc">_</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">short</span><span class="p">:</span> <span class="s">&quot;LOL&quot;</span><span class="p">,</span> <span class="n">long</span><span class="p">:</span> <span class="s">&quot;Laugh Out Loud&quot;</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">conn</span><span class="p">)</span>
+
+        <span class="kd">let</span> <span class="nv">acronyms</span> <span class="p">=</span> <span class="k">try</span> <span class="n">app</span><span class="p">.</span><span class="n">getResponse</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">\(</span><span class="n">usersURI</span><span class="si">)\(</span><span class="n">user</span><span class="p">.</span><span class="n">id</span><span class="p">!</span><span class="si">)</span><span class="s">/acronyms&quot;</span><span class="p">,</span> <span class="n">decodeTo</span><span class="p">:</span> <span class="p">[</span><span class="n">Acronym</span><span class="p">].</span><span class="kc">self</span><span class="p">)</span>
+
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">acronyms</span><span class="p">.</span><span class="bp">count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">acronyms</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">id</span><span class="p">,</span> <span class="n">acronym1</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">acronyms</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">short</span><span class="p">,</span> <span class="n">acronymShort</span><span class="p">)</span>
+        <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">acronyms</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">long</span><span class="p">,</span> <span class="n">acronymLong</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<h1 id="acronymcategory">测试Acronym和Category<a class="headerlink" href="#acronymcategory" title="Permanent link">&para;</a></h1>
+<p><em>Models+testable.swift</em>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">FluentPostgreSQL</span>
-<span class="p">...</span>
-<span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">PostgreSQLUUIDModel</span> <span class="p">{}</span>
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">Category</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;Random&quot;</span><span class="p">,</span>
+        <span class="n">on</span> <span class="n">connection</span><span class="p">:</span> <span class="n">PostgreSQLConnection</span>
+        <span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Category</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">category</span> <span class="p">=</span> <span class="n">Category</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">try</span> <span class="n">category</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">).</span><span class="n">wait</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<p>运行程序，并验证外键约束是否生效。从错误中可以看出，PostgreSQL支持外键约束。</p>
-<p><img alt="foreign-key" src="/assets/foregin-key.png" /></p>
-<div class="admonition info">
-<p class="admonition-title">什么是外键约束</p>
-<p>外键必须为另一个表中的主键。外键的用途是确保数据的完整性。因为我们在Acronym中定义了外键UserID为User表中的主键id，所以要创建一个Acronym时它对应的User必须是已经存在的才能创建成功，当要删除一个User时，需要先把User下的所有Acronym都删除后，才能删除该User。</p>
-</div>
+<p>测试用例有点多，就不一一写了。可以参看工程代码。</p>
+<p><img alt="all testings" src="/assets/all-test-cases.png" /></p>
                 
                   
                 
@@ -788,7 +794,7 @@ http://f1361db2.m.daocloud.io
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../parent-children-relation/" title="父子关系" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../testing-refine/" title="测试优化" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -797,19 +803,19 @@ http://f1361db2.m.daocloud.io
                 <span class="md-footer-nav__direction">
                   后退
                 </span>
-                父子关系
+                测试优化
               </span>
             </div>
           </a>
         
         
-          <a href="../sibiling-relation/" title="兄弟关系" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../test-on-linux/" title="在Linux上运行测试用例" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   前进
                 </span>
-                兄弟关系
+                在Linux上运行测试用例
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
