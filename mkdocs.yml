@@ -88,3 +88,4 @@ nav:
       - 测试: 'testing.md'
       - 测试优化: 'testing-refine.md'
       - 其它测试用例: 'other-testcases.md'
+      - 在Linux上运行测试用例: 'test-on-linux.md'
