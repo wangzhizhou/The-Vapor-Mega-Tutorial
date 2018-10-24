@@ -174,7 +174,7 @@ func testUsersCanBeRetrievedFromAPI() throws {
  }
 ```
 
-再考虑把创建测试数据的部分抽离到`Model+testable.swift`中：
+再考虑把创建测试数据的部分抽离到`Models+testable.swift`中：
 ```swift 
 import Vapor
 import FluentPostgreSQL
