@@ -13,7 +13,7 @@
         <meta name="description" content="Learn Vapor and Practice">
       
       
-        <link rel="canonical" href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/">
+        <link rel="canonical" href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/server/rest-api/">
       
       
         <meta name="author" content="wangzhizhou">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.5">
     
     
       
-        <title>Vapor 大型教程</title>
+        <title>REST API - Vapor 大型教程</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
       
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.22915126.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       
@@ -66,7 +66,7 @@
         <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
   </head>
@@ -104,6 +104,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -126,7 +130,7 @@
                 Vapor 大型教程
               </span>
               <span class="md-header-nav__topic">
-                Home
+                REST API
               </span>
             
           
@@ -198,7 +202,9 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -207,7 +213,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="server/dev-env/" title="服务端" class="md-tabs__link">
+        <a href="../dev-env/" title="服务端" class="md-tabs__link md-tabs__link--active">
           服务端
         </a>
       
@@ -220,7 +226,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="client/mobile/" title="客启端" class="md-tabs__link">
+        <a href="../../client/mobile/" title="客启端" class="md-tabs__link">
           客启端
         </a>
       
@@ -277,10 +283,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
       服务端
@@ -298,7 +306,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/dev-env/" title="开发环境" class="md-nav__link">
+    <a href="../dev-env/" title="开发环境" class="md-nav__link">
       开发环境
     </a>
   </li>
@@ -310,7 +318,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/vapor-can-do/" title="Vapor的能力" class="md-nav__link">
+    <a href="../vapor-can-do/" title="Vapor的能力" class="md-nav__link">
       Vapor的能力
     </a>
   </li>
@@ -322,7 +330,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/project-structure/" title="项目结构" class="md-nav__link">
+    <a href="../project-structure/" title="项目结构" class="md-nav__link">
       项目结构
     </a>
   </li>
@@ -334,7 +342,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/add-routes/" title="添加GET路由" class="md-nav__link">
+    <a href="../add-routes/" title="添加GET路由" class="md-nav__link">
       添加GET路由
     </a>
   </li>
@@ -346,7 +354,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/accept-data/" title="接收POST数据" class="md-nav__link">
+    <a href="../accept-data/" title="接收POST数据" class="md-nav__link">
       接收POST数据
     </a>
   </li>
@@ -358,7 +366,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/return-json/" title="返回JSON数据" class="md-nav__link">
+    <a href="../return-json/" title="返回JSON数据" class="md-nav__link">
       返回JSON数据
     </a>
   </li>
@@ -370,7 +378,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/error-fix/" title="排错" class="md-nav__link">
+    <a href="../error-fix/" title="排错" class="md-nav__link">
       排错
     </a>
   </li>
@@ -382,7 +390,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/http-basic/" title="HTTP基础" class="md-nav__link">
+    <a href="../http-basic/" title="HTTP基础" class="md-nav__link">
       HTTP基础
     </a>
   </li>
@@ -392,11 +400,66 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="server/rest-api/" title="REST API" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        REST API
+      </label>
+    
+    <a href="./" title="REST API" class="md-nav__link md-nav__link--active">
       REST API
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="创建" class="md-nav__link">
+    创建
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="查询" class="md-nav__link">
+    查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="更新" class="md-nav__link">
+    更新
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="删除" class="md-nav__link">
+    删除
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -406,7 +469,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/async/" title="异步" class="md-nav__link">
+    <a href="../async/" title="异步" class="md-nav__link">
       异步
     </a>
   </li>
@@ -418,7 +481,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/Fluent-Persisting-models/" title="数据库" class="md-nav__link">
+    <a href="../Fluent-Persisting-models/" title="数据库" class="md-nav__link">
       数据库
     </a>
   </li>
@@ -430,7 +493,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/configure-database/" title="配置数据库" class="md-nav__link">
+    <a href="../configure-database/" title="配置数据库" class="md-nav__link">
       配置数据库
     </a>
   </li>
@@ -442,7 +505,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/CRUD/" title="数据库CRUD操作" class="md-nav__link">
+    <a href="../CRUD/" title="数据库CRUD操作" class="md-nav__link">
       数据库CRUD操作
     </a>
   </li>
@@ -454,7 +517,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/fluent-query/" title="Fluent查询操作" class="md-nav__link">
+    <a href="../fluent-query/" title="Fluent查询操作" class="md-nav__link">
       Fluent查询操作
     </a>
   </li>
@@ -466,7 +529,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/controller/" title="控制器" class="md-nav__link">
+    <a href="../controller/" title="控制器" class="md-nav__link">
       控制器
     </a>
   </li>
@@ -478,7 +541,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/parent-children-relation/" title="父子关系" class="md-nav__link">
+    <a href="../parent-children-relation/" title="父子关系" class="md-nav__link">
       父子关系
     </a>
   </li>
@@ -490,7 +553,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/switch-database-postgreSQL/" title="切换数据库" class="md-nav__link">
+    <a href="../switch-database-postgreSQL/" title="切换数据库" class="md-nav__link">
       切换数据库
     </a>
   </li>
@@ -502,7 +565,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/sibiling-relation/" title="兄弟关系" class="md-nav__link">
+    <a href="../sibiling-relation/" title="兄弟关系" class="md-nav__link">
       兄弟关系
     </a>
   </li>
@@ -514,7 +577,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/testing/" title="测试" class="md-nav__link">
+    <a href="../testing/" title="测试" class="md-nav__link">
       测试
     </a>
   </li>
@@ -526,7 +589,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/testing-refine/" title="测试优化" class="md-nav__link">
+    <a href="../testing-refine/" title="测试优化" class="md-nav__link">
       测试优化
     </a>
   </li>
@@ -538,7 +601,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/other-testcases/" title="其它测试用例" class="md-nav__link">
+    <a href="../other-testcases/" title="其它测试用例" class="md-nav__link">
       其它测试用例
     </a>
   </li>
@@ -550,7 +613,7 @@
 
 
   <li class="md-nav__item">
-    <a href="server/test-on-linux/" title="在Linux上运行测试用例" class="md-nav__link">
+    <a href="../test-on-linux/" title="在Linux上运行测试用例" class="md-nav__link">
       在Linux上运行测试用例
     </a>
   </li>
@@ -586,7 +649,7 @@
 
 
   <li class="md-nav__item">
-    <a href="client/mobile/" title="移动端" class="md-nav__link">
+    <a href="../../client/mobile/" title="移动端" class="md-nav__link">
       移动端
     </a>
   </li>
@@ -598,7 +661,7 @@
 
 
   <li class="md-nav__item">
-    <a href="client/web/" title="Web端" class="md-nav__link">
+    <a href="../../client/web/" title="Web端" class="md-nav__link">
       Web端
     </a>
   </li>
@@ -616,32 +679,102 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="创建" class="md-nav__link">
+    创建
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="查询" class="md-nav__link">
+    查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="更新" class="md-nav__link">
+    更新
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="删除" class="md-nav__link">
+    删除
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/edit/master/docs/index.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/edit/master/docs/server/rest-api.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Home</h1>
+                  <h1>REST API</h1>
                 
-                <div class="admonition note">
-<p class="admonition-title">为什么要写这个教程</p>
-<p>因为之前使用<code class="codehilite">Python</code>的Web开发框架<code class="codehilite">Flask</code>写过一段时间的服务，写的过程中是通过看一个名叫<a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world">Flask大型教程</a>的系列博客学习的，
-觉得作者写的很好，也让我感受到了写Web和后台服务的乐趣。</p>
-<p>但是我同时也是一名iOS开发者，对苹果公司新开发的编程语言<code class="codehilite">Swift</code>也有非常浓厚的兴趣，正好最近听说<code class="codehilite">Swift</code>也可以用来写服务端，就尝试比较了几种流行的框架，包括<a href="https://www.kitura.io">Kitura</a>、<a href="https://www.perfect.org">Perfect</a>和<a href="https://vapor.codes">Vapor</a>，其中<code class="codehilite">Kitura</code>是IBM推出的商业化开发框架，<code class="codehilite">Perfect</code>是一个功能非常完善也有些复杂的开源框架，<code class="codehilite">Vapor</code>是一个使用纯Swift实现的开源框架，三者在<code class="codehilite">GitHub</code>上的星也不少，可以说是目前主流的<code class="codehilite">Swift</code>服务端开发框架了。那么我为什么独独对<code class="codehilite">Vapor</code>这个框架产生了兴趣呢？</p>
-<p>对<code class="codehilite">Vapor</code>有好感，主要是因为它的官网非常简洁，框架使用纯<code class="codehilite">Swift</code>实现，同时它的社区非常活跃，项目不是太大，对于我这种不需要太复杂功能的非专职Web开发者来说刚好。</p>
-<p>总之，我选择<code class="codehilite">Vapor</code>主要是因为我是个颜控。🤣 我觉得官网可以体现出开发团队的水平，简单的东西总是让人喜欢。</p>
-</div>
-<p>Vapor是一个用Swift语言写的开源Web框架，基于苹果的SwiftNIO库。可以用来构建iOS应用的后端、前端网站和独立服务器应用。</p>
-<p>Tanner Nelson在2016年1月启动了Vapor项目，很快Logan Wright加入了。之后有很多的人加入了Vapor的开发者社区，因为Vapor使用了Swift风格的API和大量的语言特性，很快在GitHub上成为了流行的服务端Swift框架。</p>
-<p>Vapor包含一些包，Leaf是一个前端开发可以使用的模板引擎，Fluent是一个Swift写的对象关系映射框架。Vapor的长处是它的社区非常活跃，在Discord的讨论频道也是如此。</p>
+                <p>REST(Representational state transfer)表述性状态传递, 是一个和HTTP紧密关联的软件架构。遵循REST网络的API可以和数据库操作CRUD(创建、查询、更新、删除)联系起来。</p>
+<p>REST风格的API可以用一种统一的模式来操作资源，这样可以简化客户端的构建过程。</p>
+<p>例如我们要开发一套首字母缩写相关的遵循REST风格的API，可以这样定义：</p>
+<h3 id="_1">创建<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code class="codehilite"><span class="err">POST /api/acronuyms/1</span></code>，创建一个ID为1的首字母缩写</li>
+</ul>
+<h3 id="_2">查询<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code class="codehilite"><span class="err">GET /api/acronyms/</span></code>，获取全部的首字母缩写</li>
+<li><code class="codehilite"><span class="err">GET /api/acronyms/1</span></code>，获取ID为1的首字母缩写</li>
+</ul>
+<h3 id="_3">更新<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code class="codehilite"><span class="err">PUT /api/acronyms/1</span></code>，用新的内容更新ID为1的首字母缩写</li>
+</ul>
+<h3 id="_4">删除<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code class="codehilite"><span class="err">DELETE /api/acronyms/1</span></code>，删除ID为1的首字线缩写</li>
+</ul>
 <div class="admonition note">
-<p class="admonition-title">怎样学习Vapor</p>
-<p>要动手写代码，才能理解。很多部分是Vapor的核心成员写的，他们知道怎样才能更好的使用Vapor。</p>
+<p class="admonition-title">使用Swift的好处</p>
+<ul>
+<li>Swift是强静态类型语言，可以减少应用在运行期的崩溃</li>
+<li>Swift是编译型语言，比解释型语言性能好</li>
+<li>Swift对于iOS开发者来说，可以包揽前后端开发，不需要更换语言，并且Swift集众多语言的特点于一身</li>
+<li>使用Swift+Xcode开发对于服务端开发来说，有功能齐备的IDE和相关调试能力这种特性的服务端开发体验是非常棒的，大多数服务端开发语言都没有IDE支持</li>
+</ul>
 </div>
-<p>按照<code class="codehilite">IT人</code>拿起键盘就是干的风格，下一节就是环境配置了。这个过程你可以看到<code class="codehilite">Vapor</code>的简洁的特点。</p>
+<div class="admonition note">
+<p class="admonition-title">使用Vapor开发服务端的好处</p>
+<ul>
+<li>Vapor使用了Codable协议，这能够减少许多数据在模型和数据库之间转换格式的相关代码</li>
+<li>Vapor是完成非阻塞式的架构。阻塞式的架构中，在同一个线程中进行请求和返回请求需要的数据时，如果中间处理操作耗时较多，会出现返回延迟很多的情况。如果使用多线程的方式进行请求和返回，线程间的切换消耗又会较大。非阻塞工的架构中，如果一个请求不能马上返回，会被放在一边，这个请求返回之前的这段时间还可以处理其它请求。关于阻塞非阻塞方式，这里说的也不是很清楚，细节还需要进一步研究。Vapor使用SwiftNIO实现了非阻塞架构包括数据库驱动。</li>
+</ul>
+</div>
                 
                   
                 
@@ -658,6 +791,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../http-basic/" title="HTTP基础" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                HTTP基础
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../async/" title="异步" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                异步
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -676,7 +844,7 @@
       
         
   <div class="md-footer-social">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.css">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
     
       <a href="https://github.com/wangzhizhou" class="md-footer-social__link fa fa-github"></a>
     
@@ -689,12 +857,12 @@
       
     </div>
     
-      <script src="assets/javascripts/application.583bbe55.js"></script>
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
       
         
         
           
-          <script src="assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
           
             
               
@@ -704,7 +872,7 @@
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
