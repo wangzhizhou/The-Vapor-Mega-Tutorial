@@ -88,6 +88,7 @@ nav:
       - 测试优化: 'server/testing-refine.md'
       - 其它测试用例: 'server/other-testcases.md'
       - 在Linux上运行测试用例: 'server/test-on-linux.md'
+      - 部署到Vapor Cloud: 'server/deploy-vapor-cloud.md'
   - 客启端:
       - 移动端: 'client/mobile/index.md'
       - Web端: 'client/web/index.md'
