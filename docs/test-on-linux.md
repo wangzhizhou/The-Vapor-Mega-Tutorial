@@ -117,4 +117,4 @@ $ docker-compose build
 $ docker-compose up --abort-on-container-exit
 ```
 
-![Test on Linux]()
+![Test on Linux](/assets/test-on-linux.png)
