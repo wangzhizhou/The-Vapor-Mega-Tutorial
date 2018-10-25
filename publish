@@ -5,7 +5,7 @@ VENV="vblogenv"
 if [ -d "$VENV" ]; then
     source "$VENV/bin/activate"
     git push origin
-    mkdocs gh-deploy --force
+    mkdocs gh-deploy
 else
     echo "You should setup the vblogenv"
 fi
