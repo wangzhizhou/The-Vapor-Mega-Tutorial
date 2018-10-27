@@ -121,6 +121,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/server/deploy-private/</loc>
+     <lastmod>2018-10-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/client/mobile/</loc>
      <lastmod>2018-10-27</lastmod>
      <changefreq>daily</changefreq>
