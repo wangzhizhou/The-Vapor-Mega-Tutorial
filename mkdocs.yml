@@ -65,6 +65,7 @@ extra_javascript:
     # disqus: 'joker-vapor'
 
 nav:
+  - 主页: 'index.md'
   - 服务端:
       - 开发环境: 'server/dev-env.md'
       - Vapor的能力: 'server/vapor-can-do.md'
