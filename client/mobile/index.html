@@ -683,7 +683,33 @@
                 
                   <h1>移动端</h1>
                 
-                
+                <p>允许https请求，不验证证书</p>
+<p>info.plist 设置</p>
+<p>App Transport Security Settings
+|- Allow Arbitrary Loads = YES</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>  <span class="kd">func</span> <span class="nf">session</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">URLSession</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">,</span> <span class="n">delegate</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">delegateQueue</span><span class="p">:</span> <span class="n">OperationQueue</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">session</span>
+  <span class="p">}</span>
+
+  <span class="c1">//https所有证书都验证通过</span>
+  <span class="kd">func</span> <span class="nf">urlSession</span><span class="p">(</span><span class="kc">_</span> <span class="n">session</span><span class="p">:</span> <span class="n">URLSession</span><span class="p">,</span> <span class="n">didReceive</span> <span class="n">challenge</span><span class="p">:</span> <span class="n">URLAuthenticationChallenge</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">URLSession</span><span class="p">.</span><span class="n">AuthChallengeDisposition</span><span class="p">,</span> <span class="n">URLCredential</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">credential</span> <span class="p">=</span> <span class="n">URLCredential</span><span class="p">(</span><span class="n">trust</span><span class="p">:</span> <span class="n">challenge</span><span class="p">.</span><span class="n">protectionSpace</span><span class="p">.</span><span class="n">serverTrust</span><span class="p">!)</span>
+    <span class="n">completionHandler</span><span class="p">(.</span><span class="n">useCredential</span><span class="p">,</span> <span class="n">credential</span><span class="p">)</span>
+  <span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>iOS 项目比较烦琐，这里给一个链接地址吧: <a href="https://github.com/wangzhizhou/TILiOS.git">https://github.com/wangzhizhou/TILiOS.git</a></p>
                 
                   
                 
