@@ -30,4 +30,4 @@ $ vapor run --hostname=0.0.0.0 --port=8080
 云服务器需要开端口权限，域名需要配置解析，使用nginx进行端口转发
 
 
-
+最终完成API的项目地址: <https://github.com/wangzhizhou/TILApp-BackEnd/releases/tag/1.0>
