@@ -110,3 +110,5 @@ struct CategoryConext: Encodable {
 </li>
 ...
 ```
+
+![all-categories](/assets/all-categories.png)
