@@ -100,3 +100,4 @@ nav:
         - 文件服务: 'client/web/serve-file.md'
         - 用户页面: 'client/web/user-page.md'
         - 所有用户页面: 'client/web/all-user.md'
+        - 所有类别页面: 'client/web/all-categories.md'
