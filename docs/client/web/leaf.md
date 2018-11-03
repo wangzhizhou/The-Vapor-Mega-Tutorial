@@ -10,7 +10,7 @@
 .target(name: "App", dependencies: ["FluentPostgreSQL", "Vapor", "Leaf"]),
 ```
 
-Leaf模板引擎默认使用目录`Resources/Views`, 所以我们新建一个同名目录来存放相关代码数据和文件。 `mkdir -p Resources/views`
+Leaf模板引擎默认使用目录`Resources/Views`, 所以我们新建一个同名目录来存放相关代码数据和文件。 `mkdir -p Resources/Views`
 
 新建一个专门用来返回Web页面的router控制器`WebsiteController.swift`
 

@@ -1,4 +1,4 @@
-创建html页面文件：`Resources/views/allUsers.leaf`
+创建html页面文件：`Resources/Views/allUsers.leaf`
 
 *allUsers.leaf*
 ```html
