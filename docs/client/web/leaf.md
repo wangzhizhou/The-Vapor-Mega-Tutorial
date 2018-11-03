@@ -48,3 +48,155 @@ config.prefer(LeafRenderer.self, for: ViewRenderer.self)
 ```
 
 ![leaf index](/assets/leaf-index.png)
+
+# 注入参数
+
+`Leaf`中使用`#(arg)`的方式注入参数到页面模板中。在Vapor中很多都使用了`Codable`协议，Leaf也不例外
+
+*index.leaf*
+```html
+...
+<title>#(title) | Acronyms</title>
+...
+```
+
+*WebsiteController.swift*
+```swift
+import Vapor
+import Leaf
+
+struct IndexContext: Encodable {
+    let title: String
+}
+
+struct WebsiteController: RouteCollection {
+    
+    func boot(router: Router) throws {
+        router.get(use: indexHandler)
+    }
+    
+    func indexHandler(_ req: Request) throws -> Future<View> {
+        let context = IndexContext(title: "Homepage")
+        return try req.view().render("index", context)
+    }
+}
+```
+
+![注入参数](/assets/leaf-arg.png)
+
+# 展示缩略语
+*index.leaf*
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>#(title) | Acronyms</title>
+    </head>
+    <body>
+        <h1>Acronyms</h1>
+        #if(acronyms) {
+        <table>
+            <thead>
+                <tr>
+                    <th>Short</th>
+                    <th>Long</th>
+                </tr>
+            </thead>
+            <tbody>
+                #for(acronym in acronyms) {
+                <tr>
+                    <td>#(acronym.short)</td>
+                    <td>#(acronym.long)</td>
+                    }
+            </tbody>
+        </table>
+        } else {
+            <h2>There aren't any acronyms yet!</h2>
+        }
+    </body>
+</html>
+```
+
+*WebsiteController.wift*
+```swift
+import Vapor
+import Leaf
+
+struct IndexContext: Encodable {
+    let title: String
+    let acronyms: [Acronym]?
+}
+
+struct WebsiteController: RouteCollection {
+    
+    func boot(router: Router) throws {
+        router.get(use: indexHandler)
+    }
+    
+    func indexHandler(_ req: Request) throws -> Future<View> {
+        return Acronym.query(on: req).all()
+            .flatMap(to: View.self) { acronyms in
+                let acronymsData = acronyms.isEmpty ? nil : acronyms
+                let context = IndexContext(title: "Homepage", acronyms: acronymsData)
+                   return try req.view().render("index", context)
+        }
+    }
+}
+```
+
+![leaf-tags](/assets/leaf-tags.png)
+
+# 跳转Acronyms详情
+
+*index.leaf*
+```html
+...
+<td><a href="/acronyms/#(acronym.id)">#(acronym.short)</a></td>
+...
+```
+
+*acronyms.leaf*
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>#(title) | Acronyms</title>
+    </head>
+    <body>
+        <h1>#(acronym.short)</h1>
+        <h2>#(acronym.long)</h2>
+        <p>Created by #(user.name)</p>
+    </body>
+</html>
+```
+
+*WebsiteController.swift*
+```swift
+...
+struct AcronymContext: Encodable {
+    let title: String
+    let acronym: Acronym
+    let user: User
+}
+...
+        router.get("acronyms", Acronym.parameter, use: acronymHandler)
+...
+    func acronymHandler(_ req: Request) throws -> Future<View> {
+        return try req.parameters.next(Acronym.self)
+            .flatMap(to: View.self) { acronym in
+                return acronym.user.get(on: req)
+                    .flatMap(to: View.self) { user in
+                        let context = AcronymContext(title: acronym.short, acronym: acronym, user: user)
+                        return try req.view().render("acronym", context)
+                }
+        }
+    }
+```
+
+![index-leaf-link](/assets/index-leaf-link.png)
+
+![acronyms-leaf](/assets/acronyms-leaf.png)

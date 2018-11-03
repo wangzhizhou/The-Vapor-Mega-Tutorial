@@ -96,3 +96,7 @@ nav:
       - Web端: 
         - 介绍:  'client/web/index.md'
         - Leaf模板引擎: 'client/web/leaf.md'
+        - 美化页面: 'client/web/beautiful-page.md'
+        - 文件服务: 'client/web/serve-file.md'
+        - 用户页面: 'client/web/user-page.md'
+        - 所有用户页面: 'client/web/all-user.md'
