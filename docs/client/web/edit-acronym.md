@@ -1,3 +1,5 @@
+因为浏览器的关系，只能发送POST、GET请求，而不能发送PUT更新请求
+
 *WebsiteController.swift*
 ```swift
 ...
