@@ -101,3 +101,6 @@ nav:
         - 用户页面: 'client/web/user-page.md'
         - 所有用户页面: 'client/web/all-user.md'
         - 所有类别页面: 'client/web/all-categories.md'
+        - 创建缩略语: 'client/web/create-acronym.md'
+        - 编辑缩略语: 'client/web/edit-acronym.md'
+        - 删除缩略语: 'client/web/delete-acronym.md'
