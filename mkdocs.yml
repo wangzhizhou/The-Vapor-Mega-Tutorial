@@ -104,3 +104,4 @@ nav:
         - 创建缩略语: 'client/web/create-acronym.md'
         - 编辑缩略语: 'client/web/edit-acronym.md'
         - 删除缩略语: 'client/web/delete-acronym.md'
+        - 添加类别标签: 'client/web/add-categories.md'
