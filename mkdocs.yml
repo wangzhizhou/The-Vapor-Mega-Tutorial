@@ -91,6 +91,7 @@ nav:
       - 在Linux上运行测试用例: 'server/test-on-linux.md'
       - 部署到Vapor Cloud: 'server/deploy-vapor-cloud.md'
       - 部署到自己的云服务器: 'server/deploy-private.md'
+      - API认证: 'server/authentication.md'
   - 客启端:
       - 移动端: 'client/mobile/index.md'
       - Web端: 
