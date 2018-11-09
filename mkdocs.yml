@@ -92,6 +92,7 @@ nav:
       - 部署到Vapor Cloud: 'server/deploy-vapor-cloud.md'
       - 部署到自己的云服务器: 'server/deploy-private.md'
       - API认证: 'server/authentication.md'
+      - 基本认证: 'server/basic-authentication.md'
   - 客启端:
       - 移动端: 'client/mobile/index.md'
       - Web端: 
