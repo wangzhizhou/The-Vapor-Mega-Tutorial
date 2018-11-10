@@ -94,6 +94,7 @@ nav:
       - API认证: 'server/authentication.md'
       - 基本认证: 'server/basic-authentication.md'
       - token认证: 'server/token-authentication.md'
+      - 数据库播种: 'server/database-seeding.md'
   - 客启端:
       - 移动端: 'client/mobile/index.md'
       - Web端: 
