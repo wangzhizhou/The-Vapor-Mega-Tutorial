@@ -96,7 +96,7 @@ nav:
       - token认证: 'server/token-authentication.md'
       - 数据库播种: 'server/database-seeding.md'
       - 更新测试用例: 'server/update-testcases-for-authentication.md'
-  - 客启端:
+  - 客户端:
       - 移动端: 'client/mobile/index.md'
       - Web端: 
         - 介绍:  'client/web/index.md'

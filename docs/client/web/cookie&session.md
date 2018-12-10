@@ -112,3 +112,169 @@ struct LoginPostData: Content {
 ```
 
 ![Log In Error](/assets/login_error.png)
+
+登录页面建好后，我们就要通过认证用户身份来保护API，使用会话认证中间件。
+
+*WebsiteController.swift*
+
+```swift 
+    func boot(router: Router) throws {
+        let authSessionRoutes = router.grouped(User.authSessionsMiddleware())
+        authSessionRoutes.get(use: indexHandler)
+        authSessionRoutes.get("acronyms", Acronym.parameter, use: acronymHandler)
+        authSessionRoutes.get("users", User.parameter, use: userHandler)
+        authSessionRoutes.get("users", use: allUsersHandler)
+        authSessionRoutes.get("categories", use: allCategoriesHandler)
+        authSessionRoutes.get("categories", Category.parameter, use: categoryHandler)
+        authSessionRoutes.get("login", use: loginHandler)
+        
+        let protectedGroup = authSessionRoutes.grouped(RedirectMiddleware<User>(path: "/login"))
+        protectedGroup.get("acronyms", "create", use: createAcronymHandler)
+        protectedGroup.get("acronyms", Acronym.parameter, "edit", use: editAcronymHandler)
+        protectedGroup.post("acronyms", Acronym.parameter, "edit",  use: editAcronymPostHandler)
+        protectedGroup.post("acronyms", Acronym.parameter, "delete", use: deleteAcronymHandler)
+        protectedGroup.post(CreateAcronymData.self, at: "acronyms", "create", use: createAcronymPostHandler)
+        
+        router.post(LoginPostData.self, at: "login", use: loginPostHandler)
+    }
+```
+
+![protect routes](/assets/protect-routes.png)
+
+有了对api进行用户认证的保护手段后，我们需要更新一下网站。因为我们可以从认证信息中获取到用户的UserID，所以可以更新一些数据结构：
+
+*WebsiteController.swift*
+
+```swift
+struct CreateAcronymData: Content {
+    let short: String
+    let long: String
+    let categories: [String]?
+}
+...
+    func createAcronymPostHandler(_ req: Request, data: CreateAcronymData) throws -> Future<Response> {
+        
+        let user = try req.requireAuthenticated(User.self)
+        let acronym = try Acronym(short: data.short, long: data.long, userID: user.requireID())
+        
+        ...
+    }
+
+    func editAcronymPostHandler(_ req: Request) throws -> Future<Response> {
+    return try flatMap(to: Response.self,
+                        req.parameters.next(Acronym.self),
+                        req.content.decode(CreateAcronymData.self)
+    ) { acronym, data in
+        ...
+        let user = try req.requireAuthenticated(User.self)
+        acronym.userID = try user.requireID()
+        ...
+    }
+
+```
+
+现在创建和编辑缩略语的两个api都可以在认证信息中获取用户信息，就不需要在页面中输入用户了。
+
+*createAcronym.leaf*
+
+```html
+    <div class="form-group">
+        <label for="userID">User</label>
+        <select name="userID" class="form-control" id="userID">
+            #for(user in users) {
+                <option value="#(user.id)" #if(editing){ #if(acronym.userID == user.id) { selected }}>
+                    #(user.name)
+                </option>
+            }
+        </select>
+    </div>
+```
+
+这一部分可以删除了。然后再更新一下对应的api，因为创建和编辑缩略词使用同一份模板，所有我们只需要改一下位置。
+
+*WebsiteController.swift*
+
+```swift
+struct CreateAcronymContext: Encodable {
+    let title = "Create An Acronym"
+}
+struct EditAcronymContext: Encodable {
+    let title = "Edit Acronym"
+    let acronym: Acronym
+    let editing = true
+    let categories: Future<[Category]>
+}
+    ...
+    func createAcronymHandler(_ req: Request) throws -> Future<View> {
+        let context = CreateAcronymContext()
+        return try req.view().render("createAcronym", context)
+    }
+    ...
+    func editAcronymHandler(_ req: Request) throws -> Future<View> {
+        return try req.parameters.next(Acronym.self)
+            .flatMap(to: View.self) { acronym in
+                let categories = try acronym.categories.query(on: req).all()
+                let context = EditAcronymContext(acronym: acronym,
+                                                    categories: categories)
+                return try req.view().render("createAcronym", context)
+        }
+    }
+    ...
+```
+
+![create-acronym-auth-user](/assets/create-acronym-auth-user.png)
+
+# 退出登录
+
+现在可以认证用户身份并成功登录，还需要添加一个退出登录的功能。
+
+*WebsiteController.swift*
+
+```swift
+...
+    func boot(router: Router) throws {
+        ....
+        authSessionRoutes.post("logout", use: logoutHandler)
+    ...
+    func logoutHandler(_ req: Request) throws -> Response {
+        try req.unauthenticate(User.self)
+        return req.redirect(to: "/")
+    }
+```
+
+*base.leaf*
+
+```html
+        ...
+        </ul>
+        #if(userLoggedIn) {
+            <form class="form-inline" action="/logout" method="POST">
+            <input class="nav-link btn btn-link" type="submit"
+            value="Log out">
+            </form>
+        }
+    </div>
+</nav>
+...
+```
+
+*WebsiteController.swift*
+
+```swift
+
+struct IndexContext: Encodable {
+    let title: String
+    let acronyms: [Acronym]?
+    let userLoggedIn: Bool
+}
+...
+    func indexHandler(_ req: Request) throws -> Future<View> {
+        return Acronym.query(on: req).all()
+            .flatMap(to: View.self) { acronyms in
+                let userLoggedIn = try req.isAuthenticated(User.self)
+                let acronymsData = acronyms.isEmpty ? nil : acronyms
+                let context = IndexContext(title: "Homepage", acronyms: acronymsData, userLoggedIn: userLoggedIn)
+                   return try req.view().render("index", context)
+        }
+    }
+```
