@@ -110,3 +110,4 @@ nav:
         - 编辑缩略语: 'client/web/edit-acronym.md'
         - 删除缩略语: 'client/web/delete-acronym.md'
         - 添加类别标签: 'client/web/add-categories.md'
+        - Cookie和Session: 'client/web/cookie&session.md'
