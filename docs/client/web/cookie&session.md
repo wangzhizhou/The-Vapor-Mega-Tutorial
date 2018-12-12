@@ -278,3 +278,132 @@ struct IndexContext: Encodable {
         }
     }
 ```
+
+
+# Cookie
+
+Web上经常使用Cookie技术，第一次登录一个网站时，一般都会提示你网站要设置Cookie，需要用户确认。我们已经使用Cookie进行用户认证，但有时我们需要设置或读取cookie信息。下面就来实现让用户确认使用cookie的功能
+
+*base.leaf*
+```html
+...
+        <link rel="stylesheet" href="/styles/style.css">
+        <title>#(title) | Acronyms</title>
+...
+        #if(showCookieMessage) {
+            <footer id="cookie-footer">
+                <div id="cookieMessage" class="container">
+                    <span class="muted">
+                        This site uses cookies! To accept this, click
+                        <a href="#" onclick="cookiesConfirmed()">OK</a>
+                    </span>
+                </div>
+            </footer>
+            <script src="/scripts/cookies.js"></script>
+        }
+        ...
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        ...
+    </body>
+  ```
+
+
+*Public/styles/style.css*
+```css
+#cookie-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+```
+
+*Public/scripts/cookies.js*
+```js
+function cookiesConfirmed() {
+    $("#cookie-footer").hide();
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "cookies-accepted=true;" + expires;
+}
+```
+
+*WebsiteController.swift*
+```swift
+struct IndexContext: Encodable {
+    let title: String
+    let acronyms: [Acronym]?
+    let userLoggedIn: Bool
+    let showCookieMessage: Bool
+}
+...
+    
+    func indexHandler(_ req: Request) throws -> Future<View> {
+        return Acronym.query(on: req).all()
+            .flatMap(to: View.self) { acronyms in
+                let userLoggedIn = try req.isAuthenticated(User.self)
+                let acronymsData = acronyms.isEmpty ? nil : acronyms
+                let showCookieMessage = req.http.cookies["cookies-accepted"] == nil
+                
+                let context = IndexContext(title: "Homepage",
+                                           acronyms: acronymsData,
+                                           userLoggedIn: userLoggedIn,
+                                           showCookieMessage: showCookieMessage)
+                
+                return try req.view().render("index", context)
+        }
+    }
+```
+
+![cookie bottom](/assets/cookie-bottom.png)
+
+
+# Session
+
+除了使用cookie可以进行用户认证以外，还可以使用会话进行，会话也有适用的多种场景， 其中一种就是CSRF保护，即跨站请求伪造。攻击者伪装一名用户进行破坏性请求。我们可以在表格中加入CSRF token信息来防止这种攻击，当web应用接收请求时，通这验证CSRF token的否与服务端发送出去的token是否匹配来决定是否处理该请求。
+
+*WebsiteController.swift*
+```swift
+struct CreateAcronymContext: Encodable {
+    let title = "Create An Acronym"
+    let csrfToken: String
+}
+struct CreateAcronymData: Content {
+    let short: String
+    let long: String
+    let categories: [String]?
+    let csrfToken: String
+}
+...
+    func createAcronymHandler(_ req: Request) throws -> Future<View> {
+        let token = try CryptoRandom().generateData(count: 16).base64EncodedString()
+        let context = CreateAcronymContext(csrfToken: token)
+        try req.session()["CSRF_TOKEN"] = token
+        return try req.view().render("createAcronym", context)
+    }
+    ...
+    func createAcronymPostHandler(_ req: Request, data: CreateAcronymData) throws -> Future<Response> {
+        
+        let expectedToken = try req.session()["CSRF_TOKEN"]
+        try req.session()["CSRF_TOKEN"] = nil
+        guard expectedToken == data.csrfToken else {
+            throw Abort(.badRequest)
+        }
+        
+        ...
+    }
+```
+
+
+*createAcronym.leaf*
+```html
+...
+    <form method = "post">
+        #if(csrfToken) {
+            <input type="hidden" name="csrfToken" value="#(csrfToken)">
+        }
+...
+```
