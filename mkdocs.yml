@@ -112,3 +112,4 @@ nav:
         - 添加类别标签: 'client/web/add-categories.md'
         - Cookie和Session: 'client/web/cookie&session.md'
         - 验证数据有效性: 'client/web/validation.md'
+        - Google用户认证: 'client/web/google-authentication.md'
