@@ -1,0 +1,1693 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Learn Vapor and Practice">
+      
+      
+        <link rel="canonical" href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/client/web/cookie&session/">
+      
+      
+        <meta name="author" content="wangzhizhou">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="zh">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.5">
+    
+    
+      
+        <title>Cookie和Session - Vapor 大型教程</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4caf50">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="green" data-md-color-accent="orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial" title="Vapor 大型教程" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Vapor 大型教程
+              </span>
+              <span class="md-header-nav__topic">
+                Cookie和Session
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub 仓库
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../server/dev-env/" title="服务端" class="md-tabs__link">
+          服务端
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../mobile/" title="客户端" class="md-tabs__link md-tabs__link--active">
+          客户端
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial" title="Vapor 大型教程" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Vapor 大型教程
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub 仓库
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="主页" class="md-nav__link">
+      主页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      服务端
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        服务端
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/dev-env/" title="开发环境" class="md-nav__link">
+      开发环境
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/vapor-can-do/" title="Vapor的能力" class="md-nav__link">
+      Vapor的能力
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/project-structure/" title="项目结构" class="md-nav__link">
+      项目结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/add-routes/" title="添加GET路由" class="md-nav__link">
+      添加GET路由
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/accept-data/" title="接收POST数据" class="md-nav__link">
+      接收POST数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/return-json/" title="返回JSON数据" class="md-nav__link">
+      返回JSON数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/error-fix/" title="排错" class="md-nav__link">
+      排错
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/http-basic/" title="HTTP基础" class="md-nav__link">
+      HTTP基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/rest-api/" title="REST API" class="md-nav__link">
+      REST API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/async/" title="异步" class="md-nav__link">
+      异步
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/Fluent-Persisting-models/" title="数据库" class="md-nav__link">
+      数据库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/configure-database/" title="配置数据库" class="md-nav__link">
+      配置数据库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/CRUD/" title="数据库CRUD操作" class="md-nav__link">
+      数据库CRUD操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/fluent-query/" title="Fluent查询操作" class="md-nav__link">
+      Fluent查询操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/controller/" title="控制器" class="md-nav__link">
+      控制器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/parent-children-relation/" title="父子关系" class="md-nav__link">
+      父子关系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/switch-database-postgreSQL/" title="切换数据库" class="md-nav__link">
+      切换数据库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/sibiling-relation/" title="兄弟关系" class="md-nav__link">
+      兄弟关系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/testing/" title="测试" class="md-nav__link">
+      测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/testing-refine/" title="测试优化" class="md-nav__link">
+      测试优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/other-testcases/" title="其它测试用例" class="md-nav__link">
+      其它测试用例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/test-on-linux/" title="在Linux上运行测试用例" class="md-nav__link">
+      在Linux上运行测试用例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/deploy-vapor-cloud/" title="部署到Vapor Cloud" class="md-nav__link">
+      部署到Vapor Cloud
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/deploy-private/" title="部署到自己的云服务器" class="md-nav__link">
+      部署到自己的云服务器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/authentication/" title="API认证" class="md-nav__link">
+      API认证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/basic-authentication/" title="基本认证" class="md-nav__link">
+      基本认证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/token-authentication/" title="token认证" class="md-nav__link">
+      token认证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/database-seeding/" title="数据库播种" class="md-nav__link">
+      数据库播种
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../server/update-testcases-for-authentication/" title="更新测试用例" class="md-nav__link">
+      更新测试用例
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      客户端
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        客户端
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../mobile/" title="移动端" class="md-nav__link">
+      移动端
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Web端
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Web端
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="介绍" class="md-nav__link">
+      介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../leaf/" title="Leaf模板引擎" class="md-nav__link">
+      Leaf模板引擎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../beautiful-page/" title="美化页面" class="md-nav__link">
+      美化页面
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../serve-file/" title="文件服务" class="md-nav__link">
+      文件服务
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../user-page/" title="用户页面" class="md-nav__link">
+      用户页面
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../all-user/" title="所有用户页面" class="md-nav__link">
+      所有用户页面
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../all-categories/" title="所有类别页面" class="md-nav__link">
+      所有类别页面
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../create-acronym/" title="创建缩略语" class="md-nav__link">
+      创建缩略语
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edit-acronym/" title="编辑缩略语" class="md-nav__link">
+      编辑缩略语
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../delete-acronym/" title="删除缩略语" class="md-nav__link">
+      删除缩略语
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-categories/" title="添加类别标签" class="md-nav__link">
+      添加类别标签
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Cookie和Session" class="md-nav__link md-nav__link--active">
+      Cookie和Session
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../validation/" title="验证数据有效性" class="md-nav__link">
+      验证数据有效性
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../google-authentication/" title="Google用户认证" class="md-nav__link">
+      Google用户认证
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/edit/master/docs/client/web/cookie&session.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <p>Cookie是服务器应用发送给浏览器存放在用户计算机上的小块信息，因为对于浏览器来说，在请求网页时是不能设置自定义头部信息的，所以浏览器在访问服务端应用时会在请求中带上服务端应用发给它的cookie信息。Session能够在多次不同的请求中保存状态信息，在用户验证过程中，服务端会给用户创建一个会话，并使用唯一ID来标识这个会话，发送给用户的cookie中也包含这个标识会话的唯一ID，当用户向服务端应用发送请求时会带上cookie信息，所以能过唯一ID就可以识别出上哪个会话了。</p>
+<p>Vapor使用中间件来管理会话</p>
+<p><em>configure.swift</em>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">...</span>
+<span class="n">middlewares</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="n">SessionsMiddleware</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="n">config</span><span class="p">.</span><span class="n">prefer</span><span class="p">(</span><span class="n">MemoryKeyedCache</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">KeyedCache</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></p>
+<p><em>User.swift</em>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">...</span>
+<span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">PasswordAuthenticatable</span> <span class="p">{}</span>
+<span class="kd">extension</span> <span class="nc">User</span><span class="p">:</span> <span class="n">SessionAuthenticatable</span> <span class="p">{}</span>
+</pre></div>
+</td></tr></table></p>
+<p>使用会话中间件，并配置了键值存储服务，让用户遵循密码验证和会话验证协议。</p>
+<p>要实现用户登录需要提供两个api, 一个用来显示登录页面，另一个用来接收用户登录信息。</p>
+<p><em>WebsiteController.swift</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">LoginContext</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">title</span> <span class="p">=</span> <span class="s">&quot;Log In&quot;</span>
+    <span class="kd">let</span> <span class="nv">loginError</span><span class="p">:</span> <span class="nb">Bool</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">loginError</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">loginError</span> <span class="p">=</span> <span class="n">loginError</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">...</span>
+
+    <span class="kd">func</span> <span class="nf">loginHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">View</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">context</span><span class="p">:</span> <span class="n">LoginContext</span>
+
+        <span class="k">if</span> <span class="n">req</span><span class="p">.</span><span class="n">query</span><span class="p">[</span><span class="nb">Bool</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">at</span><span class="p">:</span> <span class="s">&quot;error&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="n">context</span> <span class="p">=</span> <span class="n">LoginContext</span><span class="p">(</span><span class="n">loginError</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">context</span> <span class="p">=</span> <span class="n">LoginContext</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">view</span><span class="p">().</span><span class="n">render</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+</pre></div>
+</td></tr></table>
+
+<p>页面api和页面参数结构定义好了，我们需要创建页面模板文件来渲染页面显示。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>#set(&quot;content&quot;) {
+
+<span class="nt">&lt;h1&gt;</span>#(title)<span class="nt">&lt;/h1&gt;</span>
+
+#if(loginError) {
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;alert alert-danger&quot;</span> <span class="na">role=</span><span class="s">&quot;alert&quot;</span><span class="nt">&gt;</span>
+        User authentication error. Either your username or password
+        was invalid.
+    <span class="nt">&lt;/div&gt;</span>
+}
+<span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;username&quot;</span><span class="nt">&gt;</span>Username<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span>
+        <span class="na">id=</span><span class="s">&quot;username&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;password&quot;</span><span class="nt">&gt;</span>Password<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;password&quot;</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span>
+        <span class="na">id=</span><span class="s">&quot;password&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">class=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="nt">&gt;</span>Log In<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+}
+#embed(&quot;base&quot;)
+</pre></div>
+</td></tr></table>
+
+<p><em>WebsiteController.swift</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">...</span>
+<span class="kd">import</span> <span class="nc">Authentication</span>
+<span class="p">...</span>
+<span class="kd">struct</span> <span class="nc">LoginPostData</span><span class="p">:</span> <span class="n">Content</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">username</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">password</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">}</span>
+<span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">boot</span><span class="p">(</span><span class="n">router</span><span class="p">:</span> <span class="n">Router</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="p">...</span>
+        <span class="n">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">loginHandler</span><span class="p">)</span>
+        <span class="n">router</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">LoginPostData</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">at</span><span class="p">:</span> <span class="s">&quot;login&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">loginPostHandler</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">loginPostHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">userData</span><span class="p">:</span> <span class="n">LoginPostData</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">Response</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">User</span><span class="p">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="n">userData</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="n">userData</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">using</span><span class="p">:</span> <span class="n">BCryptDigest</span><span class="p">(),</span> <span class="n">on</span><span class="p">:</span> <span class="n">req</span><span class="p">).</span><span class="bp">map</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">Response</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">user</span> <span class="k">in</span>
+
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="n">user</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">req</span><span class="p">.</span><span class="n">redirect</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="s">&quot;/login?error&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+
+            <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">authenticateSession</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">req</span><span class="p">.</span><span class="n">redirect</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="Log In Error" src="/assets/login_error.png" /></p>
+<p>登录页面建好后，我们就要通过认证用户身份来保护API，使用会话认证中间件。</p>
+<p><em>WebsiteController.swift</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="kd">func</span> <span class="nf">boot</span><span class="p">(</span><span class="n">router</span><span class="p">:</span> <span class="n">Router</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">authSessionRoutes</span> <span class="p">=</span> <span class="n">router</span><span class="p">.</span><span class="n">grouped</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">authSessionsMiddleware</span><span class="p">())</span>
+        <span class="n">authSessionRoutes</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="n">use</span><span class="p">:</span> <span class="n">indexHandler</span><span class="p">)</span>
+        <span class="n">authSessionRoutes</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;acronyms&quot;</span><span class="p">,</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">parameter</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">acronymHandler</span><span class="p">)</span>
+        <span class="n">authSessionRoutes</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">,</span> <span class="n">User</span><span class="p">.</span><span class="n">parameter</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">userHandler</span><span class="p">)</span>
+        <span class="n">authSessionRoutes</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;users&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">allUsersHandler</span><span class="p">)</span>
+        <span class="n">authSessionRoutes</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;categories&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">allCategoriesHandler</span><span class="p">)</span>
+        <span class="n">authSessionRoutes</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;categories&quot;</span><span class="p">,</span> <span class="n">Category</span><span class="p">.</span><span class="n">parameter</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">categoryHandler</span><span class="p">)</span>
+        <span class="n">authSessionRoutes</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">loginHandler</span><span class="p">)</span>
+
+        <span class="kd">let</span> <span class="nv">protectedGroup</span> <span class="p">=</span> <span class="n">authSessionRoutes</span><span class="p">.</span><span class="n">grouped</span><span class="p">(</span><span class="n">RedirectMiddleware</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;(</span><span class="n">path</span><span class="p">:</span> <span class="s">&quot;/login&quot;</span><span class="p">))</span>
+        <span class="n">protectedGroup</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;acronyms&quot;</span><span class="p">,</span> <span class="s">&quot;create&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">createAcronymHandler</span><span class="p">)</span>
+        <span class="n">protectedGroup</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;acronyms&quot;</span><span class="p">,</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s">&quot;edit&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">editAcronymHandler</span><span class="p">)</span>
+        <span class="n">protectedGroup</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;acronyms&quot;</span><span class="p">,</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s">&quot;edit&quot;</span><span class="p">,</span>  <span class="n">use</span><span class="p">:</span> <span class="n">editAcronymPostHandler</span><span class="p">)</span>
+        <span class="n">protectedGroup</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;acronyms&quot;</span><span class="p">,</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s">&quot;delete&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">deleteAcronymHandler</span><span class="p">)</span>
+        <span class="n">protectedGroup</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">CreateAcronymData</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">at</span><span class="p">:</span> <span class="s">&quot;acronyms&quot;</span><span class="p">,</span> <span class="s">&quot;create&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">createAcronymPostHandler</span><span class="p">)</span>
+
+        <span class="n">router</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">LoginPostData</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">at</span><span class="p">:</span> <span class="s">&quot;login&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">loginPostHandler</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="protect routes" src="/assets/protect-routes.png" /></p>
+<p>有了对api进行用户认证的保护手段后，我们需要更新一下网站。因为我们可以从认证信息中获取到用户的UserID，所以可以更新一些数据结构：</p>
+<p><em>WebsiteController.swift</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">CreateAcronymData</span><span class="p">:</span> <span class="n">Content</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">short</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">long</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">categories</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]?</span>
+<span class="p">}</span>
+<span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">createAcronymPostHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">CreateAcronymData</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">Response</span><span class="p">&gt;</span> <span class="p">{</span>
+
+        <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">requireAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">acronym</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Acronym</span><span class="p">(</span><span class="n">short</span><span class="p">:</span> <span class="n">data</span><span class="p">.</span><span class="n">short</span><span class="p">,</span> <span class="n">long</span><span class="p">:</span> <span class="n">data</span><span class="p">.</span><span class="n">long</span><span class="p">,</span> <span class="n">userID</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">requireID</span><span class="p">())</span>
+
+        <span class="p">...</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">editAcronymPostHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">Response</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">try</span> <span class="n">flatMap</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">Response</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span>
+                        <span class="n">req</span><span class="p">.</span><span class="n">parameters</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="n">Acronym</span><span class="p">.</span><span class="kc">self</span><span class="p">),</span>
+                        <span class="n">req</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">CreateAcronymData</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+    <span class="p">)</span> <span class="p">{</span> <span class="n">acronym</span><span class="p">,</span> <span class="n">data</span> <span class="k">in</span>
+        <span class="p">...</span>
+        <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">requireAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+        <span class="n">acronym</span><span class="p">.</span><span class="n">userID</span> <span class="p">=</span> <span class="k">try</span> <span class="n">user</span><span class="p">.</span><span class="n">requireID</span><span class="p">()</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>现在创建和编辑缩略语的两个api都可以在认证信息中获取用户信息，就不需要在页面中输入用户了。</p>
+<p><em>createAcronym.leaf</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;userID&quot;</span><span class="p">&gt;</span>User<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">select</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;userID&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;userID&quot;</span><span class="p">&gt;</span>
+            #for(user in users) {
+                <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;#(user.id)&quot;</span> <span class="err">#</span><span class="na">if</span><span class="err">(</span><span class="na">editing</span><span class="err">){</span> <span class="err">#</span><span class="na">if</span><span class="err">(</span><span class="na">acronym</span><span class="err">.</span><span class="na">userID </span><span class="o">=</span><span class="s">=</span> <span class="na">user</span><span class="err">.</span><span class="na">id</span><span class="err">)</span> <span class="err">{</span> <span class="na">selected</span> <span class="err">}}</span><span class="p">&gt;</span>
+                    #(user.name)
+                <span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+            }
+        <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<p>这一部分可以删除了。然后再更新一下对应的api，因为创建和编辑缩略词使用同一份模板，所有我们只需要改一下位置。</p>
+<p><em>WebsiteController.swift</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">CreateAcronymContext</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">title</span> <span class="p">=</span> <span class="s">&quot;Create An Acronym&quot;</span>
+<span class="p">}</span>
+<span class="kd">struct</span> <span class="nc">EditAcronymContext</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">title</span> <span class="p">=</span> <span class="s">&quot;Edit Acronym&quot;</span>
+    <span class="kd">let</span> <span class="nv">acronym</span><span class="p">:</span> <span class="n">Acronym</span>
+    <span class="kd">let</span> <span class="nv">editing</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="kd">let</span> <span class="nv">categories</span><span class="p">:</span> <span class="n">Future</span><span class="o">&lt;</span><span class="p">[</span><span class="n">Category</span><span class="p">]</span><span class="o">&gt;</span>
+<span class="p">}</span>
+    <span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">createAcronymHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">View</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">context</span> <span class="p">=</span> <span class="n">CreateAcronymContext</span><span class="p">()</span>
+        <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">view</span><span class="p">().</span><span class="n">render</span><span class="p">(</span><span class="s">&quot;createAcronym&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">editAcronymHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">View</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">parameters</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="n">Acronym</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">flatMap</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">View</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">acronym</span> <span class="k">in</span>
+                <span class="kd">let</span> <span class="nv">categories</span> <span class="p">=</span> <span class="k">try</span> <span class="n">acronym</span><span class="p">.</span><span class="n">categories</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">req</span><span class="p">).</span><span class="n">all</span><span class="p">()</span>
+                <span class="kd">let</span> <span class="nv">context</span> <span class="p">=</span> <span class="n">EditAcronymContext</span><span class="p">(</span><span class="n">acronym</span><span class="p">:</span> <span class="n">acronym</span><span class="p">,</span>
+                                                    <span class="n">categories</span><span class="p">:</span> <span class="n">categories</span><span class="p">)</span>
+                <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">view</span><span class="p">().</span><span class="n">render</span><span class="p">(</span><span class="s">&quot;createAcronym&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="create-acronym-auth-user" src="/assets/create-acronym-auth-user.png" /></p>
+<h1 id="_1">退出登录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>现在可以认证用户身份并成功登录，还需要添加一个退出登录的功能。</p>
+<p><em>WebsiteController.swift</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">boot</span><span class="p">(</span><span class="n">router</span><span class="p">:</span> <span class="n">Router</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="p">....</span>
+        <span class="n">authSessionRoutes</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;logout&quot;</span><span class="p">,</span> <span class="n">use</span><span class="p">:</span> <span class="n">logoutHandler</span><span class="p">)</span>
+    <span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">logoutHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Response</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">unauthenticate</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">req</span><span class="p">.</span><span class="n">redirect</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p><em>base.leaf</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        ...
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+        #if(userLoggedIn) {
+            <span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-inline&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/logout&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-link btn btn-link&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span>
+            <span class="na">value</span><span class="o">=</span><span class="s">&quot;Log out&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+        }
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+...
+</pre></div>
+</td></tr></table>
+
+<p><em>WebsiteController.swift</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">IndexContext</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">acronyms</span><span class="p">:</span> <span class="p">[</span><span class="n">Acronym</span><span class="p">]?</span>
+    <span class="kd">let</span> <span class="nv">userLoggedIn</span><span class="p">:</span> <span class="nb">Bool</span>
+<span class="p">}</span>
+<span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">indexHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">View</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">req</span><span class="p">).</span><span class="n">all</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">flatMap</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">View</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">acronyms</span> <span class="k">in</span>
+                <span class="kd">let</span> <span class="nv">userLoggedIn</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">isAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+                <span class="kd">let</span> <span class="nv">acronymsData</span> <span class="p">=</span> <span class="n">acronyms</span><span class="p">.</span><span class="bp">isEmpty</span> <span class="p">?</span> <span class="kc">nil</span> <span class="p">:</span> <span class="n">acronyms</span>
+                <span class="kd">let</span> <span class="nv">context</span> <span class="p">=</span> <span class="n">IndexContext</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="s">&quot;Homepage&quot;</span><span class="p">,</span> <span class="n">acronyms</span><span class="p">:</span> <span class="n">acronymsData</span><span class="p">,</span> <span class="n">userLoggedIn</span><span class="p">:</span> <span class="n">userLoggedIn</span><span class="p">)</span>
+                   <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">view</span><span class="p">().</span><span class="n">render</span><span class="p">(</span><span class="s">&quot;index&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<h1 id="cookie">Cookie<a class="headerlink" href="#cookie" title="Permanent link">&para;</a></h1>
+<p>Web上经常使用Cookie技术，第一次登录一个网站时，一般都会提示你网站要设置Cookie，需要用户确认。我们已经使用Cookie进行用户认证，但有时我们需要设置或读取cookie信息。下面就来实现让用户确认使用cookie的功能</p>
+<p><em>base.leaf</em>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>...
+        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/styles/style.css&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>#(title) | Acronyms<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+...
+        #if(showCookieMessage) {
+            <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;cookie-footer&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;cookieMessage&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;muted&quot;</span><span class="p">&gt;</span>
+                        This site uses cookies! To accept this, click
+                        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;cookiesConfirmed()&quot;</span><span class="p">&gt;</span>OK<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/scripts/cookies.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+        }
+        ...
+        <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js&quot;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&quot;sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49&quot;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&quot;anonymous&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+        ...
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+  ```
+
+
+*Public/styles/style.css*
+```css
+#cookie-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+</pre></div>
+</td></tr></table></p>
+<p><em>Public/scripts/cookies.js</em>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">cookiesConfirmed</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#cookie-footer&quot;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="nx">d</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">+</span> <span class="p">(</span><span class="mi">365</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">1000</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">expires</span> <span class="o">=</span> <span class="s2">&quot;expires=&quot;</span><span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">toUTCString</span><span class="p">();</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">=</span> <span class="s2">&quot;cookies-accepted=true;&quot;</span> <span class="o">+</span> <span class="nx">expires</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<p><em>WebsiteController.swift</em>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">IndexContext</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">acronyms</span><span class="p">:</span> <span class="p">[</span><span class="n">Acronym</span><span class="p">]?</span>
+    <span class="kd">let</span> <span class="nv">userLoggedIn</span><span class="p">:</span> <span class="nb">Bool</span>
+    <span class="kd">let</span> <span class="nv">showCookieMessage</span><span class="p">:</span> <span class="nb">Bool</span>
+<span class="p">}</span>
+<span class="p">...</span>
+
+    <span class="kd">func</span> <span class="nf">indexHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">View</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">req</span><span class="p">).</span><span class="n">all</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">flatMap</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">View</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">acronyms</span> <span class="k">in</span>
+                <span class="kd">let</span> <span class="nv">userLoggedIn</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">isAuthenticated</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+                <span class="kd">let</span> <span class="nv">acronymsData</span> <span class="p">=</span> <span class="n">acronyms</span><span class="p">.</span><span class="bp">isEmpty</span> <span class="p">?</span> <span class="kc">nil</span> <span class="p">:</span> <span class="n">acronyms</span>
+                <span class="kd">let</span> <span class="nv">showCookieMessage</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">http</span><span class="p">.</span><span class="n">cookies</span><span class="p">[</span><span class="s">&quot;cookies-accepted&quot;</span><span class="p">]</span> <span class="p">==</span> <span class="kc">nil</span>
+
+                <span class="kd">let</span> <span class="nv">context</span> <span class="p">=</span> <span class="n">IndexContext</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="s">&quot;Homepage&quot;</span><span class="p">,</span>
+                                           <span class="n">acronyms</span><span class="p">:</span> <span class="n">acronymsData</span><span class="p">,</span>
+                                           <span class="n">userLoggedIn</span><span class="p">:</span> <span class="n">userLoggedIn</span><span class="p">,</span>
+                                           <span class="n">showCookieMessage</span><span class="p">:</span> <span class="n">showCookieMessage</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">view</span><span class="p">().</span><span class="n">render</span><span class="p">(</span><span class="s">&quot;index&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<p><img alt="cookie bottom" src="/assets/cookie-bottom.png" /></p>
+<h1 id="session">Session<a class="headerlink" href="#session" title="Permanent link">&para;</a></h1>
+<p>除了使用cookie可以进行用户认证以外，还可以使用会话进行，会话也有适用的多种场景， 其中一种就是CSRF保护，即跨站请求伪造。攻击者伪装一名用户进行破坏性请求。我们可以在表格中加入CSRF token信息来防止这种攻击，当web应用接收请求时，通这验证CSRF token的否与服务端发送出去的token是否匹配来决定是否处理该请求。</p>
+<p><em>WebsiteController.swift</em>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">struct</span> <span class="nc">CreateAcronymContext</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">title</span> <span class="p">=</span> <span class="s">&quot;Create An Acronym&quot;</span>
+    <span class="kd">let</span> <span class="nv">csrfToken</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">}</span>
+<span class="kd">struct</span> <span class="nc">CreateAcronymData</span><span class="p">:</span> <span class="n">Content</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">short</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">long</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">categories</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]?</span>
+    <span class="kd">let</span> <span class="nv">csrfToken</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">}</span>
+<span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">createAcronymHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">View</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">token</span> <span class="p">=</span> <span class="k">try</span> <span class="n">CryptoRandom</span><span class="p">().</span><span class="n">generateData</span><span class="p">(</span><span class="bp">count</span><span class="p">:</span> <span class="mi">16</span><span class="p">).</span><span class="n">base64EncodedString</span><span class="p">()</span>
+        <span class="kd">let</span> <span class="nv">context</span> <span class="p">=</span> <span class="n">CreateAcronymContext</span><span class="p">(</span><span class="n">csrfToken</span><span class="p">:</span> <span class="n">token</span><span class="p">)</span>
+        <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">session</span><span class="p">()[</span><span class="s">&quot;CSRF_TOKEN&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="n">token</span>
+        <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">view</span><span class="p">().</span><span class="n">render</span><span class="p">(</span><span class="s">&quot;createAcronym&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">createAcronymPostHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">CreateAcronymData</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">Response</span><span class="p">&gt;</span> <span class="p">{</span>
+
+        <span class="kd">let</span> <span class="nv">expectedToken</span> <span class="p">=</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">session</span><span class="p">()[</span><span class="s">&quot;CSRF_TOKEN&quot;</span><span class="p">]</span>
+        <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">session</span><span class="p">()[</span><span class="s">&quot;CSRF_TOKEN&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="kc">nil</span>
+        <span class="k">guard</span> <span class="n">expectedToken</span> <span class="p">==</span> <span class="n">data</span><span class="p">.</span><span class="n">csrfToken</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">Abort</span><span class="p">(.</span><span class="n">badRequest</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="p">...</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
+<p><em>createAcronym.leaf</em>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>...
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method </span><span class="o">=</span> <span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+        #if(csrfToken) {
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;csrfToken&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;#(csrfToken)&quot;</span><span class="p">&gt;</span>
+        }
+...
+</pre></div>
+</td></tr></table></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../add-categories/" title="添加类别标签" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                添加类别标签
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../validation/" title="验证数据有效性" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                验证数据有效性
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018-20XX wangzhizhou
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/wangzhizhou" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.583bbe55.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
