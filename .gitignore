@@ -84,3 +84,4 @@ DerivedData/
 site/
 vblogenv/
 .vscode/
+logs/
