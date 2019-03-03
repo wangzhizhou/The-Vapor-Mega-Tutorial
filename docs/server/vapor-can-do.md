@@ -106,6 +106,42 @@ Use `vapor command --help` for more information on a command.
     依赖是通过`Swift Package Manager(SPM)`来获取的。这里有个疑问，就是`SPM`并不像`cocoapods`
     这类工具能够统一修改依赖的源地址，在`SPM`中的依赖地址都是写死的，这不利于代码迁移到内部服务器上使用。有没有知道解决方案的，可以联系微信: `w_z_z_1991`告知我。
 
+    目前从模板新建一个项目以及拉取依赖的耗时比较长，所以得想办法解决这个问题。否则，对于vapor的推广很不利。我在自己的阿里云服务器上(双核4G内存共享计算式)使用模板创建一个项目的耗时如下：
+
+    ```bash
+    $ time vapor new HelloVapor
+    ...
+    real    2m11.103s
+    user    0m0.591s
+    sys     0m0.365s
+    ```
+    可见，创建一个项目居然要耗时2分钟左右的时间，这是无法忍受的。再来看一下解析依赖的时间：
+
+    ```bash
+    $ cd HelloVapor && time vapor fetch
+    Fetching Dependencies [Done]
+
+    real    18m18.362s
+    user    0m15.915s
+    sys     0m6.833s
+    ```
+    第一次拉取依赖耗时18分钟左右，因为是要在Github上的仓库上拉取。
+    
+    如果想要以swift+vapor的方式创业，那么迁移依赖库到私人服务器势在必行。好在个人开发来说，创建项目和依赖解析都只会在开始的时候最耗时，暂时可以接受。
+
+    **TODO**: 调研这个问题的解析方案。
+
+    初始构建耗时较大，之后就是增量构建：
+    ```bash
+    $ time vapor build
+    Building Project [Done]
+
+    real    0m52.346s
+    user    1m26.204s
+    sys     0m5.493s
+    ```
+
+
 使用`vapor run`命令运行项目，默认是在监听`127.0.0.1:8080`，所以你只能从本机访问。如果要指定端口和允许任意IP地址访问API，可以使用下面的命令运行:
 ```bash
 $ vapor run --hostname=0.0.0.0 --port=80
