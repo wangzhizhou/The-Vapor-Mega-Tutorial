@@ -34,6 +34,11 @@ $ vapor --help
 
 ```bash
 $ eval "$(curl -sL check.vapor.sh)"
+✅  Xcode 10 is compatible with Vapor 2.
+✅  Xcode 10 is compatible with Vapor 3.
+
+✅  Swift 4.2 is compatible with Vapor 2.
+✅  Swift 4.2 is compatible with Vapor 3.
 ```
 
 
