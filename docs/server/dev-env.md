@@ -7,12 +7,13 @@
 下面就是两个平台上部署Vapor开发环境的具体步骤：
 
 ```bash tab="MacOS"
+# 先从AppStore安装开发工具Xcode(Swift开发环境)
 # 安装Homebrew包管理器
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # 使用Homebrew包管理器安装Vapor开发框架
 $ brew install vapor/tap/vapor
-# 查看框架版本
-$ vapor --help
+# 查看vapor工具箱版本
+$ vapor version
 ```
 
 ```bash tab="Ubuntu"
@@ -24,15 +25,15 @@ $ eval "$(curl -sL https://apt.vapor.sh)"
 $ sudo apt-get install swift vapor
 # 查看Swift版本
 $ swift --version
-# 查看框架版本
-$ vapor --help
+# 查看vapor工具箱版本
+$ vapor version
 ```
 
 执行完上面的命令，`Vapor`的开发环境就完成了。因为目前来说，Ubuntu上还没有对Swift支持比较好的IDE，所以建议使用Mac上的XCode作为开发工具。
 
 在布置开发环境后可以使用Vapor提供的脚本检查是否安装成功
 
-```bash
+```bash tab="MacOS"
 $ eval "$(curl -sL check.vapor.sh)"
 ✅  Xcode 10 is compatible with Vapor 2.
 ✅  Xcode 10 is compatible with Vapor 3.
@@ -41,6 +42,10 @@ $ eval "$(curl -sL check.vapor.sh)"
 ✅  Swift 4.2 is compatible with Vapor 3.
 ```
 
+```bash tab="Ubuntu"
+$ eval "$(curl -sL check.vapor.sh)"
+✅  Swift 4.2 is compatible with Vapor 2.
+✅  Swift 4.2 is compatible with Vapor 3.
+```
 
-!!! warning "端口占用查询"
-    在MacOS上，终端键入命令`lsof -i tcp:8080`可以查看指定端口当前被哪些应用使用
+做到这里，Swift开发环境和Vapor工具箱已经安装成功，下一步就可以尝试开发了。🙃🙃🙃

@@ -68,7 +68,7 @@ nav:
   - 主页: 'index.md'
   - 服务端:
       - 开发环境: 'server/dev-env.md'
-      - Vapor的能力: 'server/vapor-can-do.md'
+      - Vapor工具箱的能力: 'server/vapor-can-do.md'
       - 项目结构: 'server/project-structure.md'
       - 添加GET路由: 'server/add-routes.md'
       - 接收POST数据: 'server/accept-data.md'
