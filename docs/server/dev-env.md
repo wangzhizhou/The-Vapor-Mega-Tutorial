@@ -33,7 +33,7 @@ $ vapor --help
 在布置开发环境后可以使用Vapor提供的脚本检查是否安装成功
 
 ```bash
-$ eval "(curl -sL check.vapor.sh)"
+$ eval "$(curl -sL check.vapor.sh)"
 ```
 
 
