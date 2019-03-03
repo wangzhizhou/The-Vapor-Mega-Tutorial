@@ -2,7 +2,7 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh" class="no-js">
   <head>
     
@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.5">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
     
     
       
@@ -46,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -67,6 +67,10 @@
       
     
     <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
     
     
   </head>
@@ -121,22 +125,19 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            
-              <span class="md-header-nav__topic">
-                Vapor 大型教程
-              </span>
-              <span class="md-header-nav__topic">
-                开发环境
-              </span>
-            
+            <span class="md-header-nav__topic">
+              Vapor 大型教程
+            </span>
+            <span class="md-header-nav__topic">
+              开发环境
+            </span>
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -159,7 +160,6 @@
     </div>
   </div>
 </div>
-          
         
       </div>
       
@@ -170,20 +170,18 @@
 
   
 
-
-  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/" title="前往 Github 仓库" class="md-source" data-md-source="github">
-    
-      <div class="md-source__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#__github" width="24" height="24"></use>
-        </svg>
-      </div>
-    
-    <div class="md-source__repository">
-      GitHub 仓库
+<a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
     </div>
-  </a>
-
+  
+  <div class="md-source__repository">
+    GitHub 仓库
+  </div>
+</a>
           </div>
         </div>
       
@@ -267,20 +265,18 @@
 
   
 
-
-  <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/" title="前往 Github 仓库" class="md-source" data-md-source="github">
-    
-      <div class="md-source__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#__github" width="24" height="24"></use>
-        </svg>
-      </div>
-    
-    <div class="md-source__repository">
-      GitHub 仓库
+<a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
     </div>
-  </a>
-
+  
+  <div class="md-source__repository">
+    GitHub 仓库
+  </div>
+</a>
     </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -343,8 +339,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../vapor-can-do/" title="Vapor的能力" class="md-nav__link">
-      Vapor的能力
+    <a href="../vapor-can-do/" title="Vapor工具箱的能力" class="md-nav__link">
+      Vapor工具箱的能力
     </a>
   </li>
 
@@ -959,11 +955,12 @@
                 
                   <h1>开发环境</h1>
                 
-                <p><code class="codehilite">Vapor</code>的开发环境目前主要是针对<code class="codehilite">Mac OS</code>和<code class="codehilite">Ubuntu</code>两个平台部署。</p>
+                <p>目前，<code class="codehilite">Vapor</code>的开发环境主要是在<code class="codehilite">Mac OS</code>和<code class="codehilite">Ubuntu</code>两个平台部署。</p>
 <div class="admonition info">
-<p class="admonition-title">Info</p>
+<p class="admonition-title">MacOS平台上可以借助XCode这个IDE进行开发</p>
 <p>在<code class="codehilite">Mac OS</code>你要先安装好<code class="codehilite">Xcode</code>，这个是为了安装好<code class="codehilite">Swift</code>语言环境，Shell里使用<code class="codehilite">$ swift --version</code>查看Swift版本</p>
 </div>
+<p>下面就是两个平台上部署Vapor开发环境的具体步骤：</p>
 <div class="superfences-tabs">
 <input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
 <label for="__tab_1_0">MacOS</label>
@@ -972,12 +969,14 @@
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># 安装Homebrew包管理器</span>
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># 先从AppStore安装开发工具Xcode(Swift开发环境)</span>
+<span class="c1"># 安装Homebrew包管理器</span>
 $ /usr/bin/ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
 <span class="c1"># 使用Homebrew包管理器安装Vapor开发框架</span>
 $ brew install vapor/tap/vapor
-<span class="c1"># 查看框架版本</span>
-$ vapor --help
+<span class="c1"># 查看vapor工具箱版本</span>
+$ vapor version
 </pre></div>
 </td></tr></table></div>
 <input name="__tabs_1" type="radio" id="__tab_1_1" />
@@ -999,21 +998,40 @@ $ <span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(<
 $ sudo apt-get install swift vapor
 <span class="c1"># 查看Swift版本</span>
 $ swift --version
-<span class="c1"># 查看框架版本</span>
-$ vapor --help
+<span class="c1"># 查看vapor工具箱版本</span>
+$ vapor version
 </pre></div>
 </td></tr></table></div>
 </div>
 <p>执行完上面的命令，<code class="codehilite">Vapor</code>的开发环境就完成了。因为目前来说，Ubuntu上还没有对Swift支持比较好的IDE，所以建议使用Mac上的XCode作为开发工具。</p>
 <p>在布置开发环境后可以使用Vapor提供的脚本检查是否安装成功</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ <span class="nb">eval</span> <span class="s2">&quot;(curl -sL check.vapor.sh)&quot;</span>
-</pre></div>
-</td></tr></table>
+<div class="superfences-tabs">
+<input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
+<label for="__tab_2_0">MacOS</label>
+<div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ <span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>curl -sL check.vapor.sh<span class="k">)</span><span class="s2">&quot;</span>
+✅  Xcode <span class="m">10</span> is compatible with Vapor <span class="m">2</span>.
+✅  Xcode <span class="m">10</span> is compatible with Vapor <span class="m">3</span>.
 
-<div class="admonition warning">
-<p class="admonition-title">端口占用查询</p>
-<p>在MacOS上，终端键入命令<code class="codehilite">lsof -i tcp:8080</code>可以查看指定端口当前被哪些应用使用</p>
+✅  Swift <span class="m">4</span>.2 is compatible with Vapor <span class="m">2</span>.
+✅  Swift <span class="m">4</span>.2 is compatible with Vapor <span class="m">3</span>.
+</pre></div>
+</td></tr></table></div>
+<input name="__tabs_2" type="radio" id="__tab_2_1" />
+<label for="__tab_2_1">Ubuntu</label>
+<div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ <span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>curl -sL check.vapor.sh<span class="k">)</span><span class="s2">&quot;</span>
+✅  Swift <span class="m">4</span>.2 is compatible with Vapor <span class="m">2</span>.
+✅  Swift <span class="m">4</span>.2 is compatible with Vapor <span class="m">3</span>.
+</pre></div>
+</td></tr></table></div>
 </div>
+<p>做到这里，Swift开发环境和Vapor工具箱已经安装成功，下一步就可以尝试开发了。🙃🙃🙃</p>
                 
                   
                 
@@ -1049,13 +1067,13 @@ $ vapor --help
           </a>
         
         
-          <a href="../vapor-can-do/" title="Vapor的能力" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../vapor-can-do/" title="Vapor工具箱的能力" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   前进
                 </span>
-                Vapor的能力
+                Vapor工具箱的能力
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -1081,7 +1099,6 @@ $ vapor --help
           Material for MkDocs</a>
       </div>
       
-        
   <div class="md-footer-social">
     <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
     
@@ -1089,14 +1106,13 @@ $ vapor --help
     
   </div>
 
-      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
       
         
         
@@ -1114,9 +1130,6 @@ $ vapor --help
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-      
-    
-    
       
     
   </body>
