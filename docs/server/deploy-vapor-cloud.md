@@ -1,3 +1,5 @@
+# 部署
+
 ```bash
 $ vapor cloud deploy 
 app: TILApp
@@ -24,3 +26,13 @@ Updating replicas [Done]
 Deployment succeeded: https://joker.vapor.cloud [Done]
 Successfully deployed.
 ```
+
+# 取消部署并删除
+
+首先需要把部署的机器数变为`0`
+
+```
+$  vapor cloud deploy --replicas=0
+```
+
+然后在Vapor云上自己的帐号中，从内到外一级一级删除。

@@ -141,6 +141,26 @@ Use `vapor command --help` for more information on a command.
     sys     0m5.493s
     ```
 
+当对`HelloVapor`工程完成前面的`vapor build`这一步以后，就可以查看这个api项目提供的所有可用路由信息了： 
+
+```bash
+$ vapor run routes
+Running HellVapor ...
+[ INFO ] Migrating 'sqlite' database (/Users/joker/Documents/HellVapor/.build/checkouts/fluent.git-1559603717901448874/Sources/Fluent/Migration/MigrationConfig.swift:69)
+[ INFO ] Preparing migration 'Todo' (/Users/joker/Documents/HellVapor/.build/checkouts/fluent.git-1559603717901448874/Sources/Fluent/Migration/Migrations.swift:111)
+[ INFO ] Migrations complete (/Users/joker/Documents/HellVapor/.build/checkouts/fluent.git-1559603717901448874/Sources/Fluent/Migration/MigrationConfig.swift:73)
++--------+--------------+
+| GET    |              |
++--------+--------------+
+| GET    | /hello       |
++--------+--------------+
+| GET    | /todos       |
++--------+--------------+
+| POST   | /todos       |
++--------+--------------+
+| DELETE | /todos/:todo |
++--------+--------------+
+```
 
 使用`vapor run`命令运行项目，默认是在监听`127.0.0.1:8080`，所以你只能从本机访问。如果要指定端口和允许任意IP地址访问API，可以使用下面的命令运行:
 ```bash
