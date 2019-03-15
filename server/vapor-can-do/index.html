@@ -1129,7 +1129,85 @@ Server starting on http://localhost:8080
 <p class="admonition-title">Question</p>
 <p>依赖是通过<code class="codehilite">Swift Package Manager(SPM)</code>来获取的。这里有个疑问，就是<code class="codehilite">SPM</code>并不像<code class="codehilite">cocoapods</code>
 这类工具能够统一修改依赖的源地址，在<code class="codehilite">SPM</code>中的依赖地址都是写死的，这不利于代码迁移到内部服务器上使用。有没有知道解决方案的，可以联系微信: <code class="codehilite">w_z_z_1991</code>告知我。</p>
+<p>目前从模板新建一个项目以及拉取依赖的耗时比较长，所以得想办法解决这个问题。否则，对于vapor的推广很不利。我在自己的阿里云服务器上(双核4G内存共享计算式)使用模板创建一个项目的耗时如下：</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ <span class="nb">time</span> vapor new HelloVapor
+...
+real    2m11.103s
+user    0m0.591s
+sys     0m0.365s
+</pre></div>
+</td></tr></table>
+可见，创建一个项目居然要耗时2分钟左右的时间，这是无法忍受的。再来看一下解析依赖的时间：</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ <span class="nb">cd</span> HelloVapor <span class="o">&amp;&amp;</span> <span class="nb">time</span> vapor fetch
+Fetching Dependencies <span class="o">[</span>Done<span class="o">]</span>
+
+real    18m18.362s
+user    0m15.915s
+sys     0m6.833s
+</pre></div>
+</td></tr></table>
+第一次拉取依赖耗时18分钟左右，因为是要在Github上的仓库上拉取。</p>
+<p>如果想要以swift+vapor的方式创业，那么迁移依赖库到私人服务器势在必行。好在个人开发来说，创建项目和依赖解析都只会在开始的时候最耗时，暂时可以接受。</p>
+<p><strong>TODO</strong>: 调研这个问题的解析方案。</p>
+<p>初始构建耗时较大，之后就是增量构建：
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ <span class="nb">time</span> vapor build
+Building Project <span class="o">[</span>Done<span class="o">]</span>
+
+real    0m52.346s
+user    1m26.204s
+sys     0m5.493s
+</pre></div>
+</td></tr></table></p>
 </div>
+<p>当对<code class="codehilite">HelloVapor</code>工程完成前面的<code class="codehilite">vapor build</code>这一步以后，就可以查看这个api项目提供的所有可用路由信息了： </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ vapor run routes
+Running HellVapor ...
+<span class="o">[</span> INFO <span class="o">]</span> Migrating <span class="s1">&#39;sqlite&#39;</span> database <span class="o">(</span>/Users/joker/Documents/HellVapor/.build/checkouts/fluent.git-1559603717901448874/Sources/Fluent/Migration/MigrationConfig.swift:69<span class="o">)</span>
+<span class="o">[</span> INFO <span class="o">]</span> Preparing migration <span class="s1">&#39;Todo&#39;</span> <span class="o">(</span>/Users/joker/Documents/HellVapor/.build/checkouts/fluent.git-1559603717901448874/Sources/Fluent/Migration/Migrations.swift:111<span class="o">)</span>
+<span class="o">[</span> INFO <span class="o">]</span> Migrations <span class="nb">complete</span> <span class="o">(</span>/Users/joker/Documents/HellVapor/.build/checkouts/fluent.git-1559603717901448874/Sources/Fluent/Migration/MigrationConfig.swift:73<span class="o">)</span>
++--------+--------------+
+<span class="p">|</span> GET    <span class="p">|</span>              <span class="p">|</span>
++--------+--------------+
+<span class="p">|</span> GET    <span class="p">|</span> /hello       <span class="p">|</span>
++--------+--------------+
+<span class="p">|</span> GET    <span class="p">|</span> /todos       <span class="p">|</span>
++--------+--------------+
+<span class="p">|</span> POST   <span class="p">|</span> /todos       <span class="p">|</span>
++--------+--------------+
+<span class="p">|</span> DELETE <span class="p">|</span> /todos/:todo <span class="p">|</span>
++--------+--------------+
+</pre></div>
+</td></tr></table>
+
 <p>使用<code class="codehilite">vapor run</code>命令运行项目，默认是在监听<code class="codehilite">127.0.0.1:8080</code>，所以你只能从本机访问。如果要指定端口和允许任意IP地址访问API，可以使用下面的命令运行:
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2

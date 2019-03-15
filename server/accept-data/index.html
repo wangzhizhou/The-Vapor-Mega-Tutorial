@@ -955,7 +955,8 @@
                 
                   <h1>接收POST数据</h1>
                 
-                <p>添加遵守Content协议的结构体InfoData, 它只有一个name字符串成员，Content协议支持请求数据向结构体对象的解码转换。在routes文件中添加红框代码，编译运行</p>
+                <p>Content协议是Vapor对Codable协议的封装，用来从请求中提取数据。</p>
+<p>添加遵守Content协议的结构体InfoData, 它只有一个name字符串成员，Content协议支持请求数据向结构体对象的解码转换。在routes文件中添加红框代码，编译运行</p>
 <p><img alt="accept data" src="/assets/accept-data.png" /></p>
 <p>chrome不能模拟POST请求，我们使用一个Mac上的应用，名叫<code class="codehilite">rested</code>，可以在AppStore上下载。按下面设置测试路由正常。</p>
 <p><img alt="post data" src="/assets/post-data.png" /></p>

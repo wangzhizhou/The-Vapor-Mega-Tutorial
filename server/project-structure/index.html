@@ -955,7 +955,8 @@
                 
                   <h1>项目结构</h1>
                 
-                <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+                <p>上一节我们通过使用<code class="codehilite">vapor new</code>命令，以通用api模板创建了一个项目<code class="codehilite">HelloVapor</code>, 那么我们进一步看一下模板是怎么通过目录结构划分应用的功能模块的。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1007,7 +1008,7 @@ $ tree -L <span class="m">3</span> .
 </pre></div>
 </td></tr></table>
 
-<p>Vapor使用Swift Package Manager(SPM)，它是一个依赖管理系统，类似于iOS平台上的Cocoapods，用来配置和构建vapor应用。使用SPM管理的项目在.gitignore文件中忽略和Xcode相关的文件，如果想使用Xcode，每次更改都需要重新生成项目文件。</p>
+<p>Vapor使用Swift Package Manager(SPM)，它是一个依赖管理系统，类似于iOS平台上的Cocoapods，用来配置和构建Vapor应用。使用SPM管理的项目可以在.gitignore文件中设置忽略Xcode项目相关的文件，如果想使用Xcode，每次更改都需要重新生成项目文件。</p>
 <p>一个SPM项目定义在Package.swift框架文件中，这个文件中声明了目标(Target)、依赖(Dependencies)以及怎样把它们链接在一起。项目的布局也和传统的XCode项目有所不同。</p>
 <p><code class="codehilite">Source</code>目录用来存放源文件，每一个在Package.swift中定义的模块都对应<code class="codehilite">Source</code> 目录下的一个模块子目录。模板项目中声明了两个模块: <code class="codehilite">App</code>和<code class="codehilite">Run</code>。</p>
 <p><code class="codehilite">Run</code>模块下仅有一个<code class="codehilite">main.swift</code>文件，这是swift项目的启动入口。我们在开发过程中不会修改<code class="codehilite">Run</code>模块。</p>
