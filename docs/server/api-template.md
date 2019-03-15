@@ -72,4 +72,6 @@ let package = Package(
 
 **其实源码内容不太多，可以好好的看一遍来理解整个运行过程，这对之后的学习有很大的帮助**
 
-// TODO: 整理一个工程运行流程图来说明整个过程。
+### 整个模板工程的代码调用流程
+
+![api-template](/assets/api-template.png)
