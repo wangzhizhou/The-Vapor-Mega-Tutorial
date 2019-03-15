@@ -1,4 +1,4 @@
-
+Content协议是Vapor对Codable协议的封装，用来从请求中提取数据。
 
 添加遵守Content协议的结构体InfoData, 它只有一个name字符串成员，Content协议支持请求数据向结构体对象的解码转换。在routes文件中添加红框代码，编译运行
 

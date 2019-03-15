@@ -9,7 +9,7 @@ $ vapor xcode -y
 
 ![add routes](/assets/add-routes.png)
 
-使用chrome访问我们添加的路由如下图，可见正常工作，其中第二个路由可以接收变化的参数：
+使用chrome访问我们添加的路由如下图，可见正常工作，其中第二个路由可以接收字符串类型变化的参数：
 
 ![hello vapor](/assets/hello-vapor.png)
 

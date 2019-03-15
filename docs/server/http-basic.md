@@ -12,7 +12,7 @@ HTTP(Hyper Text Transfer Protocol)超文本传输协议，是Web的基础内容�
 
 - 主机名。可能有多个服务器共用同一个IP地址，为了区别它们，主机名被用来处理这种情况。
 
-- 请求头。包含请求是添加的额外信息：`Authorization`、 `Accept`、`Cache-Control`、`Content-Length`、`Content-Type`等。请求头是键-值对的集合。
+- 请求头。包含请求时添加的额外信息：`Authorization`、 `Accept`、`Cache-Control`、`Content-Length`、`Content-Type`等。请求头是键-值对的集合。
   
 - 可选请求数据。例如： POST方式请求可以携带一些请求数据。
 
@@ -47,6 +47,5 @@ Web浏览器只能使用GET和POST两种方式的请求，并且请求头是不�
 # HTTP 2.0
 
 HTTP 2.0在效率和延迟上对HTTP 1.1进行了扩展，单个的请求和HTTP 1.1没有什么区别，但是HTTP 2.0的请求可以并行执行。服务器可以预测客户端的请求，从而在请求还没有发出的情况下把客户端可能需要的资源提前推送给客户端。 
-
 
 **Vapor在客户端和服务端同时支持HTTP 1.1和HTTP 2.0**
