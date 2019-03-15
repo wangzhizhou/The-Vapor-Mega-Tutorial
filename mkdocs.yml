@@ -70,6 +70,7 @@ nav:
       - 开发环境: 'server/dev-env.md'
       - Vapor工具箱的能力: 'server/vapor-can-do.md'
       - 项目结构: 'server/project-structure.md'
+      - API模板工程解读: 'server/api-template.md'
       - 添加GET路由: 'server/add-routes.md'
       - 接收POST数据: 'server/accept-data.md'
       - 返回JSON数据: 'server/return-json.md'
