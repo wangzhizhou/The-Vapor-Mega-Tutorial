@@ -64,3 +64,9 @@ let package = Package(
         .testTarget(name: "AppTests", dependencies: ["App"])
     ]
 ```
+
+数据库的配置主要在`configure.swift`文件中完成。首先注册`FluentSQLiteProvider`服务，这个服务是通过`Fluent`这个ORM中间层来对SQLite数据库进行操作的服务，让开发者可以不用理会具体的数据库。
+
+然后创建数据库，因为`Vapor`支持在同一个应用内使用多个数据库实例，所以添加数据库实例的方式是先创建一个数据库配置(DatabasesConfig)，记录所有用到的数据库实例，然后去统一注册进服务里。
+
+最后把数据库要存放的数据模型和对应要存放的数据库类型绑定，统一使用`Migration`服务进行注册使用。
