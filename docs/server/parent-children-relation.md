@@ -2,6 +2,8 @@
 
 # 定义父子关系
 
+因为孩子一定会有一个父亲，所以给孩子的数据模型中添加一个指向父亲的引用，就可以建立父子关系。
+
 从子的一边定义就可以了, 添加了`userID: User.ID`属性，修改初始化函数。更新`updateHandler`
 
 *Acronym.swift*
@@ -35,7 +37,12 @@ func updateHandler(_ req: Request) throws -> Future<Acronym> {
 }
 ```
 
+!!! note "关于数据库更新"
+    因为`Migration`只会创建一次数据表，如果数据表已经创建，那么之后对数据模型的改动不会引起数据表的更新，所以需要重置数据库，重新创建数据表。还有一种方式是写数据库迁移规则，那个会涉及到数据库迁移，目前就是强势删库重建，因为目前的数据没有什么意义，这么做最方便。
+
 # 从孩子侧获取父数据
+
+由于我们在缩略词的数据结构中添加了它所属用户的id，所以可以通过`.parent`方法来查询数据库中的用户数据，从而获取用户信息。需要添加一部分代码用来获取父亲的信息
 
 *Acronym.swift*
 ```swift
@@ -60,6 +67,8 @@ func getUserHandler(_ req: Request) throws -> Future<User> {
 ```
 
 # 获取子数据
+
+从父数据中获取子数据，在这里就是获取一个用户创建的所有缩略词
 
 *User.swift*
 ```swift 
@@ -104,7 +113,7 @@ extension Acronym: Migration {
         // 创建Acronym在数据库中的表
         return Database.create(self, on: connection) { (builder) in
             
-            // 添加Acronym所有属性到表中
+            // 自动添加Acronym所有属性到数据表中
             try addProperties(to: builder)
             
             // 这一句添加了Acronym.userID到User.id的外键约束
@@ -123,4 +132,4 @@ services.register(migrations)
 ```
 
 !!! note "删库重建"
-    因为数据库中表的关系有变换，并且表只能创建一次，所以如果不删库重建，外键约束关系是不是生效的。目前我们还没有学习数据库迁移，并且我们的数据量不大也不重要。所以使用删库重建来使变改生效。每次表结构变化或关系变化，都执行此操作。
+    因为数据库中表的关系有变换，并且表只能创建一次，所以如果不删库重建，外键约束关系是不会生效的。目前我们还没有学习数据库迁移，并且我们的数据量不大也不重要。所以使用删库重建来使变改生效。每次表结构变化或关系变化，都执行此操作。
