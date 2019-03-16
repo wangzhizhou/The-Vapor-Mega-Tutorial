@@ -988,6 +988,7 @@
                 
                 <p>父子关系描述一对一或者一对多的关系，例如： 一个人可以拥有一个宠物，一个人也可以拥有多个宠物，一个宠物只能有一个主人。这样的关系就是父子关系。即一个父亲可以用多个子女，但一个子女只能有一个父亲。</p>
 <h1 id="_1">定义父子关系<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>因为孩子一定会有一个父亲，所以给孩子的数据模型中添加一个指向父亲的引用，就可以建立父子关系。</p>
 <p>从子的一边定义就可以了, 添加了<code class="codehilite"><span class="n">userID</span><span class="o">:</span> <span class="n">User</span><span class="o">.</span><span class="na">ID</span></code>属性，修改初始化函数。更新<code class="codehilite">updateHandler</code></p>
 <p><em>Acronym.swift</em>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -1039,7 +1040,12 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
+<div class="admonition note">
+<p class="admonition-title">关于数据库更新</p>
+<p>因为<code class="codehilite">Migration</code>只会创建一次数据表，如果数据表已经创建，那么之后对数据模型的改动不会引起数据表的更新，所以需要重置数据库，重新创建数据表。还有一种方式是写数据库迁移规则，那个会涉及到数据库迁移，目前就是强势删库重建，因为目前的数据没有什么意义，这么做最方便。</p>
+</div>
 <h1 id="_2">从孩子侧获取父数据<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>由于我们在缩略词的数据结构中添加了它所属用户的id，所以可以通过<code class="codehilite"><span class="na">.parent</span></code>方法来查询数据库中的用户数据，从而获取用户信息。需要添加一部分代码用来获取父亲的信息</p>
 <p><em>Acronym.swift</em>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1073,6 +1079,7 @@
 </pre></div>
 </td></tr></table></p>
 <h1 id="_3">获取子数据<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<p>从父数据中获取子数据，在这里就是获取一个用户创建的所有缩略词</p>
 <p><em>User.swift</em>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1138,7 +1145,7 @@
         <span class="c1">// 创建Acronym在数据库中的表</span>
         <span class="k">return</span> <span class="n">Database</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="n">connection</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">builder</span><span class="p">)</span> <span class="k">in</span>
 
-            <span class="c1">// 添加Acronym所有属性到表中</span>
+            <span class="c1">// 自动添加Acronym所有属性到数据表中</span>
             <span class="k">try</span> <span class="n">addProperties</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">builder</span><span class="p">)</span>
 
             <span class="c1">// 这一句添加了Acronym.userID到User.id的外键约束</span>
@@ -1162,7 +1169,7 @@
 </td></tr></table></p>
 <div class="admonition note">
 <p class="admonition-title">删库重建</p>
-<p>因为数据库中表的关系有变换，并且表只能创建一次，所以如果不删库重建，外键约束关系是不是生效的。目前我们还没有学习数据库迁移，并且我们的数据量不大也不重要。所以使用删库重建来使变改生效。每次表结构变化或关系变化，都执行此操作。</p>
+<p>因为数据库中表的关系有变换，并且表只能创建一次，所以如果不删库重建，外键约束关系是不会生效的。目前我们还没有学习数据库迁移，并且我们的数据量不大也不重要。所以使用删库重建来使变改生效。每次表结构变化或关系变化，都执行此操作。</p>
 </div>
                 
                   
