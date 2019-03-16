@@ -1182,6 +1182,17 @@ Sources/
 <p><strong>其实源码内容不太多，可以好好的看一遍来理解整个运行过程，这对之后的学习有很大的帮助</strong></p>
 <h3 id="_2">整个模板工程的代码调用流程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p><img alt="api-template" src="/assets/api-template.png" /></p>
+<p>以<code class="codehilite">main.swift</code>为程序运行的入口，使用<code class="codehilite"><span class="na">.detect</span><span class="p">()</span></code>方法获取到命令行参数以及一些环境变量，用这些信息去创建app，并在创建后开始运行应用。</p>
+<p>在用环境信息创建应用时，使用了<code class="codehilite">app.swift</code>中定义的函数，它接收环境变量参数，并返回一个应用实例。在创建应用实例前，使用<code class="codehilite">configure.swift</code>文件中的函数对环境信息、配置信息和服务信息做了定义后，传入应用初始化函数进行实例创建。应用实例创建完成后开始运行前这段时间，使用了<code class="codehilite">boot.swift</code>文件中定义的函数处理一些该时机需要处理的事情。</p>
+<p>应用实例初始化前，配置服务(<code class="codehilite">configure.swift</code>)这块主要是做了以下几件事： </p>
+<ol>
+<li>注册和启动数据库服务(FluentSQLiteProvider)</li>
+<li>映射请求路由和对应的处理函数。这些处理函数可以写在一个文件，也可以有组织的拆分多个子模块来管理</li>
+<li>注册各种中间件服务，比如：日志</li>
+<li>注册使用一个或多个数据库</li>
+<li>注册数据模型迁移服务</li>
+</ol>
+<p>在开发过程中我们主要是在<code class="codehilite">configure.swift</code>和<code class="codehilite">routes.swift</code>中进行开发。</p>
                 
                   
                 

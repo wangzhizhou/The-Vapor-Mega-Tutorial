@@ -969,13 +969,79 @@
                 
                 <p><code class="codehilite">Fluent</code>是Vapor中和数据库交互的工具，即是ORM(Object Relational Mapping)对象关系映射。是在Vapor和数据库之间的一个抽象层。它的存在让我们操作数据库变得更加容易。我们不需要直接对数据库进行操作。</p>
 <p>Models是Swfit中表示数据的术语，并且这个概念在Fluent中也是一致的。Models就是要存入数据库中的对象。</p>
-<p>所有的Fluent数据模型都要遵守Codable协议，把类加上final可以获得性能提升，id会在存入数据库时填充。</p>
+<p>所有的Fluent数据模型都要遵守Codable协议，把类加上final可以获得性能提升，id会在存入数据库时填充。Vapor提供了协议<code class="codehilite">Content</code>，它是对<code class="codehilite">Codable</code>的封装，可以方便在多种数据格式之间进行转换。</p>
 <p>自定义Model在数据库中ID名称和类型需要数据模型遵循Model协议。一般Fluent针对每种数据库已经定义了各种可以遵循的Model协议，如SQLiteModel和SQLiteUUIDModel以及SQLiteStringModel</p>
 <p>要想把数据存入数据库，必须在数据库中建立相应的表，这种建表操作，Fluent通过migration来进行。Migration只会执行一次，不会创建已经存在的表。</p>
-<p><code class="codehilite">Vapor Cloud</code>可以托管你的应用，但是目前还不成熟，你可以试用，但一定要在用完后把布署置0，要不然会收托管费。停止托管时要重新布暑一次，命令如下：
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>vapor cloud deploy --replicas<span class="o">=</span><span class="m">0</span>
+<p>我们之后要创建一个缩略语相关的应用，这里可以先把数据模型建立起来：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ touch Sources/App/Models/Acronym.swift
 </pre></div>
-</td></tr></table></p>
+</td></tr></table>
+
+<p><em>Acronym.swift</em></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
+<span class="kd">import</span> <span class="nc">FluentSQLite</span>
+
+<span class="kr">final</span> <span class="kd">class</span> <span class="nc">Acronym</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span> 
+    <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span><span class="err">？</span>
+    <span class="kd">var</span> <span class="nv">short</span><span class="p">:</span> <span class="nb">String</span> 
+    <span class="kd">var</span> <span class="nv">long</span><span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">short</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">long</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">short</span> <span class="p">=</span> <span class="n">short</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">long</span> <span class="p">=</span> <span class="n">long</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">Acronym</span><span class="p">:</span> <span class="n">Model</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">Database</span> <span class="p">=</span> <span class="n">SQLiteDatabase</span>
+
+    <span class="kd">typealias</span> <span class="n">ID</span> <span class="p">=</span> <span class="nb">Int</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">idKey</span><span class="p">:</span> <span class="n">IDKey</span> <span class="p">=</span> <span class="err">\</span><span class="n">Acronym</span><span class="p">.</span><span class="n">id</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">Acronym</span><span class="p">:</span> <span class="n">SQLiteModel</span> <span class="p">{}</span>
+<span class="kd">extension</span> <span class="nc">Acronym</span><span class="p">:</span> <span class="n">Migration</span> <span class="p">{}</span>
+<span class="kd">extension</span> <span class="nc">Acronym</span><span class="p">:</span> <span class="n">Content</span> <span class="p">{}</span>
+</pre></div>
+</td></tr></table>
+
+<p>首先定义遵循<code class="codehilite">Codabel</code>协议的数据类型<code class="codehilite">Acronym</code>，它有两个字符串类型的属性，另一个属性<code class="codehilite">id</code>是留给数据库使用的，数据库在存储数据时，会赋值给每一个数据实例一个唯一标识。</p>
+<p>然后我们又让数据模型遵循<code class="codehilite">Model</code>协议，其目的是为了告诉<code class="codehilite">Fluent</code>我们要使用哪种数据库来存储数据、数据实例唯一标识符的类型以及在数据模型中哪一个属性用来表示这个数据实例的唯一标识。每一种数据库其实已经提供了对应的协议类型，以简化操作，我们可以把这部分直接替换成:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">extension</span> <span class="nc">Acronym</span><span class="p">:</span> <span class="n">SQLiteModel</span> <span class="p">{}</span>
+</pre></div>
+</td></tr></table>
+
+<p>要把数据存入数据库，那么必须让数据库对应的建立一张存放这类数据的数据表，这个建表的任务我们可以让<code class="codehilite">Migration</code>来处理。但这要求我们的数据模型遵循协议<code class="codehilite">Migration</code>。对于简单的数据模型，我们只需要遵循这个协议就可以了，复杂的时时候可能需要我们自己实现一个<code class="codehilite">Mirgration</code>。
+要让应用在启动时创建数据表，我们需要在<code class="codehilite">configure.swift</code>文件中进行配置：</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">migrations</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Acronym</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="p">.</span><span class="n">sqlite</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+一种类型的数据表只会创建一次，如果之后数据模型内部发生了调整也不会再重新创建新表了。</p>
                 
                   
                 

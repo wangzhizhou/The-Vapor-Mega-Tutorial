@@ -1048,6 +1048,15 @@
 </pre></div>
 </td></tr></table>
 
+<p>或者更简单一点就是： </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nf">firstHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">Acronym</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Acronym</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">req</span><span class="p">).</span><span class="bp">first</span><span class="p">().</span><span class="n">unwrap</span><span class="p">(</span><span class="n">or</span><span class="p">:</span> <span class="n">Abort</span><span class="p">(.</span><span class="n">notFound</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
 <h1 id="sort">Sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h1>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2

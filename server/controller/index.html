@@ -108,6 +108,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#routecollection" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -504,6 +508,8 @@
   <li class="md-nav__item md-nav__item--active">
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
     
     
     <a href="./" title="控制器" class="md-nav__link md-nav__link--active">
@@ -957,6 +963,21 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -965,10 +986,9 @@
                   <a href="https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial/edit/master/docs/server/controller.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>控制器</h1>
-                
                 <p>当项目很大时，我们不能一条条的写router，因为之后很难进行维护。一般大型项目都要采用一定的设计模式，以确保项目可以有效的进行维护。在Web开发中很流行的一种模式就是MVC，即Model-View-Controller，以Web为例，数据库中的数据结构为模型(Model)，给用户展示的HTML页面为视图(View),控制着数据展示到页面上的那部分逻辑为控制器(Controller)。我们这篇就是讲Controller。</p>
 <p>当工程比较大时，一条条的Router组成了请求返回逻辑，处理数据和视图的展示。使用Controller把一条条零散的Router组织成独立的模块，这样有利于划分概念方便后期维护。例如针对数据的CRUD操作就可以使用一个控制器组织在一起。</p>
+<h1 id="routecollection">RouteCollection<a class="headerlink" href="#routecollection" title="Permanent link">&para;</a></h1>
 <p><em>routes.swift</em> 可以简化为：
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -987,7 +1007,7 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-分组的所有routes都写入控制器中： </p>
+分组的所有routes都写入控制器中, 控制器继承自<code class="codehilite">RouteCollection</code>： </p>
 <p><em>AcronymsController.swift</em>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1005,7 +1025,8 @@
 14
 15
 16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Vapor</span>
 <span class="kd">import</span> <span class="nc">Fluent</span>
 
 <span class="kd">struct</span> <span class="nc">AcronymsController</span><span class="p">:</span> <span class="n">RouteCollection</span> <span class="p">{</span>
@@ -1015,6 +1036,7 @@
 
     <span class="kd">func</span> <span class="nf">createHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Future</span><span class="p">&lt;</span><span class="n">Acronym</span><span class="p">&gt;</span>
     <span class="p">{</span>
+        <span class="c1">// 这里手动解码为数据模型</span>
         <span class="k">return</span> <span class="k">try</span> <span class="n">req</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">Acronym</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
             <span class="p">.</span><span class="n">flatMap</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">Acronym</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">acronym</span><span class="p">)</span> <span class="k">in</span>
                 <span class="k">return</span> <span class="n">acronym</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="n">req</span><span class="p">)</span>
@@ -1024,7 +1046,8 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></p>
-<p>但这种方式需要每条route都写明自己的路径，如果控制器中有多条route，它们的路径有很长一部分都是一样的，那么后期如果要同时修改它们的前面相同的部分，对于维护来说将是灾难。所以有了RouteGroup的概念来解决这个问题。</p>
+<h1 id="routegroup">RouteGroup<a class="headerlink" href="#routegroup" title="Permanent link">&para;</a></h1>
+<p>上面的方式需要每条route都写明自己的全部路径，对于RESTful来说，如果控制器中有多条route，它们的路径有很长一部分都是共用的，那么后期如果要同时修改它们前面相同的部分，对于维护来说将是灾难。所以有了RouteGroup的概念来解决这个问题。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1175,7 +1198,7 @@
 </pre></div>
 </td></tr></table>
 
-<p>另外，还可以改进一个route的使用方式，我们可以不用手动解码请求参数，以createHandler为例：</p>
+<p>另外，还可以改进一个route的使用方式，我们可以不用手动解码请求参数，以createHandler为例,需要在注册route时指名解码的类型：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
