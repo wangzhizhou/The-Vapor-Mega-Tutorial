@@ -41,6 +41,14 @@ router.get("api","acronyms","first") { (req) -> Future<Acronym> in
 }
 ```
 
+或者更简单一点就是： 
+
+```swift
+func firstHandler(_ req: Request) throws -> Future<Acronym> {
+    return Acronym.query(on: req).first().unwrap(or: Abort(.notFound))
+}
+```
+
 # Sort
 
 ```swift
