@@ -2,6 +2,8 @@
 
 当工程比较大时，一条条的Router组成了请求返回逻辑，处理数据和视图的展示。使用Controller把一条条零散的Router组织成独立的模块，这样有利于划分概念方便后期维护。例如针对数据的CRUD操作就可以使用一个控制器组织在一起。
 
+# RouteCollection
+
 *routes.swift* 可以简化为：
 ```swift
 import Vapor
@@ -13,7 +15,7 @@ public func routes(_ router: Router) throws {
     try router.register(collection: acronymsController)
 }
 ```
-分组的所有routes都写入控制器中： 
+分组的所有routes都写入控制器中, 控制器继承自`RouteCollection`： 
 
 *AcronymsController.swift*
 ```swift
@@ -27,6 +29,7 @@ struct AcronymsController: RouteCollection {
     
     func createHandler(_ req: Request) throws -> Future<Acronym>
     {
+        // 这里手动解码为数据模型
         return try req.content.decode(Acronym.self)
             .flatMap(to: Acronym.self) { (acronym) in
                 return acronym.save(on: req)
@@ -36,7 +39,9 @@ struct AcronymsController: RouteCollection {
 }
 ```
 
-但这种方式需要每条route都写明自己的路径，如果控制器中有多条route，它们的路径有很长一部分都是一样的，那么后期如果要同时修改它们的前面相同的部分，对于维护来说将是灾难。所以有了RouteGroup的概念来解决这个问题。
+# RouteGroup
+
+上面的方式需要每条route都写明自己的全部路径，对于RESTful来说，如果控制器中有多条route，它们的路径有很长一部分都是共用的，那么后期如果要同时修改它们前面相同的部分，对于维护来说将是灾难。所以有了RouteGroup的概念来解决这个问题。
 
 ```swift
 import Vapor
@@ -116,8 +121,7 @@ struct AcronymsController: RouteCollection {
 
 ```
 
-另外，还可以改进一个route的使用方式，我们可以不用手动解码请求参数，以createHandler为例：
-
+另外，还可以改进一个route的使用方式，我们可以不用手动解码请求参数，以createHandler为例,需要在注册route时指名解码的类型：
 
 ```swift
 ...
