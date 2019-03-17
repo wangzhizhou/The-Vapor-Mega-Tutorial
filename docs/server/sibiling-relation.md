@@ -2,7 +2,7 @@
 
 之前的父子关系中，我们在Acronym中添加了User的主键作为外键，在兄弟关系中如果使用这种方式实现，会有效率问题。如果每一个类别下有多个缩略语，如果要查询某个缩略语属于多少个类别，就需要查询所有的类别。如果每个缩略语下有它属于的所有类别，那个查询某个类别下有多少个缩略语就需要查询所有缩略语，这很明显有效率问题。
 
-所以我们需要抽象出另外一种数据模型来记录类别和缩略语之间的对应关系。这个抽象出的数据模型叫作支点(pivot)。首先创建一个支点数据模型文件：
+所以我们需要抽象出另外一种数据模型来记录类别和缩略语之间的对应关系。这个抽象出的数据模型叫作支点(pivot), 也就是新建一个表来记录对应关系，是一种用空间换时间的方法。首先创建一个支点数据模型文件：
 
 *AcronymCategoryPivot.swift*
 ```swift
@@ -125,6 +125,7 @@ extension AcronymCategoryPivot: Migration {
 }
 ...
 ```
+`onDelete`参数是`.cascade`，表示删除数据时级联的把它们之间的关系也一并删除，以避免报错。
 
 # 重置数据库
 
@@ -134,4 +135,10 @@ $ docker rm postgresql
 $ docker run --name postgres -e POSTGRES_DB=vapor \
   -e POSTGRES_USER=vapor -e POSTGRES_PASSWORD=password \
   -p 5432:5432 -d postgres
+```
+
+也可以使用项目[TILApp-BackEnd](https://github.com/wangzhizhou/TILApp-BackEnd)中的脚本来重置数据库:
+
+```bash
+$ ./database-config-mac.sh -r
 ```
