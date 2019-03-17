@@ -29,3 +29,10 @@ REST风格的API可以用一种统一的模式来操作资源，这样可以简�
     Vapor的社区很活跃，流行度也挺高的。
 
     TODO: 建立一个Vapor社区或问答系统用来记录问题和相关解决办法，进行技术积累。
+
+
+# 示例工程
+
+- **[TILApp-BackEnd](https://github.com/wangzhizhou/TILApp-BackEnd)**
+
+这个仓库是一个完整的示例工程，会在之后的章节中讲到其中的代码，可以作为学习的参考，是我实践`Server Side Swift With Vapor`这本书的产物，里面加了自己的一些注释和添加了一些数据库相关的脚本工具。

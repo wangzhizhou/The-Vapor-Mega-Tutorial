@@ -2,13 +2,23 @@
 
 上一篇父子关系试验时发现SQLite不支持外键约束，加了和没加一样。所以决定切换数据到PostgreSQL来验证一下。
 
-我们使用Docker来布置PostgreSQL数据库，首先要安装Docker，这个自己搜官网按照最新安装文档可以完成，这里就不写了, 下面在Shell中运行一段命令，布置一下PostgreSQL的Docker环境：
+我们使用Docker来布置PostgreSQL数据库，首先要安装Docker，这个自己搜官网按照最新安装文档可以完成，这里就不写了。下面在Shell中运行一段命令，布置一下PostgreSQL的Docker环境：
 
 ```bash
 docker run --name postgres -e POSTGRES_DB=vapor \
   -e POSTGRES_USER=vapor -e POSTGRES_PASSWORD=password \
   -p 5432:5432 -d postgres
 ```
+
+!!! hint "在MacOS配置数据库"
+    MacOS上也可以使用我写的脚本安装：<https://github.com/wangzhizhou/TILApp-BackEnd/blob/master/database-config-mac.sh>
+
+    ```bash
+    $ wget https://raw.githubusercontent.com/wangzhizhou/TILApp-BackEnd/master/database-config-mac.sh
+    $ chmod u+x database-config-mac.sh
+    $ ./database-config-mac.sh -i
+    $ ./database-config-mac.sh -d
+    ```
 
 !!! note "国内Docker加速器设置，使用DaoCloud加速"
     ```bash tab="Linux"
