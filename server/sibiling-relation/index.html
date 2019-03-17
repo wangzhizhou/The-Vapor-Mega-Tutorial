@@ -988,7 +988,7 @@
                 
                 <p>兄弟关系是用来描述两个数据模型间相互链接关系的。也叫作多对多关系。在兄弟关系间不存在约束。我们这一部分要给缩略语添加类别，那么一个缩略语可以属于一个或多个类别，一个类别也可以包含一个或多个缩略语，这就是一种兄弟关系，即多对多关系。</p>
 <p>之前的父子关系中，我们在Acronym中添加了User的主键作为外键，在兄弟关系中如果使用这种方式实现，会有效率问题。如果每一个类别下有多个缩略语，如果要查询某个缩略语属于多少个类别，就需要查询所有的类别。如果每个缩略语下有它属于的所有类别，那个查询某个类别下有多少个缩略语就需要查询所有缩略语，这很明显有效率问题。</p>
-<p>所以我们需要抽象出另外一种数据模型来记录类别和缩略语之间的对应关系。这个抽象出的数据模型叫作支点(pivot)。首先创建一个支点数据模型文件：</p>
+<p>所以我们需要抽象出另外一种数据模型来记录类别和缩略语之间的对应关系。这个抽象出的数据模型叫作支点(pivot), 也就是新建一个表来记录对应关系，是一种用空间换时间的方法。首先创建一个支点数据模型文件：</p>
 <p><em>AcronymCategoryPivot.swift</em>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1179,7 +1179,8 @@
 <span class="p">}</span>
 <span class="p">...</span>
 </pre></div>
-</td></tr></table></p>
+</td></tr></table>
+<code class="codehilite">onDelete</code>参数是<code class="codehilite"><span class="na">.cascade</span></code>，表示删除数据时级联的把它们之间的关系也一并删除，以避免报错。</p>
 <h1 id="_1">重置数据库<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1190,6 +1191,11 @@ $ docker rm postgresql
 $ docker run --name postgres -e <span class="nv">POSTGRES_DB</span><span class="o">=</span>vapor <span class="se">\</span>
   -e <span class="nv">POSTGRES_USER</span><span class="o">=</span>vapor -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>password <span class="se">\</span>
   -p <span class="m">5432</span>:5432 -d postgres
+</pre></div>
+</td></tr></table>
+
+<p>也可以使用项目<a href="https://github.com/wangzhizhou/TILApp-BackEnd">TILApp-BackEnd</a>中的脚本来重置数据库:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ ./database-config-mac.sh -r
 </pre></div>
 </td></tr></table>
                 
