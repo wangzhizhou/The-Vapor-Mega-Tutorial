@@ -28,7 +28,7 @@ extra:
   search:
     language: 'zh'
   social:
-    - type: 'github'
+    - icon: 'fontawesome/brands/github'
       link: 'https://github.com/wangzhizhou'
   disque: ''
 
