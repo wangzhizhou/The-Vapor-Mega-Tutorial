@@ -5,7 +5,7 @@ if [ -d "${VENV_DIR}" ]; then
 	rm -rfv ${VENV_DIR}
 fi
 
-virtualenv vblogenv -p python3
+python3 -m venv --clear vblogenv
 source vblogenv/bin/activate
 pip install -r requirements.txt
 mkdocs build --clean 
