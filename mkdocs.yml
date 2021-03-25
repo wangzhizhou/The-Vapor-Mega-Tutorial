@@ -33,6 +33,7 @@ extra:
   disque: ''
 
 markdown_extensions:
+  - pymdownx.tabbed
   - admonition
   - codehilite:
       linenums: true
