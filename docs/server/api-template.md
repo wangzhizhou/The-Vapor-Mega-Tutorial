@@ -1,91 +1,160 @@
-# 顶级目录下的文件
+# Vapor模板工程文件结构
 
-```bash
-$ tree . -L 1
-.
-├── CONTRIBUTING.md    # api模板工程参与改进的方式说明，你可以参与改进这个模板工程，如果有想法的话，可以添加一些新特性，但需要按照这个文件里面的说明流程去做
-├── Package.resolved # 这是模板工程所依赖的其它包的解析结果，包含了一些版本信息、包名称和仓库地址，工程在编译时使用的包就是这个文件中指定的，它是在解析Package.swift时自动生成的，开发者不需要修改
-├── Package.swift # 这个是工程开发者指定项目依赖包版本和仓库地址信息的文件，这个文件是工程开发者手工输入指定的依赖关系文件。用来定义一个项目的依赖和可以生成的产物信息
-├── Public # 这个目录用来存放工程需要用到和一些公共资源，例如图片、音频、文本、样式表、js等
-├── README.md # 这个是模板工程的说明文件，是工程项目自己的介绍文件，用来展示工程的使用方法和一些其它说明，是这个工程的代表性文件。
-├── Sources # 用来存放整个工程的主体源代码文件
-├── Tests # 用来存放针对工程功能所写的测试用例的代码文件。
-├── cloud.yml # 用来存放工程部署在Vapor Cloud上时所需要的一些配置信息，例如允许访问的主机IP范围和服务监听的端口号,以后需要用到的Swift运行环境的版本
-└── web.Dockerfile # 针应用部署到docker时的执行配置文件，方便本地部署。
+!!! note "目录总体结构"
 
-3 directories, 6 files
-```
+    ```bash
+    $ tree -L 1 .
+    .
+    ├── Dockerfile
+    ├── Package.resolved    # 解析Package.swift时自动生成的，开发者不需要修改
+    ├── Package.swift       # 用来定义一个项目的依赖和生成产物信息
+    ├── Sources             # 用来存放整个工程的主体源代码文件
+    ├── Tests               # 用来存放针对工程功能所写的测试用例的代码文件。
+    └── docker-compose.yml  # 部署到docker容器中执行的配置文件，方便部署。
 
-## Source目录
+    2 directories, 4 files
+    ```
+!!! hint "Sources子目录"
+    ```bash
+    $ tree Sources/
+    Sources
+    ├── App
+    │   ├── Controllers
+    │   ├── configure.swift
+    │   └── routes.swift
+    └── Run
+        └── main.swift
 
-```bash
-$ tree -L 3 Sources/
-Sources/
-├── App
-│   ├── Controllers
-│   │   └── TodoController.swift
-│   ├── Models
-│   │   └── Todo.swift
-│   ├── app.swift
-│   ├── boot.swift
-│   ├── configure.swift
-│   └── routes.swift
-└── Run
-    └── main.swift
+    3 directories, 3 files
+    ```
 
-4 directories, 7 files
-```
+    Source目录下的每一个子目录都是项目的一个模块。`App`是这个工程的应用核心模块，`Run`是基于这个App模块，用来启动App模块的另一个模块。
 
-Source目录下的每一个子目录都是项目的一个模块。`App`是这个工程的应用核心模块，Run是基于这个App模块，用来启动App模块的另一个模块。整个工程运行的入口是`main.swift`文件。`Package.swift`文件中指定了它们之间的相互关系：
+整个工程运行的入口是`main.swift`文件。`Package.swift`文件中指定了它们之间的相互关系：
 
-```swift
-$ cat Package.swift 
-// swift-tools-version:4.0
-import PackageDescription
+!!! hint "Package.swift 项目描述文件"
+    ```swift 
+    // swift-tools-version:5.2
+    import PackageDescription
 
-let package = Package(
-    name: "HellVapor",
-    dependencies: [
-        // 💧 A server-side Swift web framework.
-        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
+    let package = Package(
+        name: "HelloVapor",
+        platforms: [
+        .macOS(.v10_15)
+        ],
+        dependencies: [
+            // 💧 A server-side Swift web framework.
+            .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        ],
+        targets: [
+            .target(
+                name: "App",
+                dependencies: [
+                    .product(name: "Vapor", package: "vapor")
+                ],
+                swiftSettings: [
+                    // Enable better optimizations when building in Release configuration. Despite the use of
+                    // the `.unsafeFlags` construct required by SwiftPM, this flag is recommended for Release
+                    // builds. See <https://github.com/swift-server/guides#building-for-production> for details.
+                    .unsafeFlags(["-cross-module-optimization"], .when(configuration: .release))
+                ]
+            ),
+            .target(name: "Run", dependencies: [.target(name: "App")]),
+            .testTarget(name: "AppTests", dependencies: [
+                .target(name: "App"),
+                .product(name: "XCTVapor", package: "vapor"),
+            ])
+        ]
+    )
+    ```
 
-        // 🔵 Swift ORM (queries, models, relations, etc) built on SQLite 3.
-        .package(url: "https://github.com/vapor/fluent-sqlite.git", from: "3.0.0")
-    ],
-    targets: [
-        .target(name: "App", dependencies: ["FluentSQLite", "Vapor"]),
-        .target(name: "Run", dependencies: ["App"]),
-        .testTarget(name: "AppTests", dependencies: ["App"])
-    ]
-)
-```
+    从`Package.swift`代码中可以看出，`App`模块依赖了一个包: `Vapor`，这个被依赖的包的信息在上面的`dependencies`数组中指定，`SPM`会解析它，并拉取相关的文件到本地参与工程编译。
 
-从代码中可以看出，`App`模块依赖了两个包: `Vapor`和`FluentSQLite`，这两个被依赖的包的信息在上面的`dependencies`数组中指定，`SPM`会解析它，并拉取相关的文件到本地参与工程编译。
+    `Run`模块依赖了`App`模块，它在本工程中就是用来启动和运行App模块的，为App模块的运行提供了一个入口。
 
-`Run`模块依赖了`App`模块，它在更上的一层，在本工程中就是用来启动和运行App模块的，为App模块的运行提供了一个入口。
+    `AppTests`模块依赖了`App`模块，因为它是针对`App`专门写的测试模块，通过运行一个个测试用例，来测试`App`模块的各个功能是否正常。
 
-## Tests目录
+!!! hint "Tests 子目录"
 
-`AppTests`模块依赖了`App`模块，因为它是针对`App`专门写的测试模块，通过运行一个个测试用例，来测试`App`模块的各个功能是否正常。
+    ```bash
+    $ tree Tests
+    Tests
+    └── AppTests
+        └── AppTests.swift
 
-`Tests`目录下面有一个`LinuxMain.swift`文件，这个是因为在MacOS和Linux上跑测试用例的实现方式有些差异，需要分别进行相关的配置，所以`LinuxMain.swift`对应Linux平台上进行测试时的配置。
+    1 directory, 1 file
+    ```
 
-**其实源码内容不太多，可以好好的看一遍来理解整个运行过程，这对之后的学习有很大的帮助**
+    在`AppTests.swift`中可以编写测试`App`模式的测试用例。
 
-### 整个模板工程的代码调用流程
+---
 
-![api-template](/assets/api-template.png)
+## 模板工程的代码逻辑
 
-以`main.swift`为程序运行的入口，使用`.detect()`方法获取到命令行参数以及一些环境变量，用这些信息去创建app，并在创建后开始运行应用。
+???+ "main.swift"
+    ```swift
+    import App
+    import Vapor
 
-在用环境信息创建应用时，使用了`app.swift`中定义的函数，它接收环境变量参数，并返回一个应用实例。在创建应用实例前，使用`configure.swift`文件中的函数对环境信息、配置信息和服务信息做了定义后，传入应用初始化函数进行实例创建。应用实例创建完成后开始运行前这段时间，使用了`boot.swift`文件中定义的函数处理一些该时机需要处理的事情。
+    var env = try Environment.detect()
+    try LoggingSystem.bootstrap(from: &env)
+    let app = Application(env)
+    defer { app.shutdown() }
+    try configure(app)
+    try app.run()
+    ```
 
-应用实例初始化前，配置服务(`configure.swift`)这块主要是做了以下几件事： 
+???+ "configure.swift"
+    ```swift
+    import Vapor
 
-1. 注册和启动数据库服务(FluentSQLiteProvider)
-2. 映射请求路由和对应的处理函数。这些处理函数可以写在一个文件，也可以有组织的拆分多个子模块来管理
-3. 注册各种中间件服务，比如：日志
-4. 注册使用一个或多个数据库
-5. 注册数据模型迁移服务
+    // configures your application
+    public func configure(_ app: Application) throws {
+        // uncomment to serve files from /Public folder
+        // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
 
-在开发过程中我们主要是在`configure.swift`和`routes.swift`中进行开发。
+        // register routes
+        try routes(app)
+    }
+    ```
+
+???+ "routes.swift"
+    ```swift
+    import Vapor
+
+    func routes(_ app: Application) throws {
+        app.get { req in
+            return "It works!"
+        }
+
+        app.get("hello") { req -> String in
+            return "Hello, world!"
+        }
+    }
+    ```
+
+以`main.swift`为程序运行的入口，获取到命令行参数以及一些环境变量，用这些信息去创建app，在app运行之前，使用`configure.swift`文件中的函数对app实例进行配置，app实例配置过程中调用`routes.swift`中的方法，对app路由进行配置。在工程根目录下使用`vapor run`或者`swift run`命令编译运行。
+
+???+ "AppTests.swift"
+    ```swift
+    @testable import App
+    import XCTVapor
+
+    final class AppTests: XCTestCase {
+        func testHelloWorld() throws {
+            let app = Application(.testing)
+            defer { app.shutdown() }
+            try configure(app)
+
+            try app.test(.GET, "hello", afterResponse: { res in
+                XCTAssertEqual(res.status, .ok)
+                XCTAssertEqual(res.body.string, "Hello, world!")
+            })
+        }
+    }
+    ```
+`AppTests.swift`针对App模块写测试用例，使用了`XCTest`框架，每一个测试用例方法的名称都以`test`开头。在工程根目录下使用`swift test`命令运行测试用例。
+
+!!! hint "在Mac上使用Xcode进行Vapor项目的开发"
+    在项目根目录下运行`vapor xcode`，生成可以在Xcode中打开的工程文件，使用Xcode运行程序或者测试用例。
+    ![vapor-xcode-test](/assets/vapor-xcode-test.png)
