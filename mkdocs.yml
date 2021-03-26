@@ -53,6 +53,8 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.highlight:
+      linenums: true
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
