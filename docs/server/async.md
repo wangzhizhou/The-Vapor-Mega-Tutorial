@@ -18,7 +18,7 @@
 
 ---
 
-!!! info "如果理解异步非阻塞式请求"
+!!! info "如何理解异步非阻塞式请求"
 
 如果用异步非阻塞的方式处理这四个请求，假设使用两个线程，当第一个请求发起后，服务器会在初始化一个处理请求结果的代码块，但是不需要马上返回处理结果，此时就会把第一个请求先放在一边，马上去处理第二个请求。当被放在一边的请求处理完成后会恢复线程执行，把结果返回给客户端。
 
@@ -45,7 +45,9 @@ func getAllUsers() -> Future<[User]> {
 
 当我们从一个函数获得一个Future返回时，实际上是想在这个Future有实际结果时执行一些操作，但这个Future在被获取时还没有产生实际值，所以我们需要给Future提供它在产生实际值时需要进行的操作对应的回调函数，让Future自己在产生实际值时调用相应的处理回调。
 
-// TODO： 这里需要一个更加清晰的解释Future机制 
+!!! warnings "TODO： 这里需要一个更加清晰的解释Future机制"
+
+--- 
 
 和Future搭配使用的操作有以下几种：
 
@@ -55,43 +57,26 @@ func getAllUsers() -> Future<[User]> {
 - flatten: 等所有Future都返回时执行
 - do/catch: 用来捕获错误，但不是恢复错误
 - catchMap/catchFlatMap: 捕获并修复错误
-- always: 不管结果如果总会执行
+- always: 不管结果如何总会执行
 - wait: 不能在主线程上使用
 - request.future(_:)可以创建在同一个请求线程上使用的Future
 
 !!! note "关于FlatMap和Map的理解"
-    假如一个数组Array(0,1,2,3), 要把它的每个元素变成原来的2倍，可以使用
-    ```
-    Array(0,1,2,3).map { elem in
-        return elem * 2
-    }
-    ```
-    这样得到的结果是: 
-    
-        Array(0,2,4,6)
 
-    但如果要把每个元素都映射成为自己和比自己大一的数组时就是：
-    ```
-    Array(0,1,2,3).map { elem in
-        return Array(elem, elem + 1);
-    }
-    ```
-    这时的结果就是: 
-    
-        Array(Array(0,1), Array(2,3), Array(4,5), Array(6, 7))
+    通过下面的代码，演示两种操作的不同之处：
 
-    可见这时就是一个二层嵌套数组。如果我们此时想得到的结果是：
-        Array(0,1,2,3,4,5,6,7)
+    ```swift
+    let number = [1, 2, 3, 4]
 
-    就可以使用flatMap这种操作： 
-    ```
-    Array(0,1,2,3,).flatMap { elem in 
-        return Array(elem, elem + 1)
-    }
-    ```
-    可以把flatMap看作是去掉一层嵌套的壳之后，再把元素组合在一起。
+    let mapped = number.map { Array(repeating: $0, count: $0) }
+    // [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4]]
 
-    对于Future来说，它的位置就和Array的位置一样，我们只需要把上面例子中的Array换成Future就可以，道理类似。flatMap相当于在map操作的基础上剥去一层外壳，再把各个元素的值整合在一起。
+    let flatMapped = number.flatMap { Array(repeating: $0, count: $0) }
+    // [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+    ```
+
+    实际上`s.flatMap(transform)`与`Array(s.map(transform).joined())`是等价的。
+
 
 在Vapor中一个Request就是一个Worker，相当于一个线程。
 
@@ -99,7 +84,7 @@ func getAllUsers() -> Future<[User]> {
 
 对Future可以链式操作，用来避免过度嵌套。
 
-!!! note "SwiftNIO"
+!!! note "[SwiftNIO](https://github.com/apple/swift-nio)"
     是苹果的一个开源跨平台异步网络库，它用来管理连接和处理数据传输，管理着事件循环(EventLoop)，每一个事件循环对应一个线程。
 
     如果一个线程写入一个变量的同时有另外一个线程同时的对这个变量进行读或者写操作，那么就会产生竞争关系，有可能会使你的应用发生崩溃。传统的处理方式是给多个线程同时访问的变量各自加一把锁来使对变量的访问变的有序，从而消除竞争关系。线程在访问一个变量前先给这个变量上锁，表示此刻该变量正在使用，其它线程不能访问，等访问完成后对该变量解锁，以示其它线程可以继续对其进行访问。这是一种解决办法，但是存在缺点，就是使用起来很复杂，同时也会影响到程序的执行效率。
