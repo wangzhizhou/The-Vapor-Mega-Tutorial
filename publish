@@ -9,4 +9,4 @@ else
     source "$VENV/bin/activate"
 fi
 git push origin
-mkdocs gh-deploy -f
+mkdocs gh-deploy --force
