@@ -64,7 +64,7 @@ Use `vapor <command> [--help,-h]` for more information on a command.
     
     目前服务已经运行在`http://127.0.0.1:8080`，可以通过浏览器进行访问。
 
-    ![chrome it works](/assets/it_works.png)
+    ![chrome it works](assets/it_works.png)
 
 !!! hint "查看所有路由信息"
     
@@ -81,7 +81,7 @@ Use `vapor <command> [--help,-h]` for more information on a command.
 
     项目模板默认提供两个route：`/`和`/hello`, 用浏览器访问一下试试：
 
-    ![chrome hello world](/assets/hello_world.png)
+    ![chrome hello world](assets/hello_world.png)
 
 !!! tip "端口占用查询"
     有时在运行应用时会发现想要监听的端口已经被其它的应用程序绑定了，此时可以使用命令查看一下到底是谁在使用。

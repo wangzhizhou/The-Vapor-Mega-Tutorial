@@ -78,7 +78,7 @@ func createAcronymPostHandler(_ req: Request, data: CreateAcronymData) throws ->
 ...
 ```
 
-![empty-add-categories](/assets/empty-add-categories.png)
+![empty-add-categories](assets/empty-add-categories.png)
 
 因为我们目前的缩略语还没有相关类别，所以显示是空的，也不好看，所以我们使用一个叫作[`Select2`](https://cdnjs.com/libraries/select2)的javascript库来美化一下。因为jQuery的slim版本不包含`select2`需要用到的函数，所以换了一个版本的jQuery。同时本地写了一个js，也包含在模板文件中了。
 
@@ -142,7 +142,7 @@ $.ajax({
       });
 ```
 
-![select2 category tags](/assets/select2-category-tags.png)
+![select2 category tags](assets/select2-category-tags.png)
 
 *acronym.leaf*
 ```html
@@ -198,7 +198,7 @@ func acronymHandler(_ req: Request) throws -> Future<View> {
 ...
 ```
 
-![acronym categories](/assets/acronym-categories.png)
+![acronym categories](assets/acronym-categories.png)
 
 
 目前只是实现了选择类别和显示类别的功能，但是你在编辑缩略语时会发现，选择的类别没有被保存下来。
@@ -273,4 +273,4 @@ struct EditAcronymContext: Encodable {
     }    
 ```
 
-![acronym edit categories](/assets/acronym-edit-categories.png)
+![acronym edit categories](assets/acronym-edit-categories.png)

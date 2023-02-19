@@ -45,4 +45,4 @@ Vapor使用[`Swift Package Manager(SPM)`](https://swift.org/package-manager/)，
     $ vapor xcode
     Opening project in Xcode.
     ```
-    ![vapor xcode](/assets/vapor-xcode.png)
+    ![vapor xcode](assets/vapor-xcode.png)

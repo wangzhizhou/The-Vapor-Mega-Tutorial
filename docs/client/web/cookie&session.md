@@ -111,7 +111,7 @@ struct LoginPostData: Content {
     }
 ```
 
-![Log In Error](/assets/login_error.png)
+![Log In Error](assets/login_error.png)
 
 登录页面建好后，我们就要通过认证用户身份来保护API，使用会话认证中间件。
 
@@ -139,7 +139,7 @@ struct LoginPostData: Content {
     }
 ```
 
-![protect routes](/assets/protect-routes.png)
+![protect routes](assets/protect-routes.png)
 
 有了对api进行用户认证的保护手段后，我们需要更新一下网站。因为我们可以从认证信息中获取到用户的UserID，所以可以更新一些数据结构：
 
@@ -222,7 +222,7 @@ struct EditAcronymContext: Encodable {
     ...
 ```
 
-![create-acronym-auth-user](/assets/create-acronym-auth-user.png)
+![create-acronym-auth-user](assets/create-acronym-auth-user.png)
 
 # 退出登录
 
@@ -358,7 +358,7 @@ struct IndexContext: Encodable {
     }
 ```
 
-![cookie bottom](/assets/cookie-bottom.png)
+![cookie bottom](assets/cookie-bottom.png)
 
 
 # Session

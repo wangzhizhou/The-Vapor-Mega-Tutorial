@@ -43,7 +43,7 @@ docker run --name postgres -e POSTGRES_DB=vapor \
     加到" registry-mirrors"的数组里。点击 Apply 。
     ```
 
-    ![docker-config](/assets/docker-config.png)
+    ![docker-config](assets/docker-config.png)
 
 # 工程中切换FluentPostgreSQL
 
@@ -111,7 +111,7 @@ extension User: PostgreSQLUUIDModel {}
 
 运行程序，并验证外键约束是否生效。从错误中可以看出，PostgreSQL支持外键约束。
 
-![foreign-key](/assets/foregin-key.png)
+![foreign-key](assets/foregin-key.png)
 
 
 !!! info "什么是外键约束"

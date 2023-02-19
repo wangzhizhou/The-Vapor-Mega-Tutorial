@@ -58,11 +58,11 @@ public func routes(_ router: Router) throws {
 [注册地址](https://accounts.google.com/signin/v2/identifier?service=cloudconsole&passive=1209600&osid=1&continue=https%3A%2F%2Fconsole.developers.google.com%2Fapis%2Fcredentials&followup=https%3A%2F%2Fconsole.developers.google.com%2Fapis%2Fcredentials&flowName=GlifWebSignIn&flowEntry=ServiceLogin)
 
 
-![google oauth](/assets/google-oauth.png)
+![google oauth](assets/google-oauth.png)
 
-![google oauth config screen](/assets/google-oauth-config-screen.png)
+![google oauth config screen](assets/google-oauth-config-screen.png)
 
-![google oauth credential](/assets/google-oauth-credential.png)
+![google oauth credential](assets/google-oauth-credential.png)
 
 注册好我们的应用后就可以准备使用OAuth了。
 
@@ -151,7 +151,7 @@ struct ImperialController: RouteCollection {
 #embed("base")
 ```
 
-![google oauth xcode config](/assets/google-oauth-xcode-config.png)
+![google oauth xcode config](assets/google-oauth-xcode-config.png)
 
-![google oauth complete](/assets/google-oauth-complete.png)
+![google oauth complete](assets/google-oauth-complete.png)
 

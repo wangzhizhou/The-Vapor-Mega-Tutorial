@@ -157,4 +157,4 @@
 
 !!! hint "在Mac上使用Xcode进行Vapor项目的开发"
     在项目根目录下运行`vapor xcode`，生成可以在Xcode中打开的工程文件，使用Xcode运行程序或者测试用例。
-    ![vapor-xcode-test](/assets/vapor-xcode-test.png)
+    ![vapor-xcode-test](assets/vapor-xcode-test.png)

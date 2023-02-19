@@ -71,4 +71,4 @@ base.leaf模板文件中添加这个入口，加在导航列表的位置
 ...
 ```
 
-![all-users](/assets/all-users.png)
+![all-users](assets/all-users.png)

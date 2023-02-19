@@ -85,7 +85,7 @@ func boot(router: Router) throws {
 ...
 ```
 
-![register-user](/assets/register-user.png)
+![register-user](assets/register-user.png)
 
 
 # 注册用户时的数据用效性验证
@@ -192,4 +192,4 @@ struct RegisterContext: Encodable {
     }
 ```
 
-![register validation](/assets/register-validation.png)
+![register validation](assets/register-validation.png)

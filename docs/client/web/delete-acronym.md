@@ -28,4 +28,4 @@ func deleteAcronymHandler(_ req: Request) throws -> Future<Response> {
 #embed("base")
 ```
 
-![delete acronym](/assets/delete-acronym.png)
+![delete acronym](assets/delete-acronym.png)

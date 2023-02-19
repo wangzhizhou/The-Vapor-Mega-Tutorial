@@ -69,4 +69,4 @@ struct CreateAcronymContext: Encodable {
 ...
 ```
 
-![create an acronym](/assets/create-an-acronym.png)
+![create an acronym](assets/create-an-acronym.png)

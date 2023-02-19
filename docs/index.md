@@ -19,7 +19,7 @@ Vapor包含一些包，Leaf是一个前端开发可以使用的模板引擎，Fl
 !!! note "怎样学习Vapor"
     要动手写代码，才能理解。本教程的主要内容来自图书《Server Side Swift With Vapor》, 其中大部分是Vapor的核心成员写的，他们知道怎样才能更好的使用Vapor。
 
-    ![Server Side Swift With Vapor](/assets/server-side-swift-with-vapor.png)
+    ![Server Side Swift With Vapor](assets/server-side-swift-with-vapor.png)
 
 
 按照`IT人`拿起键盘就是干的风格，下一节就是环境配置了。这个过程你可以看到`Vapor`的简洁的特点。

@@ -35,4 +35,4 @@ Content协议是Vapor对Codable协议的封装，用来从请求中提取数据�
 
 我们使用一个Mac上的应用，名叫[`rested`](https://apps.apple.com/cn/app/rested-simple-http-requests/id421879749?mt=12)模拟`POST`请求，按下面设置测试路由正常。
 
-![post data](/assets/post-data.png)
+![post data](assets/post-data.png)

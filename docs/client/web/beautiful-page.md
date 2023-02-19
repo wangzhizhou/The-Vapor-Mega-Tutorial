@@ -55,7 +55,7 @@ Bootstrap是一个开源、前端网站框架，由Twitter建立，提供很多�
 
 官网提供了一个使用Bootstrap的模板，我们照着改造一下我们自己的模板文件`base.leaf`：
 
-![bootstrap-start-template](/assets/bootstrap-starter-template.png)
+![bootstrap-start-template](assets/bootstrap-starter-template.png)
 
 
 ```html
@@ -132,4 +132,4 @@ Bootstrap是一个开源、前端网站框架，由Twitter建立，提供很多�
 ```
 
 
-![beautiful page wih bootstrap](/assets/beautiful-page-with-bootstrap.png)
+![beautiful page wih bootstrap](assets/beautiful-page-with-bootstrap.png)

@@ -47,7 +47,7 @@ try services.register(LeafProvider())
 config.prefer(LeafRenderer.self, for: ViewRenderer.self)
 ```
 
-![leaf index](/assets/leaf-index.png)
+![leaf index](assets/leaf-index.png)
 
 # 注入参数
 
@@ -82,7 +82,7 @@ struct WebsiteController: RouteCollection {
 }
 ```
 
-![注入参数](/assets/leaf-arg.png)
+![注入参数](assets/leaf-arg.png)
 
 # 展示缩略语
 *index.leaf*
@@ -146,7 +146,7 @@ struct WebsiteController: RouteCollection {
 }
 ```
 
-![leaf-tags](/assets/leaf-tags.png)
+![leaf-tags](assets/leaf-tags.png)
 
 # 跳转Acronyms详情
 
@@ -197,6 +197,6 @@ struct AcronymContext: Encodable {
     }
 ```
 
-![index-leaf-link](/assets/index-leaf-link.png)
+![index-leaf-link](assets/index-leaf-link.png)
 
-![acronyms-leaf](/assets/acronyms-leaf.png)
+![acronyms-leaf](assets/acronyms-leaf.png)

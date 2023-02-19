@@ -31,5 +31,5 @@ func routes(_ app: Application) throws {
 
 使用chrome访问我们添加的路由如下图，可见正常工作，其中第二个路由可以接收字符串类型变化的参数：
 
-![hello joker](/assets/hello-joker.png)
+![hello joker](assets/hello-joker.png)
 

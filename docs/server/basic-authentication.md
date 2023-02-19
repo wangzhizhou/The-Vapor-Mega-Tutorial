@@ -70,10 +70,10 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
 
 运行工程，并使用Rested工具进行检验, 因为没有设置认证信息头，所以认证失败不能创建缩略语
 
-![user not authentication](/assets/user-not-authentication.png)
+![user not authentication](assets/user-not-authentication.png)
 
 请求时设置认证信息头
-![user-authentication-with-user-password](/assets/user-authentication-with-user-password.png)
+![user-authentication-with-user-password](assets/user-authentication-with-user-password.png)
 
 用户认证通过，创建缩略语成功
-![user-authentication-passed](/assets/user-authentication-passed.png)
+![user-authentication-passed](assets/user-authentication-passed.png)

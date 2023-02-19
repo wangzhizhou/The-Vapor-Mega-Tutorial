@@ -100,4 +100,4 @@ extension Category {
 
 测试用例有点多，就不一一写了。可以参看工程代码。
 
-![all testings](/assets/all-test-cases.png)
+![all testings](assets/all-test-cases.png)

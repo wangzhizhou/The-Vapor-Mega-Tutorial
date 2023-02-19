@@ -135,9 +135,9 @@ struct RegisterData: Content {
 ...
 ```
 
-![register-twitter](/assets/register-twitter.png)
+![register-twitter](assets/register-twitter.png)
 
-![user-twitter](/assets/user-twitter.png)
+![user-twitter](assets/user-twitter.png)
 
 
 # 让类别具有唯一性

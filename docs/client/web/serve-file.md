@@ -22,4 +22,4 @@ Vapor提供了FileMiddleware模块来完成这些事情。
 ...
 ```
 
-![serve-file](/assets/serve-file.png)
+![serve-file](assets/serve-file.png)

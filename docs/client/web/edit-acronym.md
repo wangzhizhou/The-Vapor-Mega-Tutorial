@@ -85,6 +85,6 @@ struct EditAcronymContext: Encodable {
 #embed("base")
 ```
 
-![edit acronym](/assets/edit-acronym.png)
+![edit acronym](assets/edit-acronym.png)
 
-![update acronym](/assets/update-acronym.png)
+![update acronym](assets/update-acronym.png)

@@ -55,17 +55,17 @@ extension User: Migration {
 
 因为我们的数据库表字段变更和约束添加，需要我们重置一次数据库，让变动生效。`Option + Run`进行Schema设置页，选择参数选择页，添加运行时参数如下：
 
-![revert database](/assets/xcode-revert-all-yes.png)
+![revert database](assets/xcode-revert-all-yes.png)
 
 添加参数并打勾运行一次相当于运行命令`vapor run revert --all --yes`可以重置本地数据库。
 
-![revert local database](/assets/revert-local-database.png)
+![revert local database](assets/revert-local-database.png)
 
 重置本地数据库之后，再去运行工程时就要把Schema中的参数`revert --all --yes`选择取消勾选了。这样新的数据库表关系就会生效了。我们使用`Rested`应用来创建几个用户：
 
-![create user](/assets/create-user.png)
+![create user](assets/create-user.png)
 
-![create exist user](/assets/create-exist-user.png)
+![create exist user](assets/create-exist-user.png)
 
 
 从图中可以看出，我们的请求返回数据中包含了用户的密码哈希值，这显然是不安全的，我们在请求返回数据中应该不包含密码相关的信息。这需要我们在返回用户数据前作一个转换。
@@ -138,10 +138,10 @@ struct UsersController: RouteCollection {
 }
 ```
 
-![create user no password hash](/assets/create-user-no-password-hash.png)
+![create user no password hash](assets/create-user-no-password-hash.png)
 
-![get all user no password hash](/assets/get-all-users-no-password-hash.png)
+![get all user no password hash](assets/get-all-users-no-password-hash.png)
 
-![update user with error](/assets/update-user-with-error.png)
+![update user with error](assets/update-user-with-error.png)
 
 现在所有的请求返回数据中都不包含密码相关信息了。

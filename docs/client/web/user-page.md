@@ -72,4 +72,4 @@ struct UserContext: Encodable {
 ...
 ```
 
-![user-page](/assets/user-page.png)
+![user-page](assets/user-page.png)

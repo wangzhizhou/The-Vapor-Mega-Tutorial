@@ -51,7 +51,7 @@ $ docker run --name postgres-test -e POSTGRES_DB=vapor-test \
 
 现在运行测试会产生崩溃，因为对那些需要认证的API的调用会失败:
 
-![update-tests-crash-when-run](/assets/update-tests-crash-when-run.png)
+![update-tests-crash-when-run](assets/update-tests-crash-when-run.png)
 
 
 *Application+testable.swift*
@@ -302,4 +302,4 @@ func testGettingASingleUserFromTheAPI() throws {
 
 修改完在后一定要跑完单元测试: 
 
-![update-test-cases-successfully](/assets/update-test-cases-successfully.png)
+![update-test-cases-successfully](assets/update-test-cases-successfully.png)

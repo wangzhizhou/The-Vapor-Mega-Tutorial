@@ -71,7 +71,7 @@ struct UsersController: RouteCollection {
 }
 ```
 
-![user login](/assets/user-login.png)
+![user login](assets/user-login.png)
 
 *Token.swift*
 ```swift
@@ -121,7 +121,7 @@ struct AcronymsController: RouteCollection {
 }
 ```
 
-![create acronym after user login with token](/assets/create-acronyms-after-user-login.png)
+![create acronym after user login with token](assets/create-acronyms-after-user-login.png)
 
 除createHanler添加了用户认证以外的，其它处理也需要修改,确保只有登录用户才能进行相关操作。除GET请求外都需要修改。对GET请求不处理是为了让非登录用户有读权限。
 
