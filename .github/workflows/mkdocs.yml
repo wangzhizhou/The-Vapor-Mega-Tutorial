@@ -1,0 +1,25 @@
+name: 部署到GitPages
+run-name: ${{ github.actor }} 触发
+on:
+  push:
+    branches: 
+      - "master"
+    paths: 
+      - "docs/**"
+      - "mkdocs.yml"
+
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取仓库代码
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: 运行部署脚本
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          ./publish
