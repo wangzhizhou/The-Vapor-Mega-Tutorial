@@ -5,6 +5,7 @@ site_author: 'wangzhizhou'
 
 theme: 
   name: 'material'
+  custom_dir: 'overrides'
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -45,6 +46,9 @@ theme:
     - toc.follow
     - toc.integrate
     - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
     - content.code.copy
     - content.action.edit
     - content.action.view
@@ -56,8 +60,14 @@ repo_url: 'https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial'
 copyright: >
   Copyright &copy; 2018-20XX wangzhizhou –
   <a href="#__consent">Change cookie settings</a>
-# plugins:
-#   - privacy
+
+plugins:
+  - search
+  - offline
+  # - optimize
+  # - blog
+  # - social
+  # - privacy
 
 extra:
   consent:
@@ -75,33 +85,48 @@ extra:
   disque: ''
 
 markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      title: On this page
+      permalink_title: Anchor link to this section for reference
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
       options:
         custom_icons:
           - overrides/.icons
-  - admonition
-  - footnotes
-  - toc:
-      permalink: true
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.inlinehilite
   - pymdownx.magiclink
-  - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.keys
   - pymdownx.highlight:
       linenums: true
-  - pymdownx.superfences
+      use_pygments: true
+      auto_title: true
+      linenums_style: pymdownx-inline
+      anchor_linenums: true
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true
 
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'

@@ -85,3 +85,4 @@ site/
 vblogenv/
 .vscode/
 logs/
+.cache/
