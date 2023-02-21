@@ -9,8 +9,6 @@ theme:
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
-      primary: green
-      accent: orange
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
@@ -25,7 +23,7 @@ theme:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default 
-      primary: white
+      primary: green
       accent: deep orange
       toggle:
         icon: material/brightness-7
