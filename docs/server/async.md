@@ -33,7 +33,7 @@ func getAllUsers() -> [User] {
     // do some database queries
 }
 ```
-在异步环境下，这个函数返回时，可能数据库的查询操作还没有完成，所以是不能正常工作的。这种情况下，只知道函数会返回一个数组[User]，却不清楚返回的具体时刻，所以需要改造一下返回类型，用Future<Type>这个范型结构承诺在将来的某个时刻返回对应的类型的数据。
+在异步环境下，这个函数返回时，可能数据库的查询操作还没有完成，所以是不能正常工作的。这种情况下，只知道函数会返回一个数组[User]，却不清楚返回的具体时刻，所以需要改造一下返回类型，用Future<Type>这个范型结构承诺在将来的某个时刻返回对应的类型的数据。
 
 ```swift 
 func getAllUsers() -> Future<[User]> {
@@ -41,7 +41,7 @@ func getAllUsers() -> Future<[User]> {
 }
 ```
 
-使用Future可能一开始会有点困惑，因为这个概念还不是很熟悉，不过使用一段时间就会适应，毕竟在Vapor中会有大量场景使用它。
+使用Future可能一开始会有点困惑，因为这个概念还不是很熟悉，不过使用一段时间就会适应，毕竟在Vapor中会有大量场景使用它。
 
 当我们从一个函数获得一个Future返回时，实际上是想在这个Future有实际结果时执行一些操作，但这个Future在被获取时还没有产生实际值，所以我们需要给Future提供它在产生实际值时需要进行的操作对应的回调函数，让Future自己在产生实际值时调用相应的处理回调。
 
@@ -53,10 +53,10 @@ func getAllUsers() -> Future<[User]> {
 
 - flatMap：CollectionType<ElemType> -> AnotherElemType
 - map: CollectionType<ElemType> -> CollectionType<AnotherElemType>
-- transform: 与map类似，不处理具体元素，直接变换为指定值
+- transform: 与map类似，不处理具体元素，直接变换为指定值
 - flatten: 等所有Future都返回时执行
-- do/catch: 用来捕获错误，但不是恢复错误
-- catchMap/catchFlatMap: 捕获并修复错误
+- do/catch: 用来捕获错误，但不是恢复错误
+- catchMap/catchFlatMap: 捕获并修复错误
 - always: 不管结果如何总会执行
 - wait: 不能在主线程上使用
 - request.future(_:)可以创建在同一个请求线程上使用的Future
@@ -82,7 +82,7 @@ func getAllUsers() -> Future<[User]> {
 
 全局操作支持最多五个Future结果返回后执行。
 
-对Future可以链式操作，用来避免过度嵌套。
+对Future可以链式操作，用来避免过度嵌套。
 
 !!! note "[SwiftNIO](https://github.com/apple/swift-nio)"
     是苹果的一个开源跨平台异步网络库，它用来管理连接和处理数据传输，管理着事件循环(EventLoop)，每一个事件循环对应一个线程。
