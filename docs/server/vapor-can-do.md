@@ -61,11 +61,19 @@ Use `vapor <command> [--help,-h]` for more information on a command.
     [1462/1462] Linking Run
     [ NOTICE ] Server starting on http://127.0.0.1:8080
     ```
-    第一次运行会比较耗时，因为它要从网络上拉取一些依赖的仓库代码到本地后再进行编译。
-    
-    目前服务已经运行在<http://127.0.0.1:8080>，可以通过浏览器进行访问。
+
+    !!! warning
+        第一次运行会比较耗时，因为它要从GitHub上拉取一些依赖的代码仓库到本地后再进行编译。GitHub在中国有可能会被DNS污染，访问不太稳定。
+
+    目前服务已经运行在 <http://127.0.0.1:8080>，可以通过浏览器进行访问。
 
     ![chrome it works](assets/it_works.png)
+
+    !!! tip "端口占用查询"
+        有时在运行应用时会发现想要监听的端口已经被其它的应用程序绑定了，此时可以使用命令查看一下到底是谁在使用。
+        在MacOS上，终端键入命令`lsof -i tcp:8080`可以查看指定端口当前被哪些应用使用。然后使用`pkill <APP_NAME>`来关闭这些占用端口的应用。
+        如果占用端口的应用很重要，那么你就要考虑换一个端口来监听运行你的API了。
+
 
 !!! hint "查看所有路由信息"
     
@@ -82,12 +90,11 @@ Use `vapor <command> [--help,-h]` for more information on a command.
 
     项目模板默认提供两个route：`/`和`/hello`, 用浏览器访问一下试试：
 
-    ![chrome hello world](assets/hello_world.png)
+    - <http://localhost:8080/>
 
-!!! tip "端口占用查询"
-    有时在运行应用时会发现想要监听的端口已经被其它的应用程序绑定了，此时可以使用命令查看一下到底是谁在使用。
-    在MacOS上，终端键入命令`lsof -i tcp:8080`可以查看指定端口当前被哪些应用使用。然后使用`pkill APP_NAME`来关闭这些占用端口的应用。
-    如果占用端口的应用很重要，那么你就要考虑换一个端口来监听运行你的API了。
+    - <http://localhost:8080/hello>
+
+    ![chrome hello world](assets/hello_world.png)
 
 
 !!! note "切换服务运行的端口和主机地址"
