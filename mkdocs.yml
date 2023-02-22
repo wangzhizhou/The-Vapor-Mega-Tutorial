@@ -54,15 +54,18 @@ theme:
     - navigation.expand
     - navigation.path
     - navigation.footer
+    - navigation.top
     - toc.follow
     - toc.integrate
-    - navigation.top
     - search.suggest
     - search.highlight
     - search.share
     - content.code.copy
+    - content.code.select
+    - content.code.annotate
     - content.action.edit
     - content.action.view
+    - content.tooltips
     - announce.dismiss
     # - header.autohide
 
@@ -117,25 +120,29 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.critic
   - pymdownx.details
-  - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.snippets
   - pymdownx.keys
   - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
       linenums: true
       use_pygments: true
       auto_title: true
       linenums_style: pymdownx-inline
-      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:
       alternate_style: true
 
 extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
   - 主页: index.md
