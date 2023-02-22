@@ -1,3 +1,6 @@
+---
+comments: true
+---
 !!! note "为什么要写这个教程"
     因为之前使用`Python`的Web开发框架`Flask`写过一段时间的服务，写的过程中是通过看一个名叫[Flask大型教程][flask mega turorial]的系列博客学习的，
     觉得作者写的很好，也让我感受到了写Web和后台服务的乐趣。
