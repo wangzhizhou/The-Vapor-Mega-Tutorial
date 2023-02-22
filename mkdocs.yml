@@ -1,11 +1,11 @@
-site_name: 'Vapor 大型教程'
-site_description: 'Learn Vapor and Practice'
-site_url: 'https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial'
-site_author: 'wangzhizhou'
+site_name: Vapor 大型教程
+site_description: Learn Vapor and Practice
+site_url: https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial
+site_author: wangzhizhou
 
 theme: 
-  name: 'material'
-  custom_dir: 'overrides'
+  name: material
+  custom_dir: overrides
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -29,14 +29,14 @@ theme:
         icon: material/brightness-7
         name: Switch to dark mode
   font: 
-    text: 'Ubuntu'
-    code: 'Ubuntu Mono'
+    text: Ubuntu
+    code: Ubuntu Mono
 
-  language: 'zh'
-  direction: 'ltr'
-  # logo: 'images/logo.svg'
-  # icon: 'Icons'
-  # favicon: 'assets/images/favicon.ico'
+  language: zh
+  direction: ltr
+  icon:
+    logo: fontawesome/solid/droplet
+  favicon: 
   features:
     - navigation.instant
     - navigation.tracking
@@ -56,12 +56,12 @@ theme:
     - content.action.view
 
 
-repo_name: 'GitHub 仓库'
-repo_url: 'https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial'
+repo_name: GitHub 仓库
+repo_url: https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial
 
 copyright: >
-  Copyright &copy; 2018-20XX wangzhizhou –
-  <a href="#__consent">Change cookie settings</a>
+  Copyright &copy; 2018-20XX wangzhizhou -
+  <a href="#__consent">Change Cookie Settings</a>
 
 plugins:
   - search
@@ -80,11 +80,11 @@ extra:
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
   search:
-    language: 'zh'
+    language: zh
   social:
-    - icon: 'fontawesome/brands/github'
-      link: 'https://github.com/wangzhizhou'
-  disque: ''
+    - icon: fontawesome/brands/github
+      link: https://github.com/wangzhizhou
+  # disque: 'joker-vapor'
 
 markdown_extensions:
   - abbr
@@ -131,62 +131,58 @@ markdown_extensions:
       alternate_style: true
 
 extra_javascript:
-  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
-
-
-# extra:
-    # disqus: 'joker-vapor'
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
 
 nav:
-  - 主页: 'index.md'
+  - 主页: index.md
   - 服务端:
-      - 开发环境: 'server/dev-env.md'
-      - Vapor工具箱的能力: 'server/vapor-can-do.md'
-      - 项目结构: 'server/project-structure.md'
-      - API模板工程解读: 'server/api-template.md'
-      - 添加GET路由: 'server/add-routes.md'
-      - 接收POST数据: 'server/accept-data.md'
-      - 返回JSON数据: 'server/return-json.md'
-      - 排错: 'server/error-fix.md'
-      - HTTP基础: 'server/http-basic.md'
-      - REST API: 'server/rest-api.md'
-      - 异步: 'server/async.md'
-      - 数据库: 'server/Fluent-Persisting-models.md'
-      - 配置数据库: 'server/configure-database.md'
-      - 数据库CRUD操作: 'server/CRUD.md'
-      - Fluent查询操作: 'server/fluent-query.md'
-      - 控制器: 'server/controller.md'
-      - 父子关系: 'server/parent-children-relation.md'
-      - 切换数据库: 'server/switch-database-postgreSQL.md'
-      - 兄弟关系: 'server/sibiling-relation.md'
-      - 测试: 'server/testing.md'
-      - 测试优化: 'server/testing-refine.md'
-      - 其它测试用例: 'server/other-testcases.md'
-      - 在Linux上运行测试用例: 'server/test-on-linux.md'
-      - 部署到Vapor Cloud: 'server/deploy-vapor-cloud.md'
-      - 部署到自己的云服务器: 'server/deploy-private.md'
-      - API认证: 'server/authentication.md'
-      - 基本认证: 'server/basic-authentication.md'
-      - token认证: 'server/token-authentication.md'
-      - 数据库播种: 'server/database-seeding.md'
-      - 更新测试用例: 'server/update-testcases-for-authentication.md'
-      - 缓存: 'client/web/cache.md'
-      - 中间件: 'client/web/middleware.md'
+      - 开发环境: server/dev-env.md
+      - Vapor工具箱的能力: server/vapor-can-do.md
+      - 项目结构: server/project-structure.md
+      - API模板工程解读: server/api-template.md
+      - 添加GET路由: server/add-routes.md
+      - 接收POST数据: server/accept-data.md
+      - 返回JSON数据: server/return-json.md
+      - 排错: server/error-fix.md
+      - HTTP基础: server/http-basic.md
+      - REST API: server/rest-api.md
+      - 异步: server/async.md
+      - 数据库: server/Fluent-Persisting-models.md
+      - 配置数据库: server/configure-database.md
+      - 数据库CRUD操作: server/CRUD.md
+      - Fluent查询操作: server/fluent-query.md
+      - 控制器: server/controller.md
+      - 父子关系: server/parent-children-relation.md
+      - 切换数据库: server/switch-database-postgreSQL.md
+      - 兄弟关系: server/sibiling-relation.md
+      - 测试: server/testing.md
+      - 测试优化: server/testing-refine.md
+      - 其它测试用例: server/other-testcases.md
+      - 在Linux上运行测试用例: server/test-on-linux.md
+      - 部署到Vapor Cloud: server/deploy-vapor-cloud.md
+      - 部署到自己的云服务器: server/deploy-private.md
+      - API认证: server/authentication.md
+      - 基本认证: server/basic-authentication.md
+      - token认证: server/token-authentication.md
+      - 数据库播种: server/database-seeding.md
+      - 更新测试用例: server/update-testcases-for-authentication.md
+      - 缓存: client/web/cache.md
+      - 中间件: client/web/middleware.md
   - 客户端:
-      - 移动端: 'client/mobile/index.md'
+      - 移动端: client/mobile/index.md
       - Web端: 
-        - 介绍:  'client/web/index.md'
-        - Leaf模板引擎: 'client/web/leaf.md'
-        - 美化页面: 'client/web/beautiful-page.md'
-        - 文件服务: 'client/web/serve-file.md'
-        - 用户页面: 'client/web/user-page.md'
-        - 所有用户页面: 'client/web/all-user.md'
-        - 所有类别页面: 'client/web/all-categories.md'
-        - 创建缩略语: 'client/web/create-acronym.md'
-        - 编辑缩略语: 'client/web/edit-acronym.md'
-        - 删除缩略语: 'client/web/delete-acronym.md'
-        - 添加类别标签: 'client/web/add-categories.md'
-        - Cookie和Session: 'client/web/cookie&session.md'
-        - 验证数据有效性: 'client/web/validation.md'
-        - Google用户认证: 'client/web/google-authentication.md'
-        - 数据库迁移及版本控制: 'client/web/migration.md'
+        - 介绍:  client/web/index.md
+        - Leaf模板引擎: client/web/leaf.md
+        - 美化页面: client/web/beautiful-page.md
+        - 文件服务: client/web/serve-file.md
+        - 用户页面: client/web/user-page.md
+        - 所有用户页面: client/web/all-user.md
+        - 所有类别页面: client/web/all-categories.md
+        - 创建缩略语: client/web/create-acronym.md
+        - 编辑缩略语: client/web/edit-acronym.md
+        - 删除缩略语: client/web/delete-acronym.md
+        - 添加类别标签: client/web/add-categories.md
+        - Cookie和Session: client/web/cookie&session.md
+        - 验证数据有效性: client/web/validation.md
+        - Google用户认证: client/web/google-authentication.md
+        - 数据库迁移及版本控制: client/web/migration.md
