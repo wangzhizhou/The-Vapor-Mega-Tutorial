@@ -39,12 +39,21 @@ vapor --help
 
 执行完上面的步骤，`Vapor`的开发环境就布置完成了。
 
-因为目前来说，Ubuntu上还没有对Swift支持比较好的IDE，所以建议使用Mac上的Xcode作为开发工具。Ubuntu图形界面可以使用[`Visual Studio Code`](https://code.visualstudio.com)，命令行下也可以使用[`Vim`](https://github.com/vim/vim)编辑器进行Swift相关开发。
+因为目前来说，Ubuntu上还没有对Swift支持比较好的IDE，所以建议使用Mac上的Xcode作为开发工具，也可以使用[`Visual Studio Code`](https://code.visualstudio.com)进行开发，命令行下也可以使用[`Vim`](https://github.com/vim/vim)编辑器进行Swift相关开发。
 
-=== "Visual Studio Code"
-    !!! warning "TODO: 添加VSC配置Swift开发环境"
-
-=== "Vim"
+=== "Xcode(MacOS)"
+    只需要在Vapor创建的项目根目录下运行命令，即可打开Xcode工程进行开发
+    ```bash
+    cd HelloVapor
+    vapor xcode
+    ``` 
+=== "Visual Studio Code(通用)"
+    1. 本地需要先安装好Swift环境
+    2. 安装 [Visual Studio Code](https://code.visualstudio.com)
+    3. 安装 Visual Studio Code 插件：[Swift](https://marketplace.visualstudio.com/items?itemName=sswg.swift-lang) 、[README](https://github.com/swift-server/vscode-swift#readme)
+    4. 使用 Visual Studio Code 打开Swift Package Manager 管理的工程
+    5. 运行、打断点、调试可以直接按常规操作进行
+=== "Vim(命令行IDE)"
     !!! warning "TODO: 添加Vim配置Swift开发环境"
-
+---
 Swift开发环境和Vapor工具箱安装成功后，下一步就可以尝试开发了。🙃🙃🙃
