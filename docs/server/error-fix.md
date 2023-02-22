@@ -1,4 +1,4 @@
-!!! tip "找不到文件或者项目配置出错时尝试重新生成XCode项目"
+!!! tip "找不到文件或者项目配置出错时尝试重新生成Xcode项目"
     ```bash 
     $ rm -rf .swiftpm
     $ vapor xcode 

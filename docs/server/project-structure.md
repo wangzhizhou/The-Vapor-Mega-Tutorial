@@ -27,7 +27,7 @@ $ tree .
 
 Vapor使用[`Swift Package Manager(SPM)`](https://swift.org/package-manager/)，它是一个依赖管理系统，类似于iOS平台上的Cocoapods，用来配置Vapor应用项目。配置好的Vapor项目之后可以通过调用`swift`工具链进行编译链接，生成可执行程序或者三方库。
 
-一个SPM项目定义在Package.swift框架文件中，这个文件中声明了目标(Target)、依赖(Dependencies)以及怎样把它们链接在一起。项目的布局也和传统的XCode项目有所不同。
+一个SPM项目定义在Package.swift框架文件中，这个文件中声明了目标(Target)、依赖(Dependencies)以及怎样把它们链接在一起。项目的布局也和传统的Xcode项目有所不同。
 
 `Source`目录用来存放源文件，`Package.swift`中定义的每一个`Target`都对应`Source`目录下的一个子模块目录。模板项目中声明了两个子模块: `App`和`Run`。
     - `App`模块下存放应用代码逻辑
