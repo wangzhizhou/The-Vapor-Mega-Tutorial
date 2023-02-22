@@ -40,10 +40,10 @@ theme:
   features:
     - navigation.instant
     - navigation.tracking
-    # - navigation.tabs
-    # - navigation.tabs.sticky
-    # - navigation.sections 
-    # - navigation.expand
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections 
+    - navigation.expand
     - navigation.path
     - toc.follow
     - toc.integrate
