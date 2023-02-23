@@ -44,6 +44,19 @@ theme:
   icon:
     logo: fontawesome/solid/droplet
     repo: fontawesome/brands/git-alt
+    # admonition:
+      # note: fontawesome/solid/note-sticky
+      # abstract: fontawesome/solid/book
+      # info: fontawesome/solid/circle-info
+      # tip: fontawesome/solid/bullhorn
+      # success: fontawesome/solid/check
+      # question: fontawesome/solid/circle-question
+      # warning: fontawesome/solid/triangle-exclamation
+      # failure: fontawesome/solid/bomb
+      # danger: fontawesome/solid/skull
+      # bug: fontawesome/solid/robot
+      # example: fontawesome/solid/flask
+      # quote: fontawesome/solid/quote-left
   favicon: assets/favicon.ico
   features:
     - navigation.instant
@@ -61,7 +74,6 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
-    - content.code.select
     - content.code.annotate
     - content.action.edit
     - content.action.view
@@ -72,6 +84,8 @@ theme:
 plugins:
   - search
   - offline
+  # - mike
+  # - blog
   # - meta
   # - optimize
   # - blog
@@ -92,6 +106,8 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/wangzhizhou
   generator: true
+  version:
+    provider: mike
 
 markdown_extensions:
   - abbr
@@ -125,8 +141,6 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.highlight:
       anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
       linenums: true
       use_pygments: true
       auto_title: true
