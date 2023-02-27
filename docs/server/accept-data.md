@@ -23,7 +23,7 @@ Content协议是Vapor对Codable协议的封装，用来从请求中提取数据�
             return "Hello, \(name)"
         }
         // ---
-        app.post("info") { (req) -> String in
+        app.post("info") { req -> String in
             let info = try req.content.decode(InfoData.self)
             return "Hello, \(info.name)"
         }
@@ -33,6 +33,29 @@ Content协议是Vapor对Codable协议的封装，用来从请求中提取数据�
     }
     ```
 
-我们使用一个Mac上的应用，名叫[`rested`](https://apps.apple.com/cn/app/rested-simple-http-requests/id421879749?mt=12)模拟`POST`请求，按下面设置测试路由正常。
+我们使用`curl`这个工具来测试我们的路由是否正常工作，这个工具是类Linux系统都自带的命令行工具，不存在收费问题，可以免费使用，而且学习后端是必须掌握这个命令行工具的使用方法的：
 
-![post data](assets/post-data.png)
+!!! tip inline end
+    -X 表示请求类型: `GET`/`POST`/`PUT`/`DELETE`，默认为`GET`
+
+    -H 请求发起时的Headers设置
+
+    -d 请求发起时所携带的数据
+
+```bash title="curl测试命令"
+curl http://localhost:8080/info \
+-X POST \
+-H "content-type:application/json" \
+-d '{"name":"joker"}' 
+```
+
+```title="Output"
+Hello, joker
+```
+
+---
+
+!!! warning
+    之前使用一个Mac上名叫[`rested`](https://apps.apple.com/cn/app/rested-simple-http-requests/id421879749?mt=12)的应用，模拟`POST`请求(现在这个App开始收费，不能免费使用了)
+
+    ![post data](assets/post-data.png)
