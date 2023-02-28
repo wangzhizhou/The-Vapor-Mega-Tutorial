@@ -42,8 +42,25 @@ Content协议也可以编码结构体成为JSON数据，在代码中定义一个
     }
     ```
 
+=== "CURL"
 
-使用`resetd`应用测试如下：
+    ```bash title="curl测试命令"
+    curl http://localhost:8080/info \
+    -X POST \
+    -H "content-type:application/json" \
+    -d '{"name":"joker"}' 
+    ```
 
-![return json](assets/return-json.png)
+    ```json title="Output JSON"
+    {
+        "requestData" : {
+            "name": "joker"
+        }
+    }
+    ```
+
+=== "Rested(Deprecated)"
+    使用`resetd`应用测试如下：
+
+    ![return json](assets/return-json.png)
 
