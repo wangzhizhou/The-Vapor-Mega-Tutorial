@@ -57,14 +57,14 @@ Content协议也可以编码结构体成为JSON数据，在代码中定义一个
 
     如果想格式化输入的话，可以使用`jq`工具命令
 
-    ```json hl_lines="4"
+    ```bash hl_lines="4"
     curl -s http://localhost:8080/info \
     -X POST \
     -H "content-type:application/json" \
     -d '{"name":"joker"}' | jq
     ```
 
-    ```bash
+    ```json
     {
         "requestData": {
             "name": "joker"
