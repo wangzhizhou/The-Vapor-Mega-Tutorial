@@ -3,7 +3,7 @@ Content协议也可以编码结构体成为JSON数据，在代码中定义一个
 
 ???+ example "返回JSON数据"
 
-    ```swift hl_lines='34-36 23-24'
+    ```swift hl_lines='20 34-36 23-24'
     import Vapor
 
     func routes(_ app: Application) throws {
@@ -51,9 +51,22 @@ Content协议也可以编码结构体成为JSON数据，在代码中定义一个
     -d '{"name":"joker"}' 
     ```
 
-    ```json title="Output JSON"
+    ```Bash
+    {"requestData":{"name":"joker"}}
+    ```
+
+    如果想格式化输入的话，可以使用`jq`工具命令
+
+    ```json hl_lines="4"
+    curl -s http://localhost:8080/info \
+    -X POST \
+    -H "content-type:application/json" \
+    -d '{"name":"joker"}' | jq
+    ```
+
+    ```bash
     {
-        "requestData" : {
+        "requestData": {
             "name": "joker"
         }
     }

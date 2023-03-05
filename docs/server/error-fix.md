@@ -1,15 +1,6 @@
 !!! tip "使用Xcode开发时，如果找不到文件或者项目配置出错时尝试重新生成Xcode项目"
     ```bash 
-    rm -rf .swiftpm
-    vapor xcode 
-    ```
-
-
-
-!!! hint "依赖库有问题导致bug时尝试更新依赖库"
-    执行依赖更新命令 
-    ```bash
-    swift package update
+    vapor clean --swiftpm && vapor xcode 
     ```
 
 !!! hint "完全找不到错误原因时尝试全部清理重新编译运行"
@@ -17,7 +8,16 @@
 
     2. 清空编译中间产物
     ```bash 
-    rm -rf .build
+    vapor clean
+    ```
+
+    3. 清空所有产物
+    ```bash
+    vapor clean --update --global --swiftpm
+    ```
+    或者
+    ```bash
+    vapor clean -u -g -s
     ```
 
 !!! hint "求助他人"
