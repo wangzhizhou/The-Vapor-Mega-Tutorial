@@ -23,5 +23,8 @@
 !!! hint "求助他人"
     Vapor在[Discord Channel][discord channel]上有频道可以求助。但Discord在中国完全被墙掉了，这也对于Vapor的流行起到了一定的阻碍作用。如果有访问国际互联网的手段，翻墙后可以下载[`Discord`][discord download]，并进入频道
 
+!!! warning "TODO: 为了更好的进行Vapor学习交流，也需要建立一个讨论群"
+    
+
 [discord channel]: <https://discord.gg/vapor>
 [discord download]: <https://discord.onl/download/>

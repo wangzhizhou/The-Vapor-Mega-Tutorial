@@ -57,6 +57,11 @@ Content协议也可以编码结构体成为JSON数据，在代码中定义一个
 
     如果想格式化输入的话，可以使用`jq`工具命令
 
+    !!! tip inline end
+        - `jq`这个命令行工具，系统可能没有自带
+        - MacOS可以使用`brew install jq`进行安装
+        - Ubuntu可以使用`sudo apt-get install jq -y`进行安装
+
     ```bash hl_lines="4"
     curl -s http://localhost:8080/info \
     -X POST \

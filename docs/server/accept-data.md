@@ -58,6 +58,6 @@ Content协议是Vapor对Codable协议的封装，用来从请求中提取数据�
 === "Rested(Deprecated)"
 
     !!! warning
-        之前使用一个Mac上名叫[`rested`](https://apps.apple.com/cn/app/rested-simple-http-requests/id421879749?mt=12)的应用，模拟`POST`请求(现在这个App开始收费，不能免费使用了，并且在中国区无法下载了)
+        之前使用一个Mac上名叫[`rested`](https://apps.apple.com/cn/app/rested-simple-http-requests/id421879749?mt=12)的应用，模拟`POST`请求(现在这个App开始收费，不能免费使用了，并且在中国区无法下载)
 
         ![post data](assets/post-data.png)
