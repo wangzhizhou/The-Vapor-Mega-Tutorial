@@ -4,7 +4,7 @@
     ```
 
 !!! hint "完全找不到错误原因时尝试全部清理重新编译运行"
-    1. Xcode中使用Command+Option+K 清空编译产物
+    1. Xcode中使用 ++cmd+shift+k++ 清空编译产物
 
     2. 清空编译中间产物
     ```bash 
