@@ -1,37 +1,32 @@
-!!! warning ""
-    REST(Representational state transfer)表述性状态传递, 是一个和HTTP紧密关联的软件架构。遵循REST风格的API可以和数据库操作CRUD(创建、查询、更新、删除)联系起来。
-    REST风格的API可以用一种统一的模式来操作资源，这样可以简化客户端的构建过程。
+!!! tip "REST"
+    - REST是 Representational State Transfer 的缩写，是一种分布式超媒体系统的架构风格
 
-例如我们要开发一套首字母缩写相关的遵循REST风格的API，可以这样定义：
+    - 像其它架构风格一样，它有自己的规则和规范。如果一个API服务满足REST架构规范，就可以被称为 **RESTful API**
+    
+    - 通过一个[RESTful API教程][rest api tutorial]，具体了解REST架构
 
-**创建**
+遵循REST风格的API可以和数据库操作CRUD(创建、查询、更新、删除)联系起来。REST风格的API可以用一种统一的模式来操作资源，这样可以简化客户端的构建过程。
 
-- `POST /api/acronuyms/1`，创建一个ID为1的首字母缩写
+例如要开发一套首字母缩写相关的API，遵循REST风格，可以这样定义：
 
-**查询**
+!!! info "RESTful API定义示例"
+    **创建**
 
-- `GET /api/acronyms/`，获取全部的首字母缩写
-- `GET /api/acronyms/1`，获取ID为1的首字母缩写
+    - `POST /api/acronuyms/1`，创建一个ID为1的首字母缩写
+
+    **查询**
+
+    - `GET /api/acronyms/`，获取全部的首字母缩写
+    - `GET /api/acronyms/1`，获取ID为1的首字母缩写
+
+    **更新**
+
+    - `PUT /api/acronyms/1`，用新的内容更新ID为1的首字母缩写
+
+    **删除**
+
+    - `DELETE /api/acronyms/1`，删除ID为1的首字线缩写
+
+通过API的接口定义就可以清楚的了解API的具体功能作用，接口定义也比较规范和整洁，一般不需要注释就可以理解
   
-**更新**
-
-- `PUT /api/acronyms/1`，用新的内容更新ID为1的首字母缩写
-
-**删除**
-
-- `DELETE /api/acronyms/1`，删除ID为1的首字线缩写
-  
-!!! note "使用Swift的好处"
-    - Swift是强静态类型语言，可以减少应用在运行期的崩溃
-    - Swift是编译型语言，比解释型语言性能好
-    - Swift对于iOS开发者来说，可以包揽前后端开发，不需要更换语言，并且Swift集众多语言的特点于一身
-    - 使用Swift+Xcode开发对于服务端开发来说，有功能齐备的IDE和相关调试能力这种特性的服务端开发体验是非常棒的，大多数服务端开发语言都没有IDE支持
-  
-!!! note "使用Vapor开发服务端的好处"
-    - Vapor使用了Codable协议，这能够减少许多数据在模型和数据库之间转换格式的相关代码
-    - Vapor是完全非阻塞式的架构。阻塞式的架构中，在同一个线程中进行请求和返回请求需要的数据时，如果中间处理操作耗时较多，会出现返回延迟的情况。如果使用多线程的方式进行请求和返回，线程间的切换消耗又会较大。非阻塞的架构中，如果一个请求不能马上返回，会被放在一边，这个请求返回之前的这段时间还可以处理其它请求。关于阻塞非阻塞方式，这里说的也不是很清楚，细节还需要进一步研究。Vapor使用[SwiftNIO](https://github.com/apple/swift-nio)实现了非阻塞架构包括数据库驱动。
-    Vapor的社区很活跃，流行度也挺高的。
-
-
-!!! error "TODO: 建立Vapor相关问答社区"
-    建立一个Vapor社区或问答系统用来记录问题和相关解决办法，进行技术积累。
+[rest api tutorial]: <https://restfulapi.net/>
