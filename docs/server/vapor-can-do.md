@@ -31,8 +31,8 @@ Use `vapor <command> [--help,-h]` for more information on a command.
 - `Vapor new`命令可以从模板创建工程，这种模板可以是自定义的，
 也可以是github上其它人的定义的。
 - `vapor run`运行构建成功的应用，等价于命令：`swift run Run`。
-- `vapor supervisor`这个用的少，还没有试过。
-- `vapor xcode`用来生成可以使用Xcode打开的工程文件，方便使用Xcode进行开发，只适用于MacOS平台，因为Ubuntu上没有Xcode。
+- `vapor supervisor` [supervisor]是一个Python写的类Unix系统下的进程管理工具，Vapor使用这个命令可以创建对应supervisor的配置文件，在Vapor项目部署到服务器上后，可以对其进行生命周期管理
+- `vapor xcode`在MacOS平台上使用Xcode打开工程文件，方便使用Xcode进行开发。另外一种方法是使用`open Package.swift`命令，因为新版本的Xcode已经默认支持了Swift Package Manager项目，所以系统可以识别出来，并调用Xcode打开对应的SPM项目。
 
 这些命令会在之后的实践中用到，慢慢熟悉并使用它们。
 
@@ -63,7 +63,7 @@ Use `vapor <command> [--help,-h]` for more information on a command.
     ```
 
     !!! warning
-        第一次运行会比较耗时，因为它要从GitHub上拉取一些依赖的代码仓库到本地后再进行编译。GitHub在中国有可能会被DNS污染，访问不太稳定。
+        第一次运行会比较耗时，因为它要从GitHub上拉取一些依赖的代码仓库到本地后再进行编译。GitHub在中国有可能会被DNS污染，访问不太稳定。国内的朋友需要使用一些GitHub访问加速方案，如果有合法代理可以访问国际互联网的方式是最好的。
 
     目前服务已经运行在 <http://127.0.0.1:8080>，可以通过浏览器进行访问。
 
@@ -72,10 +72,10 @@ Use `vapor <command> [--help,-h]` for more information on a command.
     !!! tip "端口占用查询"
         有时在运行应用时会发现想要监听的端口已经被其它的应用程序绑定了，此时可以使用命令查看一下到底是谁在使用。
         在MacOS上，终端键入命令`lsof -i tcp:8080`可以查看指定端口当前被哪些应用使用。然后使用`pkill <APP_NAME>`来关闭这些占用端口的应用。
-        如果占用端口的应用很重要，那么你就要考虑换一个端口来监听运行你的API了。
+        如果占用端口的应用很重要，那么你就要考虑换一个端口来监听运行你的Vapor项目了。
 
 
-!!! hint "查看所有路由信息"
+!!! hint "查看Vapor API项目的所有路由信息"
     
     可以通过下面命令，查看这个api项目提供的所有可用路由信息了： 
 
@@ -104,3 +104,5 @@ Use `vapor <command> [--help,-h]` for more information on a command.
     ```
     运行起来后，我们就可以在内网中的任何设备上访问了到刚刚开发的API了，例如可以使用手机浏览器访问电脑的内网IP，验证API服务正常工作。
 
+
+[supervisor]: <https://github.com/Supervisor/supervisor>
