@@ -24,7 +24,7 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/wangzhizhou
-  generator: true
+  generator: false
   version:
     provider: mike
 
