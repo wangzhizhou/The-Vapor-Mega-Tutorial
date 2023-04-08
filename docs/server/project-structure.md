@@ -26,7 +26,7 @@ $ tree .
 7 directories, 8 files
 ```
 
-Vapor使用[`Swift Package Manager(SPM)`](https://swift.org/package-manager/)，它是一个依赖管理系统，类似于iOS平台上的Cocoapods，用来配置Vapor应用项目。配置好的Vapor项目之后可以通过调用`swift`工具链进行编译链接，生成可执行程序或者三方库。
+Vapor使用[Swift Package Manager(SPM)][spm]，它是一个依赖管理系统，类似于iOS平台上的[Cocoapods]，用来配置Vapor应用项目。配置好的Vapor项目之后可以通过调用`swift`工具链进行编译链接，生成可执行程序或者三方库。
 
 一个SPM项目定义在Package.swift框架文件中，这个文件中声明了目标(Target)、依赖(Dependencies)以及怎样把它们链接在一起。项目的布局也和传统的Xcode项目有所不同。
 
@@ -39,7 +39,7 @@ Vapor使用[`Swift Package Manager(SPM)`](https://swift.org/package-manager/)，
 
 `Package.resolved`文件是对`Package.swift`中描述的依赖关系解析后的结果，用来保存依赖模块的具体信息。
 
-`Dockerfile`和`docker-compose.yml`文件是服务运行于`Docker`容器所需要的构建配置文件，目前可不必关心。
+`Dockerfile`和`docker-compose.yml`文件是服务运行于[Docker]容器所需要的构建配置文件，目前可不必关心。
 
 !!! hint "生成可以在Xcode中进行开发的vapor工程"
     之前运行Vapor是在命令行下进行的，如果我们是在MacOS系统下，也可以使用Vapor生成Xcode工程项目，直接使用Xcode进行Vapor应用开发
@@ -49,3 +49,8 @@ Vapor使用[`Swift Package Manager(SPM)`](https://swift.org/package-manager/)，
     Opening project in Xcode.
     ```
     ![vapor xcode](assets/vapor-xcode.png)
+
+
+[docker]: <https://www.docker.com/>
+[spm]: <https://swift.org/package-manager/>
+[cocoapods]: <https://cocoapods.org/>

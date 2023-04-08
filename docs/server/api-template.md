@@ -21,7 +21,7 @@
     - `Public`用来存放公共资源文件，包括：图片、CSS样式表、js文件以及Leaf模板文件
     - `Sources`用来存放整个工程的主体源代码文件
     - `Tests`用来存放针对工程功能所写的测试用例的代码文件
-    - `docker-compose.yml`部署到docker容器中执行的配置文件，方便部署
+    - `Dockerfile`和`docker-compose.yml`部署到docker容器中执行的配置文件
 
 !!! hint "Sources子目录"
     ```bash
@@ -113,6 +113,8 @@
     try app.run()
     ```
 
+以`main.swift`为程序运行的入口，获取到命令行参数以及一些环境变量，用这些信息去创建app，在app运行之前，使用`configure.swift`文件中的函数configure对app实例进行配置
+
 ???+ "configure.swift"
     ```swift hl_lines="9"
     import Vapor
@@ -126,6 +128,8 @@
         try routes(app)
     }
     ```
+
+app实例配置过程中调用`routes.swift`中的方法，对app路由进行配置。
 
 ???+ "routes.swift"
     ```swift
@@ -142,9 +146,7 @@
     }
     ```
 
-以`main.swift`为程序运行的入口，获取到命令行参数以及一些环境变量，用这些信息去创建app，在app运行之前，使用`configure.swift`文件中的函数对app实例进行配置，app实例配置过程中调用`routes.swift`中的方法，对app路由进行配置。
-
-在`HelloVapor`工程根目录下使用`vapor run`或者`swift run`命令编译运行程序即可。
+routes函数中为app实例配置了两个GET类型的路由: `/` 和 `/hello`，在`HelloVapor`工程根目录下使用`vapor run`或者`swift run`命令编译运行程序后，即可以浏览器中测试对应的路由是否正常工作
 
 ---
 ## 测试子模块
@@ -170,9 +172,9 @@
 `AppTests.swift`针对App模块写测试用例，使用了`XCTest`框架，每一个测试用例方法的名称都以`test`开头。在工程根目录下使用`swift test`命令运行测试用例。
 
 !!! note "在Mac上使用Xcode进行Vapor项目的开发"
-    在项目根目录下运行`vapor xcode`，生成可以在Xcode中打开的工程文件，使用Xcode运行程序或者测试用例。
+    在项目根目录下运行`vapor xcode`，使用Xcode打开后，运行程序或者执行测试。
     
     - ++cmd+r++ 运行程序
-    - ++cmd+u++ 运行测试
+    - ++cmd+u++ 执行测试
 
     ![vapor-xcode-test](assets/vapor-xcode-test.png)
