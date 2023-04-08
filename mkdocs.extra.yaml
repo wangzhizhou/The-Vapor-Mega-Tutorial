@@ -25,8 +25,8 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/wangzhizhou
   generator: false
-  version:
-    provider: mike
+  # version:
+    # provider: mike
 
 markdown_extensions:
   - abbr
