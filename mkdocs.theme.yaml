@@ -1,0 +1,72 @@
+INHERIT: ./mkdocs.extra.yaml
+
+theme: 
+  name: material
+  custom_dir: overrides
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      primary: green
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  font: 
+    text: Ubuntu
+    code: Ubuntu Mono
+
+  language: zh
+  direction: ltr
+  icon:
+    logo: fontawesome/solid/droplet
+    repo: fontawesome/brands/git-alt
+    # admonition:
+      # note: fontawesome/solid/note-sticky
+      # abstract: fontawesome/solid/book
+      # info: fontawesome/solid/circle-info
+      # tip: fontawesome/solid/bullhorn
+      # success: fontawesome/solid/check
+      # question: fontawesome/solid/circle-question
+      # warning: fontawesome/solid/triangle-exclamation
+      # failure: fontawesome/solid/bomb
+      # danger: fontawesome/solid/skull
+      # bug: fontawesome/solid/robot
+      # example: fontawesome/solid/flask
+      # quote: fontawesome/solid/quote-left
+  favicon: assets/favicon.ico
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections 
+    - navigation.expand
+    - navigation.path
+    - navigation.footer
+    - navigation.top
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.action.view
+    - content.tooltips
+    - announce.dismiss
+    # - header.autohide
