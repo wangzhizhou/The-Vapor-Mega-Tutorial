@@ -14,6 +14,7 @@ nav:
       - HTTP基础: server/http-basic.md
       - REST API: server/rest-api.md
       - 异步: server/async.md
+      - SwiftNIO: server/swift-nio.md
       - 数据库: server/Fluent-Persisting-models.md
       - 配置数据库: server/configure-database.md
       - 数据库CRUD操作: server/CRUD.md
