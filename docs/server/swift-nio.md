@@ -70,6 +70,9 @@ EventLoopFuture本质上是函数返回值的占位容器。每一个EventLoopFu
 
 如果通过轮询的方式检查EventLoopFuture是否完成，会非常低效。因此EventLoopFuture内部维护了一个回调列表。用户可以把自己的回调塞入EventLoopFuture内部维护的回调列表中，当EventLoopFuture获取一个返回结果时，会执行回调列表中的回调代码逻辑，这样用户就能获取到函数执行的结果了。同时为了线程安全，EventLoopFuture的回调列表会被保证在与其对应的EventLoopPromise相同的EventLoop上执行，这样就能保证数据的同步访问，避免多线程问题。
 
+!!! Tip
+    如果看完这篇介绍，还是有点懵懂的话，下一步，就可以拉下[swift-nio][swift-nio-repo]的仓库源码，看看EventLoopPromise和EventLoopFuture的具体实现了。写代码就像写文章一样，能够读懂优秀仓库的代码，就相当于可以读懂名著一样，对个人提升来说是最快和最直接的。
+
 [swift-nio-repo]: <https://github.com/apple/swift-nio>
 [swift-nio-overview]: <https://github.com/apple/swift-nio#conceptual-overview>
 [Netty]: <https://netty.io/>
