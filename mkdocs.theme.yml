@@ -4,11 +4,14 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-    # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      accent: deep orange
       toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
+        icon: material/brightness-7
+        name: Switch to dark mode
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -16,15 +19,7 @@ theme:
       accent: lime
       toggle:
         icon: material/brightness-4
-        name: Switch to system preference
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default 
-      primary: green
-      accent: deep orange
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
+        name: Switch to light mode
   font: 
     text: Ubuntu
     code: Ubuntu Mono

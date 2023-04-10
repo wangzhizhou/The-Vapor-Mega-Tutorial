@@ -19,6 +19,10 @@ extra:
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
+    actions:
+      - manage
+      - accept
+      - reject
   search:
     language: zh
   social:
@@ -64,6 +68,8 @@ markdown_extensions:
       use_pygments: true
       auto_title: true
       linenums_style: pymdownx-inline
+      pygments_lang_class: true
+      line_spans: __span
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
