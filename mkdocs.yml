@@ -1,4 +1,4 @@
-INHERIT: ./mkdocs.theme.yaml
+INHERIT: ./mkdocs.theme.yml
 
 nav:
   - 主页: index.md

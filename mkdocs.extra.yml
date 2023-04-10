@@ -1,4 +1,4 @@
-INHERIT: ./mkdocs.base.yaml
+INHERIT: ./mkdocs.base.yml
 
 plugins:
   - search
