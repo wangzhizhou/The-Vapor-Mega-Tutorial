@@ -64,4 +64,5 @@ theme:
     - content.action.view
     - content.tooltips
     - announce.dismiss
+    - navigation.prune
     # - header.autohide
