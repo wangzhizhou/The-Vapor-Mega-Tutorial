@@ -42,7 +42,7 @@ theme:
       # bug: fontawesome/solid/robot
       # example: fontawesome/solid/flask
       # quote: fontawesome/solid/quote-left
-  favicon: assets/favicon.ico
+  favicon: assets/rain_drop.png
   features:
     - navigation.instant
     - navigation.tracking
