@@ -7,6 +7,8 @@ fi
 
 python3 -m venv --clear vblogenv
 source vblogenv/bin/activate
+pip install --upgrade pip
 pip install -r requirements.txt
-mkdocs build --clean 
-mkdocs serve
+mkdocs build --clean -f config/mkdocs.yml
+mkdocs serve -f config/mkdocs.yml \
+-w config -w overrides
