@@ -30,7 +30,7 @@ extra:
       link: https://github.com/wangzhizhou
   generator: false
   # version:
-    # provider: mike
+  #   provider: mike
 
 markdown_extensions:
   - abbr
