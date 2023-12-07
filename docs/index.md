@@ -8,7 +8,7 @@
 
     选择Vapor主要是因为我喜欢简单的东西。🤣 我觉得官网可以体现出开发团队的水平，简单的东西总是让人喜欢。
 
-Vapor是一个用[Swift语言](swift-lang)写的开源框架，基于苹果的[SwiftNIO]库。可以用来构建：后端服务、Web网页。
+Vapor是一个用[Swift语言][swift-lang]写的开源框架，基于苹果的[SwiftNIO]库。可以用来构建：后端服务、Web网页。
 
 Tanner Nelson在2016年1月启动了Vapor项目，很快Logan Wright加入了。之后有很多的人加入了Vapor的开发者社区，因为Vapor使用了Swift风格的API和大量的语言特性，很快在[GitHub]上成为了流行的服务端Swift框架。随着Swift语言的开源，Vapor也被合并入[Swift Server Group][sswg]，成为了苹果支持的服务端开发框架。
 
