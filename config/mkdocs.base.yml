@@ -5,6 +5,8 @@ site_author: wangzhizhou
 
 repo_name: GitHub 仓库
 repo_url: https://github.com/wangzhizhou/The-Vapor-Mega-Tutorial
+docs_dir: '../docs'
+site_dir: '../site'
 
 copyright: >
   Copyright &copy; 2018-2023 wangzhizhou -
