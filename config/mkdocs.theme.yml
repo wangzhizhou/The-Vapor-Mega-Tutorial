@@ -1,4 +1,4 @@
-INHERIT: ./mkdocs.extra.yml
+INHERIT: ./mkdocs.plugins.yml
 
 theme: 
   name: material

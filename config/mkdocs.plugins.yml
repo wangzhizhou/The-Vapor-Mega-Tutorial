@@ -1,0 +1,12 @@
+INHERIT: ./mkdocs.extra.yml
+
+plugins:
+  - search
+  - offline
+  # - mike
+  # - blog
+  # - meta
+  # - optimize
+  # - blog
+  # - social
+  # - privacy

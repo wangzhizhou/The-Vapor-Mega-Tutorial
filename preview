@@ -7,8 +7,7 @@ echo "SERVE IP: ${SERVE_IP}"
 VENV="vblogenv"
 if [ -d "$VENV" ]; then
     source "$VENV/bin/activate"
-    mkdocs serve -f config/mkdocs.yml \
-    -w config -w overrides
+    mkdocs serve -f config/mkdocs.yml
 else
     ./setup
 fi

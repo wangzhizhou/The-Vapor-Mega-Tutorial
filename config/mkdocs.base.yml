@@ -17,3 +17,10 @@ copyright: >
   <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank">
       Material for MkDocs
   </a>
+
+watch:
+  - ../docs
+  - ../config
+  - ../overrides
+  - ../includes
+

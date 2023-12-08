@@ -1,15 +1,4 @@
-INHERIT: ./mkdocs.base.yml
-
-plugins:
-  - search
-  - offline
-  # - mike
-  # - blog
-  # - meta
-  # - optimize
-  # - blog
-  # - social
-  # - privacy
+INHERIT: ./mkdocs.extra.js.yml
 
 extra:
   consent:
@@ -31,53 +20,3 @@ extra:
   generator: false
   # version:
   #   provider: mike
-
-markdown_extensions:
-  - abbr
-  - admonition
-  - attr_list
-  - def_list
-  - footnotes
-  - md_in_html
-  - tables
-  - toc:
-      permalink: true
-      title: On this page
-      permalink_title: Anchor link to this section for reference
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-      options:
-        custom_icons:
-          - overrides/.icons
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.mark
-  - pymdownx.tilde
-  - pymdownx.critic
-  - pymdownx.details
-  - pymdownx.magiclink
-  - pymdownx.smartsymbols
-  - pymdownx.keys
-  - pymdownx.highlight:
-      anchor_linenums: true
-      linenums: true
-      use_pygments: true
-      auto_title: true
-      linenums_style: pymdownx-inline
-      pygments_lang_class: true
-      line_spans: __span
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tabbed:
-      alternate_style: true
-
-extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
