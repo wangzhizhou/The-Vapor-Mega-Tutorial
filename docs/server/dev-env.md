@@ -1,4 +1,4 @@
-目前，`Vapor`的开发环境主要是在`MacOS`和`Ubuntu`两个平台部署。
+目前，Vapor 的开发环境主要是在 MacOS 和 Ubuntu 两个平台部署。
 
 !!! info "MacOS平台上可以借助Xcode这个IDE进行开发"
     在`MacOS`你要先安装好`Xcode`，Xcode内置有`Swift`开发环境, `Vapor4`要求Swift版本在`5.2`及以上。
