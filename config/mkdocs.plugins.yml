@@ -38,7 +38,6 @@ plugins:
       plugins:
         - minify
   - search
-  - info
   - offline:
       enabled: false
   - privacy:
