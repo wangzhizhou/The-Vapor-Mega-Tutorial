@@ -54,3 +54,4 @@ nav:
         - 验证数据有效性: client/web/validation.md
         - Google用户认证: client/web/google-authentication.md
         - 数据库迁移及版本控制: client/web/migration.md
+  - 博客: blog/index.md

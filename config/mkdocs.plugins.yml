@@ -1,12 +1,49 @@
 INHERIT: ./mkdocs.extra.yml
 
 plugins:
+  - blog:
+      enabled: true
+      blog_dir: blog
+      post_dir: blog/posts
+      post_date_format: full
+      post_url_date_format: yyyy年MM月dd日
+      post_url_format: "{categories}/{date}/{slug}/{file}"
+      post_url_max_categories: 1
+      post_slugify_separator: _
+      post_excerpt: required
+      post_excerpt_max_authors: 2
+      post_excerpt_max_categories: 2
+      post_excerpt_separator: <!-- more -->
+      post_readtime: true
+      post_readtime_words_per_minute: 300
+      archive: false
+      archive_name: 归档
+      archive_date_format: yyyy年
+      archive_url_date_format: yyyy年
+      archive_url_format: "archive/{date}"
+      archive_toc: true
+      categories: true
+      categories_name: 分类
+      categories_allowed:
+        - Search
+        - Performance
+      categories_toc: true
+      authors: true
+      authors_file: "{blog}/authors.yml"
+      pagination: true
+      pagination_per_page: 5
+      pagination_if_single_page: true
+  - group:
+      enabled: false
+      plugins:
+        - minify
   - search
-  - offline
-  # - mike
-  # - blog
-  # - meta
-  # - optimize
-  # - blog
-  # - social
-  # - privacy
+  - info
+  - offline:
+      enabled: false
+  - privacy:
+      enabled: true
+      assets: false
+  - social
+  - tags
+  
