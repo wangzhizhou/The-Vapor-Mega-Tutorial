@@ -1,6 +1,8 @@
 INHERIT: ./mkdocs.extra.yml
 
 plugins:
+  - search
+  - tags
   - blog:
       enabled: true
       blog_dir: blog
@@ -36,13 +38,11 @@ plugins:
   - group:
       enabled: false
       plugins:
-        - minify
-  - search
+        - social:
   - offline:
       enabled: false
   - privacy:
       enabled: true
       assets: false
-  - social
-  - tags
+  
   
