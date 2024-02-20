@@ -22,7 +22,18 @@
     brew install vapor
     ```
 === "Ubuntu"
-    1.浏览[`Swift`官网](https://swift.org/download)，按照官方指导，下载Swift工具链并安装开发环境，安装完成后查看swift版本号：`swift --version`
+    1.浏览[`Swift`官网](https://swift.org/download)，按照官方指导，下载 Swift 工具链并手动安装开发环境，安装完成后查看swift版本号：`swift --version`
+
+    ??? info "[自动安装方法] 使用 [Swiftly](https://swift-server.github.io/swiftly/) 命令行工具"
+        1. 安装 Swiftly
+        ```bash
+        $ curl -L https://swift-server.github.io/swiftly/swiftly-install.sh | bash
+        ```
+
+        2. 使用Swiftly进行安装最新版 Swift 开发环境
+        ```bash
+        $ swiftly install latest
+        ```
 
     2.从源码安装Vapor
     ```bash 
@@ -44,11 +55,14 @@ vapor --help
 如果你的开发平台是MacOS，建议使用Xcode作为开发工具。目前在Ubuntu上还没有对Swift支持比较好的IDE，可以使用[Visual Studio Code][vsc]安装Swift插件的方式进行开发，命令行下也可以使用[Vim]编辑器进行Swift相关开发。
 
 === "Xcode(MacOS)"
-    只需要在Vapor创建的项目根目录下运行命令，即可打开Xcode工程进行开发
+    只需要在Vapor创建的项目根目录下运行下面的命令，即可打开Xcode工程进行开发
     ```bash
-    cd HelloVapor
-    vapor xcode   # 也可以使用 open Package.swift 的方式让Xcode打开SPM项目工程
+    open Package.swift
     ``` 
+    或者
+    ```bash
+    xed .
+    ```
 === "Visual Studio Code(通用)"
     1. 本地需要先安装好Swift环境
     2. 安装 [Visual Studio Code][vsc]
