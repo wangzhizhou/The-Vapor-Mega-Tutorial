@@ -1,3 +1,6 @@
 [submodule "TILApp"]
 	path = TILApp
 	url = https://github.com/wangzhizhou/TILApp-BackEnd.git
+[submodule "iOSTILApp"]
+	path = iOSTILApp
+	url = https://github.com/wangzhizhou/TILiOS.git
