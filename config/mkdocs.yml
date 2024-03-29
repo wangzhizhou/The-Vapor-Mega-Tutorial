@@ -2,15 +2,17 @@ INHERIT: ./mkdocs.theme.yml
 
 nav:
   - 主页: index.md
+  - 启动开发:
+    - 开发环境: server/dev-env.md
+    - Vapor工具箱的能力: server/vapor-can-do.md
+    - 项目结构: server/project-structure.md
+    - API模板工程解读: server/api-template.md
+    - 添加GET路由: server/add-routes.md
+    - 接收POST数据: server/accept-data.md
+    - 返回JSON数据: server/return-json.md
+    - 排错: server/error-fix.md
   - 服务端:
-      - 开发环境: server/dev-env.md
-      - Vapor工具箱的能力: server/vapor-can-do.md
-      - 项目结构: server/project-structure.md
-      - API模板工程解读: server/api-template.md
-      - 添加GET路由: server/add-routes.md
-      - 接收POST数据: server/accept-data.md
-      - 返回JSON数据: server/return-json.md
-      - 排错: server/error-fix.md
+    - 初级:
       - HTTP基础: server/http-basic.md
       - REST API: server/rest-api.md
       - 异步: server/async.md
@@ -27,8 +29,10 @@ nav:
       - 测试优化: server/testing-refine.md
       - 其它测试用例: server/other-testcases.md
       - 在Linux上运行测试用例: server/test-on-linux.md
+    - 中级:
       - 部署到Vapor Cloud: server/deploy-vapor-cloud.md
       - 部署到自己的云服务器: server/deploy-private.md
+    - 高级:
       - API认证: server/authentication.md
       - 基本认证: server/basic-authentication.md
       - token认证: server/token-authentication.md
