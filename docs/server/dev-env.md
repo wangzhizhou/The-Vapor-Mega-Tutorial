@@ -23,7 +23,6 @@
     ```
 === "Ubuntu"
     1.浏览[`Swift`官网](https://swift.org/download)，按照官方指导，下载 Swift 工具链并手动安装开发环境，安装完成后查看swift版本号：`swift --version`
-
     ??? info "[自动安装方法] 使用 [Swiftly](https://swift-server.github.io/swiftly/) 命令行工具"
         1. 安装 Swiftly
         ```bash
@@ -34,8 +33,12 @@
         ```bash
         $ swiftly install latest
         ```
-
-    2.从源码安装Vapor
+    2.在ubuntu上需要安装 `build-essential`，为Vapor的源码编译做好准备：
+    ```bash
+    sudo apt-get install build-essential
+    ```
+    
+    3.从源码安装Vapor
     ```bash 
     git clone https://github.com/vapor/toolbox.git
     cd toolbox
