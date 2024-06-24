@@ -35,7 +35,7 @@
         ```
     2.在ubuntu上需要安装 `build-essential`，为Vapor的源码编译做好准备：
     ```bash
-    sudo apt-get install build-essential
+    sudo apt-get install -y build-essential libz-dev
     ```
     
     3.从源码安装Vapor
